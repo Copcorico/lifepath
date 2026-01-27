@@ -1,0 +1,69 @@
+# Configuration pour le Webhook GitHub
+
+## Instructions de Configuration
+
+1. Copiez ce fichier : `cp WEBHOOK_SETUP.md.example WEBHOOK_SETUP.md`
+2. Éditez WEBHOOK_SETUP.md avec vos informations
+3. Ajoutez WEBHOOK_SETUP.md à .gitignore pour la sécurité
+
+## Informations à Remplir
+
+### Token Secret
+Générez un token : `openssl rand -hex 32`
+TOKEN_SECRET=votretokensecretici
+
+### URL du Webhook
+URL_WEBHOOK=http://votre-serveur.com/webhook.php
+
+### Chemin du Repository sur le Serveur
+REPO_PATH=/chemin/complet/vers/lebonplan
+
+### Utilisateur du Serveur Web
+WEB_USER=www-data  # ou apache, nginx, etc.
+
+## Commandes de Configuration Rapide
+
+```bash
+# 1. Configurer les permissions
+sudo chown -R ${WEB_USER}:${WEB_USER} ${REPO_PATH}
+sudo chmod -R 755 ${REPO_PATH}
+
+# 2. Configurer Git pour le serveur web
+sudo -u ${WEB_USER} git config --global user.email "deploy@example.com"
+sudo -u ${WEB_USER} git config --global user.name "Auto Deploy"
+
+# 3. Définir la variable d'environnement (ajoutez à votre configuration Apache/Nginx)
+export WEBHOOK_SECRET="${TOKEN_SECRET}"
+
+# 4. Créer les fichiers de log avec les bonnes permissions
+touch ${REPO_PATH}/webhook.log ${REPO_PATH}/deployment.log
+chmod 666 ${REPO_PATH}/webhook.log ${REPO_PATH}/deployment.log
+
+# 5. Tester le déploiement manuel
+${REPO_PATH}/deploy.sh
+```
+
+## Configuration Apache
+
+Ajoutez à votre VirtualHost ou .htaccess :
+
+```apache
+SetEnv WEBHOOK_SECRET "votretokensecretici"
+```
+
+## Configuration Nginx
+
+Ajoutez à votre server block :
+
+```nginx
+location ~ \.php$ {
+    fastcgi_param WEBHOOK_SECRET "votretokensecretici";
+    # ... autres configurations fastcgi
+}
+```
+
+## Test du Webhook
+
+1. Faites un push sur GitHub
+2. Vérifiez les logs : `tail -f webhook.log`
+3. Vérifiez GitHub Webhooks > Recent Deliveries pour voir les résultats
