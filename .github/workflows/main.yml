@@ -20,7 +20,7 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -p 4000 -o StrictHostKeyChecking=no mc@82.66.66.102 << 'EOF'
-            cd ~Documents/lebonplan/
+            cd ~/Documents/lebonplan/
             git pull origin main
             #cd dev-web
             #composer install --no-dev --optimize-autoloader
