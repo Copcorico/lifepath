@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Venez rechercher la perle rare ou vendre un article.">
+	<link rel="stylesheet" href="assets/style_base.css">
+	<link rel="stylesheet" href="assets/style_formulaire.css">
+	<title>Sites de petites annonces - Lebonplan</title>
+</head>
+
+<header>
+	<div class="center"><img src="./images/logo-lbp-header.png" alt="Lebonplan - Le meilleur site d'annonces en ligne"></div>
+	<nav class="navbar">
+		<div class="bar">
+			<div><a href="index.html">Accueil</a></div>
+			<span>|</span>
+			<div><a href="entreprise.html">Entreprise</a></div>
+			<span>|</span>
+			<div><a class="selected" href="offres.html">Offres</a></div>
+			<span>|</span>
+		<div><a href="avis.html">Avis</a></div>
+			<span>|</span>
+			<div><a href="contact.html">Contact</a></div>
+		</div>
+		<div class="account">
+			<div><a href="connexion.html">Connexion</a></div>
+			<span>|</span>
+			<div><a href="inscription.html" class="inscription">S'inscrire</a></div>
+		</div>
+	</nav>
+
+	<div class="tree">
+		<a href="index.html">Accueil</a>
+		<span>></span>
+		<a href="offres.html">Offres</a>
+		<span>></span>
+		<a href="offres-stage.html">Stages</a>
+		<span>></span>
+		<a class="selected" href="offres-stage-postuler.html">Postuler</a>
+	</div>
+</header>
+
+<body>
+	<main>
+		<div>
+			<h1 class="center">Postuler à une offre de stage</h1>
+			<h2> Vous pouvez ici répondre directement à l'offre de stage qui à été déposé par l'entreprise. Soyez le plus précis possible dans vos réponses !</h2>
+		</div>
+		<div class="title">
+			<h1>Stage - Administrateur Système et Réseau H/F</h1>
+			<h2 class="small">IBM | Pornichet - 44 | Publiée le 23/01/2025 | Ref. 123XYZ-44</h2>
+		</div>
+		<div class="infos">
+			<h3>Résumé de l'offre</h1>
+			<div class="list">
+				<span>3 mois</span>
+				<span>Bac+2, Bac +3</span>
+				<span>Systèmes, Réseaux, Cloud</span>
+				<span>Exp. - 1 an</span>
+			</div>
+		</div>
+
+		<div class="formulaire">
+			<h1>Envoyez votre candidature dès maintenant</h1>
+
+			<label>CIVILITÉ
+			<select name="title">
+				<option value="ms">Madame</option>
+				<option value="mr">Monsieur</option>	 
+				<option value="he">Helicoptère de combat apache Antonov-1789</option>
+				<option value="  ">Non binaire</option> 
+			</select>
+			</label>
+
+			<label>NOM<input name="lastname" type="text" value="" size="50" required ></label>
+
+			<label>PRÉNOM<input name="surname" type="text" size="50" value="" required ></label>
+
+			<label>COURRIEL<input name="email" type="email" size="30" value="" required ></label>
+
+			<label>A PROPOS DE VOUS
+				<div class="checkbox">
+					<div class="box"><input type="checkbox" name="category" value="permis">Permis B</div>
+					<div class="box"><input type="checkbox" name="category" value="car">Véhiculé</div>
+					<div class="box"><input type="checkbox" name="category" value="certication">Certication.s (Microsoft, Cisco)</div>
+				</div>
+			</label>
+
+			<label>
+				<div class="checkbox2">
+					JE SUIS MAJEUR
+					<div class="box"><input type="radio" name="majeur" value="yes" checked="checked">Oui </div>
+					<div class="box"><input type="radio" name="majeur" value="no" checked="checked">Non </div>
+				</div>
+			</label>
+
+			<label>VOTRE MESSAGE AU RECRUTEUR<textarea name="feedbacks" rows="5" cols="100"></textarea></label>
+
+			<label>
+				CV
+				<input type="file" id="file-upload" hidden accept=".pdf, .doc, .docx, .odt, .rtf, .jpg, .png">
+				<label for="file-upload" class="upload-btn">AJOUTER MON CV</label>
+				<p class="specifications">Poids max 2Mo</p>
+				<p class="specifications">Formats .pdf, .doc, .docx, .odt, .rtf, .jpg ou png</p>
+			</label>
+
+			<div class="buttons">
+				<button type="submit">POSTULER</button>
+				<input type="reset" value="RÉINITIALISER" >
+			</div>
+
+			<h2 class="smaller">En cliquant sur 'Postuler', vous acceptez les <a href="">CGU</a> et déclarez avoir pris conaissances de la <a href="">politique de protection des données</a> de notre site.</h2>
+		</div>
+	</main>
+
+	<footer class="footer">	2026 - Tous droits réservés - Web4All | <a href="mentions-legales.html">Mentions légales</a>	</footer>
+
+</body>
+
+</html>
