@@ -2,75 +2,41 @@
 <html lang="fr">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Connectez-vous à votre compte Lebonplan pour accéder à vos annonces, favoris et gérer votre profil en toute simplicité.">
-	<meta name="keywords" content="lebonplan, connexion, se connecter, mon compte, espace personnel">
-	<meta name="robots" content="index, follow">
-	<link rel="canonical" href="https://www.lebonplan.fr/connexion.html">
-	<link rel="stylesheet" href="assets/style_base.css">
-	<link rel="stylesheet" href="assets/style_formulaire.css">
-	<title>Connexion - Accédez à votre Compte Lebonplan</title>
+    <meta charset="UTF-8">
+    <title>LifePath</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/personnagesansfondombre.png">
 </head>
 
 <body>
-	<header>
-		<div class="center"><img src="./images/logo-lbp-header.png" alt="Lebonplan - Le meilleur site d'annonces en ligne"></div>
-		<nav class="navbar">
-			<div class="bar">
-				<div><a href="index.html">Accueil</a></div>
-				<span>|</span>
-				<div><a href="entreprise.html">Entreprise</a></div>
-				<span>|</span>
-				<div><a href="offres.html">Offres</a></div>
-				<span>|</span>
-			<div><a href="avis.html">Avis</a></div>
-				<span>|</span>
-				<div><a href="contact.html">Contact</a></div>
-			</div>
-			<div class="account">
-				<div><a class="selected" href="connexion.html">Connexion</a></div>
-				<span>|</span>
-				<div><a href="inscription.html" class="inscription">S'inscrire</a></div>
-			</div>
-		</nav>
-
-	</header>
+	<header class="Connect_subscribe">
+		<img src="images/Logo_bg_arrondi.png" alt="Logo LifePath">
+		<h1 class="center"><b>LifePath</b></h1>
+    </header>
 
 	<main>
-
 		<section>
-
-			<h1 class="center">Bonjour !</h1>
-
-			<p class="center">Connectez-vous pour retrouver vos annonces sauvegardées et déposées.</p>
+			<h2 class="center">Connexion</h2>
 
 			<article>
-
-
-
 				<form class="formulaire">
-					<h2>Formulaire de connexion</h2>
+					<label>Email*</label><br>
+					<input name="email" type="email" required>
+					<br><br>
 
-					<label>Courriel<input name="email" type="email" size="30" value="" required></label>
+					<label>Mot de passe*</label><br>
+					<input name="password" type="password" required>
+					<br><br>
 
-					<label>Mot de passe<input name="password" type="password" size="30" value="" required></label>
+					<button name="connect" type="submit">Connexion</button>
+					<br><br>
 
-					<div class="buttons">
-						<button type="submit">Connexion</button>
-						<input type="reset" value="Effacer">
-					</div>
+					<p>Pas de compte ? <a href="inscription_particulier.html">Inscrivez-vous ici</a></p>
 				</form>
-
 			</article>
 
 		</section>
-
 	</main>
-
-	<footer class="footer">
-		<em>2026 - Tous droits réservés</em> | <a href="mentions-legales.html">Mentions légales</a>
-
 </body>
 
 </html>

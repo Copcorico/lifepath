@@ -22,6 +22,30 @@ header {
     left: 0;
 }
 
+.Connect_subscribe{
+    background-color: #f0f0f1;
+}
+
+.Connect_subscribe img {
+    width: 20%;
+}
+
+.formulaire {
+    margin-left : 15%;
+    font-size: 150%;
+}
+
+.container_btn button{
+    width: 25%;
+    font-size: 110%;
+}
+
+.formulaire input {
+    border-color: black;
+    background-color: #f0f0f1;
+}
+
+
 .tete {
     display: flex;
     flex-direction: row;
