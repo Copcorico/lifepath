@@ -94,4 +94,32 @@ footer {
     margin-bottom: 2%;
     margin-top: 2%;
     margin-right: 4%;
+    padding-left: 5%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-right: 5%;
+}
+
+.coeur {
+    position: relative;
+    cursor: pointer;
+    left: 90%;
+    top: 2%;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f1;
+    border: #142b53 solid 2px;
+    border-radius: 50%;
+}
+
+.coeur:focus {
+    background-color: #d02c3f;
+}
+
+
+.offre-img {
+    width: 95%;
+    height: auto;
+    border-radius: 12px;
+    justify-content: center;
 }
