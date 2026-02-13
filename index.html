@@ -9,28 +9,63 @@
 </head>
 
 <body>
-    <header>
-        <section class="tete"></section>
-            <details>
-                <summary>☰</summary>
-                <ul class="menu">
-                    <li><a href="index.html"><span class="active">Acceuil</span></a></li>
-                    <li><a href="Apropos.html">A propos</a></li> 
-                    <li><a href="inscription_particulier.html">Inscrption</a>
-                    <li><a href="connexion.html">Connexion</a></li>
-                    <li><a href="avis.html">Avis</a></li>
-                    <li><a href="contact.html">Contact</a></li> 
-                    <li><a href="annonce.html">Postez votre annonce</a></li>
-                </ul>
-            </details>
-            <!--alt est ce qui va s'afficher si l'image ne charge pas-->
-            <div class="title-header">
-                <h1 class ="title">LifePath</h1>
-                <img src="images/personnageombre.png" alt="Logo LifePath" class="logo-header">
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="profile-section">
+            <div class="profile-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4" fill="#1e3a5f"/>
+                    <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="#1e3a5f" stroke-width="2" fill="none"/>
+                </svg>
             </div>
-        </section>
-        <label for="search" ><input type="search" class="search" id="search" size="30" placeholder="🔎 Stage informatique Saint-Nazaire..."></label>
-    </header>
+            <div class="profile-info">
+                <h2>NOM COMPLET</h2>
+                <p>NOM pilote</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="menu">
+            <li class="menu-item active">
+                <a href="#">
+                    <div class="home-icon"></div>
+                    Accueil
+                    <span class="arrow">∨</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Offres</a></li>
+                    <li><a href="#">Entreprises</a></li>
+                    <li><a href="#">Comptes</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>LifePath</h1>
+            <img  src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
+        </header>
+        <!-- Offers -->
+        <h3 class="offers-header">Offres</h3>
+
+    </div>
     <section>
         <article class="offre-container">
             <div class="coeur"></div>
@@ -90,6 +125,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
         </article>
     </section>
+    <script src="script.js"></script>
 </body>
 
 <footer>
