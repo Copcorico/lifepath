@@ -10,24 +10,81 @@
 </head>
 
 <body>
-    <header>
-        <section class="tete-navbar"></section>
-        <details>
-            <summary class="tete-navbar">☰</summary>
-            <ul class="menu">
-                <li><a href="index.html"><span class="active">Accueil</span></a></li>
-                <li><a href="Apropos.html">À propos</a></li>
-                <li><a href="inscription_particulier.html">Inscription</a></li>
-                <li><a href="connexion.html">Connexion</a></li>
-                <li><a href="avis.html">Avis</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="annonce.html">Postez votre annonce</a></li>
-            </ul>
-        </details>
-        <div class="logo-navbar">
-            <img src="images/personnageombre.png" alt="Logo LifePath" class="logo-header">
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </header>
+
+        <div class="profile-section">
+            <div class="profile-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="4" fill="#1e3a5f"/>
+                    <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="#1e3a5f" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <div class="profile-info">
+                <h2>NOM COMPLET</h2>
+                <p>NOM pilote</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="menu">
+            <li class="menu-item active">
+                <a href="index.html">
+                    <div class="home-icon"></div>
+                    Accueil
+                    <span class="arrow">∨</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#offres">Offres</a></li>
+                    <li><a href="#">Entreprises</a></li>
+                    <li><a href="#">Comptes</a></li>
+                </ul>
+                <a href="inscription_entreprise.html">
+                    Inscription
+                </a>
+                <a href="inscription_particulier.html">
+                    Inscription
+                </a>
+                <a href="connexion.html">
+                    Connexion
+                </a>
+                <a href="offres.html">
+                    Nos offres
+                </a>
+                <a href="entreprise.html">
+                    Entreprise
+                </a>
+                <a href="avis.html">
+                    Avis
+                </a>
+                <a href="legale.html">
+                    Mentions légales
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>LifePath</h1>
+            <img src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon">
+        </header>
+    </div>
 
     <section class="entreprise-banner">
         <div class="coeur-card"></div>
@@ -36,12 +93,12 @@
 
     <main>
         <article class="entreprise-container">
-            <header class="entreprise-header">
+            <section class="entreprise-section">
                 <h1>Nom de l'entreprise</h1>
                 <div class="star-rating">
                     ⭐⭐⭐⭐☆ <span>(4,2)</span>
                 </div>
-            </header>
+            </section>
             <p class="entreprise-description">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione maxime
                 reprehenderit deleniti, expedita suscipit cupiditate?
@@ -117,7 +174,6 @@
             track.style.transform = `translateX(${offset}%)`;
             dots.forEach((d,i) => d.classList.toggle('active', i === currentIndex));
         }
-        // ensure both buttons get listeners and clickable z-index
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + items.length) % items.length;
             updateCarousel();
@@ -132,8 +188,15 @@
                 updateCarousel();
             });
         });
-        // initialize
         updateCarousel();
+
+        // navigation toggle
+        function toggleNav() {
+            const navbar = document.getElementById('navbar');
+            const overlay = document.getElementById('overlay');
+            navbar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
