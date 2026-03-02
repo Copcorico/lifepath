@@ -39,8 +39,8 @@
                 </a>
                 <ul class="submenu">
                     <li><a href="#offres">Offres</a></li>
-                    <li><a href="#">Entreprises</a></li>
-                    <li><a href="#">Comptes</a></li>
+                    <li><a href="#apropos">Entreprises</a></li>
+                    <li><a href="#comptes">Comptes</a></li>
                 </ul>
                 <a href="inscription_entreprise.html">
                     Inscription
@@ -80,6 +80,18 @@
         </header>
     </div>
     <section>
+        <!-- A propos -->
+        <article class="apropos-container"></article>
+            <div class="forme-apropos">
+                <h2 class="apropos-title" id="apropos">À propos</h2>
+                <p class="apropos-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                </p>
+                <button class="apropos-bouton" onclick="window.location.href= 'contact.html'">-></button>
+            </div>
+        </article>
+
         <!-- Offers -->
         <h2 class="offers-header" id="offres">Offres</h2>
 
@@ -139,6 +151,39 @@
                 <li>Bac +5</li>
             </ul>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+        </article>
+        <!-- Comptes -->
+        <h2 class="compte-title" >Comptes</h2>
+        <section class="comptes-carousel">
+                <div class="carousel">
+                    <button class="prev">&lt;</button>
+                    <div class="carousel-track">
+                        <div class="comtes-item">
+                            <div class="compte-label"><img  class="profile-icon" src="images/Davy.jpg" alt="logo lifePath"> jean jeans</div>
+                        </div>
+                        <div class="compte-item">
+                            <div class="compte-label"><img  class="profile-icon" src="images/Davy.jpg" alt="logo lifePath"> jean jeans</div>
+                        </div>
+                        <div class="compte-item">
+                            <div class="compte-label"><img  class="profile-icon" src="images/Davy.jpg" alt="logo lifePath"> jean jeans</div>
+                        </div>
+                    </div>
+                    <button class="next">&gt;</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+        <!-- Entreprise -->
+        <article class="entreprise-container"></article>
+            <div class="forme-entreprise">
+                <h2 class="entreprise-title" id="entreprise">Entreprise</h2>
+                <p class="entreprise-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
+                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                </p>
+            </div>
         </article>
     </section>
     <script src="script.js"></script>

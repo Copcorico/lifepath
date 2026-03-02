@@ -219,6 +219,75 @@ header {
 }
 /*#endregion*/
 
+/*#region a propos*/
+.apropos-text{
+    color: #f0f0f1;
+}
+
+.apropos-title {
+    top: 0;
+    padding-top: 0;
+    margin-top: 0;
+    color: #f0f0f1
+}
+
+.forme-apropos {
+    width: 80%;
+    height: 5%;
+    margin: 5% auto;
+    border: 50px solid #142b53;
+    border-radius: 24px;
+    background-color: #142b53;
+}
+
+.apropos-bouton {
+    cursor: pointer;
+    position: sticky;
+    left: 100%;
+    bottom: 0;
+    right: 0;
+    margin-top: 5% auto;
+    color:#142b53;
+    font-size: 300%;
+    background-color: #f0f0f1;
+    border-radius: 24px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+/*#endregion*/
+
+/*#region comptes*/
+.compte-text{
+    color: #142b53;
+}
+
+.compte-title {
+    top: 0;
+    padding-top: 0;
+    margin-top: 0;
+    color: #142b53;
+}
+
+.compte-profile {
+    display: flex;
+    flex-direction: row;
+}
+
+  
+/*#endregion*/
+
+/*.profile-icon {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #a8d5ba, #e8f5e9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+
 .Connect_subscribe{
     background-color: #f0f0f1;
 }
