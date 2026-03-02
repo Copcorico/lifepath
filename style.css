@@ -258,10 +258,6 @@ header {
 /*#endregion*/
 
 /*#region comptes*/
-.compte-text{
-    color: #142b53;
-}
-
 .compte-title {
     top: 0;
     padding-top: 0;
@@ -269,13 +265,22 @@ header {
     color: #142b53;
 }
 
-.compte-profile {
+.carousel-compte {
     display: flex;
-    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: .5rem;
+    /*margin: -1rem;*/
+    scroll-snap-type: x proximity;
 }
 
-  
+.compte-label {
+    margin: 10%;
+    scroll-snap-align: center;
+}
+
 /*#endregion*/
+
 
 /*.profile-icon {
     width: 200px;
