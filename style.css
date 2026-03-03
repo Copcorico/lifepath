@@ -275,12 +275,45 @@ header {
 }
 
 .compte-label {
+    align-items: center;
+    text-align: center;
     margin: 10%;
     scroll-snap-align: center;
+    color: #142b53;
+    
 }
 
 /*#endregion*/
 
+/*#region entreprises*/
+.entreprise-title {
+    top: 0;
+    padding-top: 0;
+    margin-top: 0;
+    color: #142b53;
+}
+
+.carousel-entreprise {
+    display: flex;
+    overflow-x: auto;
+    gap: .1rem;
+    padding: .3rem;
+    /*margin: -1rem;*/
+    scroll-snap-type: x proximity;
+}
+
+.entreprise-item {
+    align-items: center;
+    text-align: center;
+    margin: 10%;
+    scroll-snap-align: center;
+    color: #142b53;
+    margin: 3% auto;
+    margin-left: 2%;
+    margin-right: 2%;
+    
+}
+/*#endregion*/
 
 /*.profile-icon {
     width: 200px;
