@@ -9,28 +9,73 @@
 </head>
 
 <body>
-    <header>
-        <section class="tete"></section>
-            <details>
-                <summary>☰</summary>
-                <ul class="menu">
-                    <li><a href="index.html"><span class="active">Acceuil</span></a></li>
-                    <li><a href="Apropos.html">A propos</a></li> 
-                    <li><a href="inscription.html">Inscrption</a></li><a href="inscription.html">Inscrption</a>
-                    <li><a href="connexion.html">Connexion</a></li>
-                    <li><a href="avis.html">Avis</a></li>
-                    <li><a href="contact.html">Contact</a></li> 
-                    <li><a href="annonce.html">Postez votre annonce</a></li>
-                </ul>
-                </ul>
-            </details>
-            <!--alt est ce qui va s'afficher si l'image ne charge pas-->
-            <div class="title-header">
-                <h1 class ="title">LifePath</h1>
-                <img src="images/personnageombre.png" alt="Logo LifePath" class="logo-header">
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="profile-section">
+            <img  class="profile-icon" src="images/profile.png" alt="logo lifePath">
+            <div class="profile-info">
+                <h2>NOM COMPLET</h2>
+                <p class="navbar-pilote">NOM pilote</p>
             </div>
-        </section>
-    </header>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="menu">
+            <li class="menu-item active">
+                <a href="index.html">
+                    <div class="home-icon"></div>
+                    Accueil
+                    <span class="arrow">∨</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#offres">Offres</a></li>
+                    <li><a href="#apropos">Entreprises</a></li>
+                    <li><a href="#compte">Comptes</a></li>
+                </ul>
+                <a href="inscription.html">
+                    Inscription
+                </a>
+                <a href="connexion.html">
+                    Connexion
+                </a>
+                <a href="offres.html">
+                    Nos offres
+                </a>
+                <a href="entreprise.html">
+                    Entreprise
+                </a>
+                <a href="avis.html">
+                    Avis
+                </a>
+                <a href="legale.html">
+                    Mention légal
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>LifePath</h1>
+            <img  src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
+        </header>
+    </div>
     <h1>Mentions légales</h1>
 
 <h2>Éditeur du site</h2>

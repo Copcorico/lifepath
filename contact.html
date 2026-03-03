@@ -12,30 +12,75 @@
 		<title>Contact - Contactez Lebonplan | Service Client et Assistance</title> 
    </head> 
    <body>
-	<header>
-		<div class="center"><img src="./images/logo-lbp-header.png" alt="Lebonplan - Le meilleur site d'annonces en ligne"></div>
-		<nav class="navbar">
-			<div class="bar">
-				<div><a href="index.html">Accueil</a></div>
-				<span>|</span>
-				<div><a href="entreprise.html">Entreprise</a></div>
-				<span>|</span>
-				<div><a href="offres.html">Offres</a></div>
-				<span>|</span>
-			<div><a href="avis.html">Avis</a></div>
-				<span>|</span>
-				<div><a class="selected" href="contact.html">Contact</a></div>
-			</div>
-			<div class="account">
-				<div><a href="connexion.html">Connexion</a></div>
-				<span>|</span>
-				<div><a href="inscription.html" class="inscription">S'inscrire</a></div>
-			</div>
-		</nav>
+	<!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
-	</header>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="profile-section">
+            <img  class="profile-icon" src="images/profile.png" alt="logo lifePath">
+            <div class="profile-info">
+                <h2>NOM COMPLET</h2>
+                <p class="navbar-pilote">NOM pilote</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="menu">
+            <li class="menu-item active">
+                <a href="index.html">
+                    <div class="home-icon"></div>
+                    Accueil
+                    <span class="arrow">∨</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#offres">Offres</a></li>
+                    <li><a href="#apropos">Entreprises</a></li>
+                    <li><a href="#compte">Comptes</a></li>
+                </ul>
+                <a href="inscription.html">
+                    Inscription
+                </a>
+                <a href="connexion.html">
+                    Connexion
+                </a>
+                <a href="offres.html">
+                    Nos offres
+                </a>
+                <a href="entreprise.html">
+                    Entreprise
+                </a>
+                <a href="avis.html">
+                    Avis
+                </a>
+                <a href="legale.html">
+                    Mention légal
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>LifePath</h1>
+            <img  src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
+        </header>
+    </div>
 	 
-	 <main>
+	<main>
 	 
 	   <section>
 	   
