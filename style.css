@@ -10,6 +10,18 @@ main {
     font-size: 175%;
 }
 
+h2 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.25em;
+}
+
+.title {
+    font-size: 2.2em;
+}
+
 /*#region Navbar */
 .navbar {
     width: 70%;
