@@ -67,7 +67,7 @@ li {
     transition: all 0.3s;
 }
 
-.profile-section {
+.nav-profile-section {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -75,7 +75,7 @@ li {
     padding-bottom: 20px;
 }
 
-.profile-icon {
+.nav-profile-icon {
     width: 200px;
     height: 200px;
     background: linear-gradient(135deg, #a8d5ba, #e8f5e9);
@@ -85,13 +85,13 @@ li {
     justify-content: center;
 }
 
-.profile-info h2 {
+.nav-profile-info h2 {
     font-size: 250%;
     font-weight: 600;
     margin-bottom: 5px;
 }
 
-.profile-info p {
+.nav-profile-info p {
     font-size: 150%;
     color: #f0e278;
 }
@@ -103,15 +103,15 @@ li {
     margin: 20px 0;
 }
 
-.menu {
+.nav-menu {
     list-style: none;
 }
 
-.menu-item {
+.nav-menu-item {
     margin-bottom: 20px;
 }
 
-.menu-item a {
+.nav-menu-item a {
     color: #f0f0f1;
     text-decoration: none;
     display: flex;
@@ -122,15 +122,15 @@ li {
     transition: opacity 0.3s;
 }
 
-.menu-item a:hover {
+.nav-menu-item a:hover {
     opacity: 0.8;
 }
 
-.menu-item.active a {
+.nav-menu-item.active a {
     font-weight: 600;
 }
 
-.home-icon {
+.nav-home-icon {
     width: 24px;
     height: 24px;
     background-color: #f0f0f1;
@@ -138,33 +138,33 @@ li {
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E") no-repeat center;
 }
 
-.submenu {
+.nav-submenu {
     list-style: none;
     margin-left: 40px;
     margin-top: 10px;
 }
 
-.submenu li {
+.nav-submenu li {
     margin-bottom: 10px;
     position: relative;
     padding-left: 15px;
 }
 
-.submenu li::before {
+.nav-submenu li::before {
     content: '•';
     position: absolute;
     left: 0;
     color: white;
 }
 
-.submenu a {
+.nav-submenu a {
     color: #b8c9dd;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
 }
 
-.submenu a:hover {
+.nav-submenu a:hover {
     color: #f0f0f1;
 }
 
@@ -385,7 +385,9 @@ footer {
     padding-right: 5%;
 }
 
+/*#rgion offres*/
 .offre-container {
+    position: relative;
     border: 2px solid #142b53;
     border-radius: 10px;
     background-color: #94d4eb;
@@ -399,32 +401,20 @@ footer {
     padding-right: 5%;
 }
 
-.coeur {
-    position: relative;
-    cursor: pointer;
-    left: 90%;
-    top: 2%;
-    width: 40px;
-    height: 40px;
-    background-color: #f0f0f1;
-    border: #142b53 solid 2px;
-    border-radius: 50%;
-}
-
-.coeur:focus {
-    background-color: #d02c3f;
-}
-
 .offre-img {
-    width: 95%;
+    display: block;
+    width: 100%;
     height: auto;
     border-radius: 12px;
     justify-content: center;
 }
+/*#endrgion*/
 
 .offres-carousel {
     margin: 2% 4%;
 }
+
+
 .carousel {
     position: relative;
     overflow: hidden;
