@@ -32,8 +32,8 @@
 
 								<div class="form-group">
 									<label>Statut*</label><br>
-									<input class="btn_color" type="radio" name="statut" required> Étudiant <br>
-									<input class="btn_color" type="radio" name="statut" required> Pilote
+									<input class="btn_color" type="radio" id="statut-etudiant" name="statut" value="etudiant" required checked> Étudiant <br>
+									<input class="btn_color" type="radio" id="statut-pilote" name="statut" value="pilote" required> Pilote
 									<br><br>
 								</div>
 
@@ -47,14 +47,14 @@
                     				<input type="text" name="prenom" size="25" placeholder="Titouan" required>
                 				</div>
 
-								<div class="form-group">
+								<div class="form-group" id="groupe-classe">
                     				<label>Classe*</label><br>
-                    				<input type="text" size="25" placeholder="CPI-A2 Informatique" required>
+									<input type="text" id="classe" name="classe" size="25" placeholder="CPI-A2 Informatique" required>
                 				</div>
 
-								<div class="form-group">
-                    				<label>Pilote</label><br>
-                    				<select name="pilote">
+								<div class="form-group" id="groupe-pilote">
+									<label for="pilote">Pilote</label><br>
+									<select id="pilote" name="pilote">
 										<option value="">Sélectionnez un pilote</option>
 										<option value="pilote1">Jeremy GALLET</option>
 										<option value="pilote2">Gilles-Alexis RENAUT</option>
