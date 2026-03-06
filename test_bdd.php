@@ -15,7 +15,7 @@ $password = $_ENV['DB_PASS'];
 // 4. On lance la connexion PDO habituelle
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->query("SELECT * FROM ETUDIANT"); // Juste pour tester la connexion
+    $pdo->query("SELECT * FROM ETUDIANTS"); // Juste pour tester la connexion
     $pdo->fetchAll(); // On récupère les résultats pour s'assurer que la requête fonctionne
     echo $pdo;
     
