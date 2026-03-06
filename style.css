@@ -55,7 +55,7 @@ li {
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    margin-bottom: 30px;
+    margin: 6% 6% 6% 6%;
     padding: 2%;
 }
 
@@ -83,6 +83,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 6%;
 }
 
 .nav-profile-info h2 {
@@ -97,18 +98,18 @@ li {
 }
 
 .divider {
-    width: 100%;
-    height: 10px;
-    background-color: #142b53;
-    margin: 20px 0;
+    width: 80%;
+    height: 0.12%;
+    background-color: #f0f0f1;
+    align-content: center;
+    z-index: 1001;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
 }
 
 .nav-menu {
     list-style: none;
-}
-
-.nav-menu-item {
-    margin-bottom: 20px;
 }
 
 .nav-menu-item a {
@@ -122,12 +123,11 @@ li {
     transition: opacity 0.3s;
 }
 
-.nav-menu-item a:hover {
-    opacity: 0.8;
-}
-
-.nav-menu-item.active a {
-    font-weight: 600;
+.nav-container-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
 }
 
 .nav-submenu {
@@ -137,37 +137,52 @@ li {
     margin-top: 10px;
 }
 
-.nav-menu:hover .nav-submenu {
-    display: block;
-}
-
-.nav-submenu li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 15px;
-}
-
-.nav-submenu li::before {
-    list-style: none;
-    position: absolute;
-    left: 0;
-    color: white;
-}
-
 .nav-submenu a {
-    color: #b8c9dd;
+    color: #f0f0f1;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 90%;
     transition: color 0.3s;
 }
 
-.nav-submenu a:hover {
-    color: #f0f0f1;
+.row {
+    cursor: pointer;
+    user-select: none;
+}
+
+.row .nav-submenu {
+    display: none;
+    list-style: none;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.row .nav-submenu.open {
+    display: block;
+}
+
+.row .arrow {
+    transition: transform 0.3s ease;
+}
+
+.row .arrow.open {
+    transform: rotate(90deg);
 }
 
 .arrow {
-    margin-left: auto;
-    font-size: 18px;
+    margin-left: 55%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    padding: 0% 3% 0% 3%;
+    font-size: 200%;
+    z-index: 1001;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.arrow.open {
+    transform: rotate(90deg);
 }
 
 /* Overlay */
