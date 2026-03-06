@@ -784,6 +784,21 @@ footer {
 .stat.yellow {
     background-color: #ffd700;
     color: #333;
+    position: relative; /* enable absolute arrow positioning */
+}
+
+.stat.yellow p {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.stat.yellow .arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
 }
 
 /* Discover Company Section */
