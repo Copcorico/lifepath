@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="fr">
+
 <!-- Overlay -->
 <div class="overlay" id="overlay"></div>
 
@@ -21,7 +24,7 @@
 
     <ul class="nav-menu">
         <li class="nav-menu-item active">
-            <a href="index.html">
+            <a href="index.html" class="nav-link">
                 <div class="nav-home-icon"></div>
                 Accueil
                 <span class="arrow">∨</span>
@@ -65,3 +68,6 @@
         <img  src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
     </header>
 </div>
+
+<script src="js/navbar.js"></script>
+</html>
