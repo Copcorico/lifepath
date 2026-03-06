@@ -445,6 +445,7 @@ footer {
     position: relative;
     width: 100%;
     max-width: 400px;
+    min-width: 200px;
     background: #94d4eb;
     border-radius: 20px;
     overflow: hidden;
@@ -461,6 +462,7 @@ footer {
 .offre-card-info {
     padding: 10px 12px;
     text-align: center;
+    font-size: 20px;
 }
 .offre-card-title {
     margin: 0;
