@@ -20,6 +20,11 @@ h2 {
     margin-left: 5%;
 }
 
+a {
+    color: #f0f0f1;
+    text-decoration: none;
+}
+
 p {
     font-size: 2em;
 }
@@ -879,7 +884,7 @@ footer {
     }
 
     header {
-        background-image: url('images/wmremove-transformed.png');
+        background-image: url('images/backgrounds/wmremove-transformed.png');
         background-size: cover;
         background-position: center;
         background-color: transparent;
