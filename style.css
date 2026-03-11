@@ -550,7 +550,7 @@ footer {
     margin-top: 4px;
 }
 
-/* Styles pour la page détail de l'offre */
+/*#région style offres*/
 .offer-detail {
     margin: 0;
     padding: 15px;
@@ -613,6 +613,8 @@ footer {
     color: #142b53;
     min-width: 100px;
 }
+
+/*#endregion*/
 
 .badge {
     display: inline-block;
@@ -832,6 +834,30 @@ footer {
     display: block;
 }
 
+.btn-see-more {
+    display: block;
+    margin: 1px auto 0;
+    padding: 10px 70px;
+    background-color: #142b53;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-see-more:hover {
+    background-color: #0f1e3a;
+}
+
+.arrow.large {
+    font-size: 3em;
+    font-weight: bold;
+}
+
 /* responsive adjustments */
 @media (max-width: 600px) {
     header .logo-header { width: 25%; }
@@ -929,29 +955,3 @@ footer {
 
     .offre-card { max-width: 400px; }
 }
-
-.btn-see-more {
-    display: block;
-    margin: 1px auto 0;
-    padding: 10px 70px;
-    background-color: #142b53;
-    color: #ffffff;
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-see-more:hover {
-    background-color: #0f1e3a;
-}
-
-.arrow.large {
-    font-size: 3em;
-    font-weight: bold;
-}
-
-
