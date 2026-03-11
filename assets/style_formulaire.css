@@ -1,112 +1,282 @@
-.formulaire {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+
+:root {
+  --background-color: #f0f0f1;
+  --primary-color: #94d4eb;
+  --dark-primary-color: #142b53;
+  --secondary-color: #f0e278;
+  --light-secondary-color: #fff7b8;
+  --extra-color: #d02c3f;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+* {
+  box-sizing: border-box;
 }
 
-.formulaire label {
-    display : flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-weight: bold;
-    color: #EA712E;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 200%;
+  background-color: var(--background-color);
 }
 
-.formulaire input {
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    height: 25px;
+/* ============================================
+   HEADER
+   ============================================ */
+header.Connect_subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2%;
+  padding: 2%;
 }
 
-.formulaire select {
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    height: 25px;
+.header_img {
+  width: 18%;
+  height: auto;
+  margin-right: 0;
 }
 
-.formulaire textarea {
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    height: 100px;
-    width: 700px;
-    resize: none;
+h1.tittle {
+  font-size: 2.2em;
+  margin: 0;
+  color: #142b53;
 }
 
-.formulaire button {
-    background-color: #EA712E;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    height: 35px;
-    width: 100px;
-    transition: all 0.2s ease-out;
+/* ============================================
+   MAIN & LAYOUT
+   ============================================ */
+main,
+section,
+article {
+  width: 100%;
+  padding: 2%;
 }
 
-.buttons input {
-    font-weight: bold;
-    margin-top: 0px;
-    border: solid 1px;
-    height: 35px;
-    width: 110px;
-    transition: all 0.2s ease-out;
+.container {
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
 }
 
-.formulaire button:hover {
-    transform: scale(1.03);
-    cursor: pointer;
+/* ============================================
+   TITRE & TYPOGRAPHIE
+   ============================================ */
+h2 {
+  font-size: 1.25em;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  color: #333;
 }
 
-.buttons input:hover {
-    transform: scale(1.03);
-    cursor: pointer;
+p {
+  font-size: 1em;
+  color: var(--dark-primary-color);
+}
+a {
+  font-size: 1em;
+  color: #0066cc;
 }
 
-input[type="radio" i] {
-    margin: 5px;
+/* ============================================
+   TOGGLE CONTAINER
+   ============================================ */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 5%;
+  background-color: var(--secondary-color);
+  border-radius: 9999px;
+  overflow: hidden;
+  padding: 0.5%;
+  width: 70%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
-.formulaire .checkbox {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    accent-color: #EA712E;
+.toggle-slider {
+  position: absolute;
+  width: 48%;
+  height: 90%;
+  background-color: var(--primary-color);
+  border-radius: 9999px;
+  transition: left 0.3s ease;
+  left: 1%;
+  top: 5%;
 }
 
-.formulaire .checkbox2 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    accent-color: #EA712E;
+.toggle-container.entreprise .toggle-slider {
+  left: 51%;
 }
 
-.formulaire .box {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-    height: 20px;
-    color: black;
-    font-size: 15px;
+.toggle-option {
+  flex: 1;
+  text-align: center;
+  padding: 3%;
+  border-radius: 9999px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  color: #666;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.formulaire .upload-btn {
-    margin-top: 5px;
-    display: inline-block;
-    background-color: #EA712E;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+.toggle-option:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   FORMULAIRES (SECTIONS)
+   ============================================ */
+.form-section {
+  display: none;
+  width: 100%;
+}
+
+.form-section.active {
+  display: block;
+}
+
+form {
+  width: 100%;
+}
+
+/* ============================================
+   GROUPES DE FORMULAIRES
+   ============================================ */
+.form-group {
+  margin-bottom: 3%;
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 1%;
+  color: #333;
+}
+
+/* ============================================
+   INPUTS & SÉLECTEURS
+   ============================================ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  font-size: 1.125em;
+  padding: 2% 2.5%;
+  background-color: var(--background-color);
+  border: none;
+  border-bottom: 1px solid var(--dark-primary-color);
+  font-family: Arial, sans-serif;
+  color: var(--dark-primary-color);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--dark-primary-color);
+  box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
+}
+
+select {
+  cursor: pointer;
+}
+
+/* ============================================
+   CHECKBOXES & RADIO BUTTONS
+   ============================================ */
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(2);
+  cursor: pointer;
+  margin-right: 2%;
+}
+
+.btn_color {
+  cursor: pointer;
+}
+
+/* ============================================
+   CHECKBOX CONTAINER
+   ============================================ */
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  margin: 3% 0;
+  gap: 1.5%;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-top: 1%;
+  flex-shrink: 0;
+}
+
+.checkbox-container label {
+  font-size: 1em;
+  margin: 0;
+}
+
+.checkbox-container a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ============================================
+   BOUTONS
+   ============================================ */
+button,
+.submit,
+input[type="submit"] {
+  width: 100%;
+  min-height: 46px;
+  font-size: 1.125em;
+  padding: 2.5% 3%;
+  margin-top: 2%;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--dark-primary-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover,
+.submit:hover,
+input[type="submit"]:hover {
+  background-color: #0052a3;
+}
+
+button:active,
+.submit:active,
+input[type="submit"]:active {
+  background-color: var(--dark-primary-color);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 4%;
+  font-size: 1em;
+}
+
+.login-link a {
+  color: #0066cc;
+  text-decoration: underline;
 }
