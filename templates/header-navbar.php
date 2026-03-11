@@ -15,7 +15,7 @@
     <div class="nav-profile-section">
         <img  class="nav-profile-icon" src="images/profile.png" alt="logo lifePath">
         <div class="nav-profile-info">
-            <h2><a href="profil.php"> NOM COMPLET <a></h2>
+            <h2><a href="profil.php">NOM COMPLET</a></h2>
             <p class="navbar-pilote">NOM pilote</p>
         </div>
     </div>
@@ -23,17 +23,18 @@
     <div class="divider"></div>
 
     <ul class="nav-menu">
-        <li class="nav-menu-item active">
-            <a href="index.html" class="nav-link">
-                <div class="nav-home-icon"></div>
-                Accueil
-                <span class="arrow">∨</span>
-            </a>
-            <ul class="nav-submenu">
-                <li><a href="#offres">Offres</a></li>
-                <li><a href="#apropos">Entreprises</a></li>
-                <li><a href="#compte">Comptes</a></li>
-            </ul>
+        <li class="nav-menu-item">
+            <div class="row" onclick="toggleRow(this)">
+                <div class="nav-container-menu">
+                    <a href="index.html">Accueil </a>
+                    <div class="arrow">></div>
+                </div>
+                <ul class="nav-submenu">
+                    <li><a href="#offres">Offres</a></li>
+                    <li><a href="#apropos">Entreprises</a></li>
+                    <li><a href="#compte">Comptes</a></li>
+                </ul>
+            </div>
             <a href="inscription.html">
                 Inscription
             </a>

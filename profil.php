@@ -21,47 +21,36 @@
             <span></span>
         </div>
 
-        <div class="profile-section">
-            <img  class="profile-icon" src="images/profile.png" alt="logo lifePath">
-            <div class="profile-info">
-                <h2><a href="profil.html">NOM COMPLET</a></h2>
+        <div class="nav-profile-section">
+            <img  class="nav-profile-icon" src="images/profile.png" alt="logo lifePath">
+            <div class="nav-profile-info">
+                <h2><a href="profil.php">NOM COMPLET</a></h2>
                 <p class="navbar-pilote">NOM pilote</p>
             </div>
         </div>
 
         <div class="divider"></div>
 
-        <ul class="menu">
-            <li class="menu-item active">
-                <a href="index.html">
-                    <div class="home-icon"></div>
-                    Accueil
-                    <span class="arrow">∨</span>
-                </a>
-                <ul class="submenu">
-                    <li><a href="#offres">Offres</a></li>
-                    <li><a href="#apropos">Entreprises</a></li>
-                    <li><a href="#compte">Comptes</a></li>
-                </ul>
-                <a href="inscription.html">
-                    Inscription
-                </a>
-                <a href="connexion.html">
-                    Connexion
-                </a>
-                <a href="offres.html">
-                    Nos offres
-                </a>
-                <a href="entreprise.html">
-                    Entreprise
-                </a>
-                <a href="avis.html">
-                    Avis
-                </a>
-                <a href="legale.html">
-                    Mention légal
-                </a>
+        <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <div class="row" onclick="toggleRow(this)">
+                    <div class="nav-container-menu">
+                        <a href="index.html">Accueil </a>
+                        <div class="arrow">></div>
+                    </div>
+                    <ul class="nav-submenu">
+                        <li><a href="#offres">Offres</a></li>
+                        <li><a href="#apropos">Entreprises</a></li>
+                        <li><a href="#compte">Comptes</a></li>
+                    </ul>
+                </div>
             </li>
+            <li class="nav-menu-item"><a href="inscription.html">Inscription</a></li>
+            <li class="nav-menu-item"><a href="connexion.html">Connexion</a></li>
+            <li class="nav-menu-item"><a href="offres.html">Nos offres</a></li>
+            <li class="nav-menu-item"><a href="entreprise.html">Entreprise</a></li>
+            <li class="nav-menu-item"><a href="avis.html">Avis</a></li>
+            <li class="nav-menu-item"><a href="legale.html">Mention légal</a></li>
         </ul>
     </nav>
 

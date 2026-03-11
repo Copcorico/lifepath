@@ -1,7 +1,7 @@
 
 // fonction pour la navbar
 let currentSlide = 0;
-const track = document.getElementById('carouselTrack');
+const track = document.getElementById('.carouselTrack');
 const dots = document.querySelectorAll('.dot');
 const totalSlides = 4;
 
