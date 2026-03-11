@@ -55,10 +55,7 @@ class StudentRegistrationModel
 
         return new self($pdo);
     }
-
-    /**
-     * @return array<int, array{id_pilot:int,label:string}>
-     */
+    
     public function getPilots(): array
     {
         $sql = 'SELECT pilots.id_pilot, particulier.nom, particulier.prenom
@@ -66,7 +63,8 @@ class StudentRegistrationModel
                 INNER JOIN PARTICULIER particulier ON particulier.id_particulier = pilots.id_particulier
                 ORDER BY particulier.nom, particulier.prenom';
 
-        $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
         $rows = $stmt->fetchAll();
 
         $pilots = [];

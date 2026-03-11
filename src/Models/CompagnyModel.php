@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use PDO;
 use PDOException;
@@ -40,15 +40,14 @@ class CompanyModel
         return $stmt->execute(['id' => $id]);
     }
 
-    public function create_compagny(string $name, string $address, string $nb_employees,string $picture,string $phone,string $password ): int
+    public function create_compagny(string $name, string $address, string $nb_employees, string $picture, string $phone, string $password): int
     {
         $stmt = $this->pdo->prepare('INSERT INTO ENTREPRISES (id_entreprise,nom,note,nombre_employes,id_profil) VALUES (:name, :address, :note, :nb_employees)');
         $stmt->execute(['name' => $name, 'address' => $address, 'note' => $note, 'nb_employees' => $nb_employees]);
-        return (int)$this->pdo->lastInsertId();
+        return (int) $this->pdo->lastInsertId();
 
         $stmt = $this->pdo->prepare('INSERT INTO PROFIL (id_profil,photo,adresse,nombre_employes) VALUES (:name, :address, :note, :nb_employees)');
         $stmt->execute(['name' => $name, 'address' => $address, 'note' => $note, 'nb_employees' => $nb_employees]);
-        return (int)$this->pdo->lastInsertId();
+        return (int) $this->pdo->lastInsertId();
     }
 }
-?>

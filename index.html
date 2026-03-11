@@ -44,7 +44,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-menu-item"><a href="/templates/Connexion/inscription.twig">Inscription</a></li>
+            <li class="nav-menu-item"><a href="/src/Controllers/inscription.php">Inscription</a></li>
             <li class="nav-menu-item"><a href="/templates/Connexion/connexion.twig">Connexion</a></li>
             <li class="nav-menu-item"><a href="/templates/Offres/offres.twig">Nos offres</a></li>
             <li class="nav-menu-item"><a href="/templates/Entreprises/entreprise.twig">Entreprise</a></li>
@@ -81,63 +81,66 @@
         <!-- Offers -->
         <h2 class="offers-header" id="offres">Offres</h2>
 
-        <article class="offre-container">
-            <div class="coeur"></div>
-            <img src="images/entreprise/entreprise.jpg" alt="imag de l'offre" class="offre-img">
-            <h2>Titre de l'offre de stage</h2>
-            <ul class="offre-ul">
-                <li class="offres-li">Poste : Développeur Web</li>
-                <li class="offres-li">Entreprise : TechSolutions</li>
-                <li class="offres-li">Lieu : Paris</li>
-                <li class="offres-li">Bac +5</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-        </article>
-        <article  class="offre-container">
-            <img src="images/entreprise/entreprise2.jpg" alt="imag de l'offre" class="offre-img">
-            <h2>Titre de l'offre de stage</h2>
-            <ul>
-                <li>Poste : Développeur Web</li>
-                <li>Entreprise : TechSolutions</li>
-                <li>Lieu : Paris</li>
-                <li>Bac +5</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-        </article>
-        <article  class="offre-container">
-            <div class="coeur"></div>
-            <img src="images/entreprise/offre1.png" alt="imag de l'offre" class="offre-img">
-            <h2>Titre de l'offre de stage</h2>
-            <ul>
-                <li>Poste : Développeur Web</li>
-                <li>Entreprise : TechSolutions</li>
-                <li>Lieu : Paris</li>
-                <li>Bac +5</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-        </article>
-        <article  class="offre-container">
-            <img src="images/entreprise/offre2.png" alt="imag de l'offre" class="offre-img">
-            <h2>Titre de l'offre de stage</h2>
-            <ul>
-                <li>Poste : Développeur Web</li>
-                <li>Entreprise : TechSolutions</li>
-                <li>Lieu : Paris</li>
-                <li>Bac +5</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-        </article>
-        <article  class="offre-container">
-            <img src="images/entreprise/offre3.png" alt="imag de l'offre" class="offre-img">
-            <h2>Titre de l'offre de stage</h2>
-            <ul>
-                <li>Poste : Développeur Web</li>
-                <li>Entreprise : TechSolutions</li>
-                <li>Lieu : Paris</li>
-                <li>Bac +5</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-        </article>
+        <div class="offre-global-container">
+
+                <article class="offre-container">
+                    <div class="coeur"></div>
+                    <img src="images/entreprise/entreprise.jpg" alt="imag de l'offre" class="offre-img">
+                    <h2>Titre de l'offre de stage</h2>
+                    <ul class="offre-ul">
+                        <li class="offres-li">Poste : Développeur Web</li>
+                        <li class="offres-li">Entreprise : TechSolutions</li>
+                        <li class="offres-li">Lieu : Paris</li>
+                        <li class="offres-li">Bac +5</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                </article>
+                <article  class="offre-container">
+                    <img src="images/entreprise/entreprise2.jpg" alt="imag de l'offre" class="offre-img">
+                    <h2>Titre de l'offre de stage</h2>
+                    <ul>
+                        <li>Poste : Développeur Web</li>
+                        <li>Entreprise : TechSolutions</li>
+                        <li>Lieu : Paris</li>
+                        <li>Bac +5</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                </article>
+                <article  class="offre-container">
+                    <div class="coeur"></div>
+                    <img src="images/entreprise/offre1.png" alt="imag de l'offre" class="offre-img">
+                    <h2>Titre de l'offre de stage</h2>
+                    <ul>
+                        <li>Poste : Développeur Web</li>
+                        <li>Entreprise : TechSolutions</li>
+                        <li>Lieu : Paris</li>
+                        <li>Bac +5</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                </article>
+                <article  class="offre-container">
+                    <img src="images/entreprise/offre2.png" alt="imag de l'offre" class="offre-img">
+                    <h2>Titre de l'offre de stage</h2>
+                    <ul>
+                        <li>Poste : Développeur Web</li>
+                        <li>Entreprise : TechSolutions</li>
+                        <li>Lieu : Paris</li>
+                        <li>Bac +5</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                </article>
+                <article  class="offre-container">
+                    <img src="images/entreprise/offre3.png" alt="imag de l'offre" class="offre-img">
+                    <h2>Titre de l'offre de stage</h2>
+                    <ul>
+                        <li>Poste : Développeur Web</li>
+                        <li>Entreprise : TechSolutions</li>
+                        <li>Lieu : Paris</li>
+                        <li>Bac +5</li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                </article>
+        </div>
         <!-- Comptes -->
         <h2 class="compte-title" id="compte">Comptes</h2>
         <section class="comptes-carousel">
