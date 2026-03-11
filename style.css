@@ -20,6 +20,11 @@ h2 {
     margin-left: 5%;
 }
 
+a {
+    color: #f0f0f1;
+    text-decoration: none;
+}
+
 p {
     font-size: 2em;
 }
