@@ -8,7 +8,7 @@
 </head>
 <body>
 <header class="Connect_subscribe">
-    <img class="header_img" src="/images/Logo_bg_arrondi.png" alt="Logo LifePath">
+    <img class="header_img" src="/images/logos/Logo_bg_arrondi.png" alt="Logo LifePath">
     <h1 class="tittle"><b>LifePath</b></h1>
 </header>
 
@@ -34,16 +34,16 @@
 
         <article>
             <div class="container">
-                <div class="toggle-container" id="toggle">
+                <div class="toggle-container{% if form.mode == 'entreprise' %} entreprise{% endif %}" id="toggle">
                     <div class="toggle-slider"></div>
                     <div class="toggle-option">Particulier</div>
                     <div class="toggle-option">Entreprise</div>
                 </div>
 
-                <div id="form-particulier" class="form-section active">
+                <div id="form-particulier" class="form-section{% if form.mode != 'entreprise' %} active{% endif %}">
                     <h2>Inscription Particulier</h2>
 
-                    <form method="post" action="/inscription.php">
+                    <form method="post" action="">
                         <input type="hidden" name="mode" value="particulier">
 
                         <div class="form-group">
@@ -68,7 +68,7 @@
                             <input type="text" id="classe" name="classe" size="25" placeholder="CPI-A2 Informatique" value="{{ form.classe|e }}" required>
                         </div>
 
-                        <div class="form-group" id="groupe-pilote">
+                        <div class="form-group" id="groupe-pilote" {% if form.statut != 'etudiant' %}hidden{% endif %}>
                             <label for="pilote">Pilote</label><br>
                             <select id="pilote" name="pilot_id">
                                 <option value="">Selectionnez un pilote</option>
@@ -103,30 +103,30 @@
                     <p>Deja un compte ? <a href="connexion.html">Connectez-vous</a></p>
                 </div>
 
-                <div id="form-entreprise" class="form-section">
+                <div id="form-entreprise" class="form-section{% if form.mode == 'entreprise' %} active{% endif %}">
                     <h2>Inscription Entreprise</h2>
 
-                    <form method="post" action="/inscription.php">
+                    <form method="post" action="">
                         <input type="hidden" name="mode" value="entreprise">
 
                         <div class="form-group">
                             <label for="societe">Nom de la societe*</label><br>
-                            <input type="text" id="societe" name="societe" placeholder="Game Freak" required>
+                            <input type="text" id="societe" name="societe" placeholder="Game Freak" value="{{ entreprise_form.societe|e }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="adresse">Adresse du siege social*</label><br>
-                            <input type="text" id="adresse" name="adresse" placeholder="123 Rue de la Paix" required>
+                            <input type="text" id="adresse" name="adresse" placeholder="123 Rue de la Paix" value="{{ entreprise_form.adresse|e }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="email-pro">Email*</label><br>
-                            <input type="email" id="email-pro" name="email-pro" placeholder="contact@gamefreak.fr" required>
+                            <input type="email" id="email-pro" name="email-pro" placeholder="contact@gamefreak.fr" value="{{ entreprise_form.email|e }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="telephone-pro">Telephone*</label><br>
-                            <input type="tel" id="telephone-pro" name="telephone-pro" placeholder="01 23 45 67 89" required>
+                            <input type="tel" id="telephone-pro" name="telephone-pro" placeholder="01 23 45 67 89" value="{{ entreprise_form.telephone|e }}" required>
                         </div>
 
                         <div class="form-group">
@@ -147,6 +147,6 @@
     </section>
 </main>
 
-<script src="script_form.js"></script>
+<script src="/script_form.js?v=20260311"></script>
 </body>
 </html>

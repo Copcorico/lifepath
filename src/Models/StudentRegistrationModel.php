@@ -179,6 +179,75 @@ class StudentRegistrationModel
         }
     }
 
+    /**
+     * @return array{id_profil:int,id_entreprise:int}
+     */
+    public function registerEntreprise(
+        string $nomSociete,
+        string $email,
+        string $telephone,
+        string $plainPassword,
+        ?int $nombreEmployes
+    ): array {
+        if ($this->emailExists($email)) {
+            throw new RuntimeException('Cette adresse email est deja utilisee.');
+        }
+
+        $nomSociete = trim($nomSociete);
+        if ($nomSociete === '') {
+            throw new RuntimeException('Le nom de la societe est obligatoire.');
+        }
+
+        if (trim($telephone) === '') {
+            throw new RuntimeException('Le telephone est obligatoire pour une entreprise.');
+        }
+
+        $this->pdo->beginTransaction();
+
+        try {
+            $profileStatement = $this->pdo->prepare(
+                'INSERT INTO PROFIL (photo, adresse_mail, telephone, mot_de_passe)
+                 VALUES (:photo, :adresse_mail, :telephone, :mot_de_passe)'
+            );
+            $profileStatement->execute([
+                'photo' => null,
+                'adresse_mail' => $email,
+                'telephone' => $telephone,
+                'mot_de_passe' => password_hash($plainPassword, PASSWORD_DEFAULT),
+            ]);
+            $idProfil = (int) $this->pdo->lastInsertId();
+
+            $companyStatement = $this->pdo->prepare(
+                'INSERT INTO ENTREPRISES (nom, note, nombre_employes, id_profil)
+                 VALUES (:nom, :note, :nombre_employes, :id_profil)'
+            );
+            $companyStatement->execute([
+                'nom' => $nomSociete,
+                'note' => null,
+                'nombre_employes' => $nombreEmployes,
+                'id_profil' => $idProfil,
+            ]);
+            $idEntreprise = (int) $this->pdo->lastInsertId();
+
+            $this->pdo->commit();
+
+            return [
+                'id_profil' => $idProfil,
+                'id_entreprise' => $idEntreprise,
+            ];
+        } catch (Throwable $exception) {
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+
+            if ($exception instanceof RuntimeException) {
+                throw $exception;
+            }
+
+            throw new RuntimeException('Erreur SQL pendant l\'inscription entreprise.');
+        }
+    }
+
     private function emailExists(string $email): bool
     {
         $statement = $this->pdo->prepare(

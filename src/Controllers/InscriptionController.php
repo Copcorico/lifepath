@@ -27,6 +27,14 @@ $form = [
     'mode' => 'particulier',
 ];
 
+$entrepriseForm = [
+    'societe' => '',
+    'adresse' => '',
+    'email' => '',
+    'telephone' => '',
+    'nombre_employes' => '',
+];
+
 $errors = [];
 $successMessage = '';
 $pilots = [];
@@ -42,8 +50,75 @@ try {
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     $form['mode'] = isset($_POST['mode']) ? trim((string) $_POST['mode']) : 'particulier';
 
-    if ($form['mode'] !== 'particulier') {
-        $errors[] = 'Inscription entreprise non disponible pour le moment.';
+    if (!in_array($form['mode'], ['particulier', 'entreprise'], true)) {
+        $form['mode'] = 'particulier';
+    }
+
+    if ($form['mode'] === 'entreprise') {
+        $entrepriseForm['societe'] = isset($_POST['societe']) ? trim((string) $_POST['societe']) : '';
+        $entrepriseForm['adresse'] = isset($_POST['adresse']) ? trim((string) $_POST['adresse']) : '';
+        $entrepriseForm['email'] = isset($_POST['email-pro']) ? trim((string) $_POST['email-pro']) : '';
+        $entrepriseForm['telephone'] = isset($_POST['telephone-pro']) ? trim((string) $_POST['telephone-pro']) : '';
+        $entrepriseForm['nombre_employes'] = isset($_POST['nombre_employes']) ? trim((string) $_POST['nombre_employes']) : '';
+        $passwordEntreprise = isset($_POST['password-pro']) ? (string) $_POST['password-pro'] : '';
+        $passwordEntrepriseConfirmation = isset($_POST['password-pro-confirm']) ? (string) $_POST['password-pro-confirm'] : '';
+
+        if ($entrepriseForm['societe'] === '') {
+            $errors[] = 'Le nom de la societe est obligatoire.';
+        }
+
+        if ($entrepriseForm['adresse'] === '') {
+            $errors[] = 'L\'adresse du siege social est obligatoire.';
+        }
+
+        if (!filter_var($entrepriseForm['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'L\'adresse email entreprise est invalide.';
+        }
+
+        if ($entrepriseForm['telephone'] === '') {
+            $errors[] = 'Le telephone est obligatoire pour une entreprise.';
+        }
+
+        if (strlen($passwordEntreprise) < 8) {
+            $errors[] = 'Le mot de passe entreprise doit contenir au moins 8 caracteres.';
+        }
+
+        if ($passwordEntreprise !== $passwordEntrepriseConfirmation) {
+            $errors[] = 'La confirmation du mot de passe entreprise ne correspond pas.';
+        }
+
+        $nombreEmployes = null;
+        if ($entrepriseForm['nombre_employes'] !== '') {
+            if (!ctype_digit($entrepriseForm['nombre_employes'])) {
+                $errors[] = 'Le nombre d\'employes est invalide.';
+            } else {
+                $nombreEmployes = (int) $entrepriseForm['nombre_employes'];
+            }
+        }
+
+        if (empty($errors) && $registrationModel !== null) {
+            try {
+                $registrationModel->registerEntreprise(
+                    $entrepriseForm['societe'],
+                    $entrepriseForm['email'],
+                    $entrepriseForm['telephone'],
+                    $passwordEntreprise,
+                    $nombreEmployes
+                );
+
+                $successMessage = 'Inscription entreprise enregistree.';
+                $form['mode'] = 'entreprise';
+                $entrepriseForm = [
+                    'societe' => '',
+                    'adresse' => '',
+                    'email' => '',
+                    'telephone' => '',
+                    'nombre_employes' => '',
+                ];
+            } catch (RuntimeException $exception) {
+                $errors[] = $exception->getMessage();
+            }
+        }
     } else {
         $form['statut'] = isset($_POST['statut']) ? trim((string) $_POST['statut']) : 'etudiant';
         $form['nom'] = isset($_POST['nom']) ? trim((string) $_POST['nom']) : '';
@@ -111,9 +186,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 );
 
                 if ($form['statut'] === 'etudiant') {
-                    $successMessage = 'Inscription etudiant enregistree dans PROFIL, PARTICULIER et ETUDIANTS.';
+                    $successMessage = 'Inscription etudiant enregistrée.';
                 } else {
-                    $successMessage = 'Inscription pilote enregistree dans PROFIL, PARTICULIER et PILOTS.';
+                    $successMessage = 'Inscription pilote enregistrée.';
                     $pilots = $registrationModel->getPilots();
                 }
 
@@ -136,6 +211,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
 echo $twig->render('Connexion/inscription.twig', [
     'form' => $form,
+    'entreprise_form' => $entrepriseForm,
     'errors' => $errors,
     'success_message' => $successMessage,
     'pilots' => $pilots,

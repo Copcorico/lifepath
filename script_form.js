@@ -33,11 +33,14 @@ function updateStatutFields() {
 	groupePilote.hidden = !isEtudiant;
 	inputClasse.required = isEtudiant;
 	inputClasse.disabled = !isEtudiant;
+	selectPilote.required = isEtudiant;
 	selectPilote.disabled = !isEtudiant;
 }
 
 if (statutEtudiant && statutPilote) {
-	statutEtudiant.checked = true;
+	if (!statutEtudiant.checked && !statutPilote.checked) {
+		statutEtudiant.checked = true;
+	}
 	updateStatutFields();
 	statutEtudiant.addEventListener('change', updateStatutFields);
 	statutPilote.addEventListener('change', updateStatutFields);
