@@ -992,5 +992,13 @@ footer {
     .offre-global-container {
         display: flex;
         gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+    }
+    .offre-container {
+        flex: 1 1 calc(25% - 40px);
+        max-width: calc(33.333% - 40px);
     }
 }
