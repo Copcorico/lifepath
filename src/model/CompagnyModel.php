@@ -51,4 +51,4 @@ class CompanyModel
         return (int)$this->pdo->lastInsertId();
     }
 }
-<3
+?>
