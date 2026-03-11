@@ -31,14 +31,13 @@ foreach ($requiredKeys as $key) {
     }
 }
 
-$host = $_ENV['DB_HOST'];
-$dbname = $_ENV['DB_NAME'];
+$dsn = $_ENV['DB_DSN'];
 $username = $_ENV['DB_USER'];
 $password = $_ENV['DB_PASS'];
 
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $dsn,
         $username,
         $password,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -52,4 +51,4 @@ try {
     http_response_code(500);
     exit('Erreur PDO : ' . $e->getMessage());
 }
-?>
+?> 
