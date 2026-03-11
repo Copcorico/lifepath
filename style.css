@@ -946,7 +946,7 @@ footer {
         display: none;
     }
 
-    .nav-menu {
+    .nav-menu { 
         display: flex;
         flex-direction: row;
         gap: 20px;
@@ -961,14 +961,31 @@ footer {
         font-size: 1rem;
     }
 
-    .nav-menu-item:hover {
-        color: #d02c3f;
+    .nav-menu-item a:hover {
+        color: #f0e278;
         font-style: oblique;
     }
 
-   .arrow {
-        display: none;
+    .arrow {
+        font-size: 100%;
+        border-radius: 2px solid #f0f0f1;
+        margin-left: 0%;
+    }
+
+    .arrow:hover {
+        color: #f0e278;
+    }
+
+    .nav-submenu.open {
+        margin-left: -20%;
     }
 
     .offre-card { max-width: 400px; }
+
+    /* page principale offre */
+
+    .offre-global-container {
+        display: flex;
+        gap: 20px;
+    }
 }
