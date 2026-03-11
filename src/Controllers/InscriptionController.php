@@ -48,20 +48,20 @@ try {
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-    $form['mode'] = isset($_POST['mode']) ? trim((string) $_POST['mode']) : 'particulier';
+    $form['mode'] = postString('mode', 'particulier');
 
-    if (!in_array($form['mode'], ['particulier', 'entreprise'], true)) {
+    if ($form['mode'] !== 'particulier' && $form['mode'] !== 'entreprise') {
         $form['mode'] = 'particulier';
     }
 
     if ($form['mode'] === 'entreprise') {
-        $entrepriseForm['societe'] = isset($_POST['societe']) ? trim((string) $_POST['societe']) : '';
-        $entrepriseForm['adresse'] = isset($_POST['adresse']) ? trim((string) $_POST['adresse']) : '';
-        $entrepriseForm['email'] = isset($_POST['email-pro']) ? trim((string) $_POST['email-pro']) : '';
-        $entrepriseForm['telephone'] = isset($_POST['telephone-pro']) ? trim((string) $_POST['telephone-pro']) : '';
-        $entrepriseForm['nombre_employes'] = isset($_POST['nombre_employes']) ? trim((string) $_POST['nombre_employes']) : '';
-        $passwordEntreprise = isset($_POST['password-pro']) ? (string) $_POST['password-pro'] : '';
-        $passwordEntrepriseConfirmation = isset($_POST['password-pro-confirm']) ? (string) $_POST['password-pro-confirm'] : '';
+        $entrepriseForm['societe'] = postString('societe');
+        $entrepriseForm['adresse'] = postString('adresse');
+        $entrepriseForm['email'] = postString('email-pro');
+        $entrepriseForm['telephone'] = postString('telephone-pro');
+        $entrepriseForm['nombre_employes'] = postString('nombre_employes');
+        $passwordEntreprise = (string) ($_POST['password-pro'] ?? '');
+        $passwordEntrepriseConfirmation = (string) ($_POST['password-pro-confirm'] ?? '');
 
         if ($entrepriseForm['societe'] === '') {
             $errors[] = 'Le nom de la societe est obligatoire.';
@@ -120,17 +120,17 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             }
         }
     } else {
-        $form['statut'] = isset($_POST['statut']) ? trim((string) $_POST['statut']) : 'etudiant';
-        $form['nom'] = isset($_POST['nom']) ? trim((string) $_POST['nom']) : '';
-        $form['prenom'] = isset($_POST['prenom']) ? trim((string) $_POST['prenom']) : '';
-        $form['classe'] = isset($_POST['classe']) ? trim((string) $_POST['classe']) : '';
-        $form['pilot_id'] = isset($_POST['pilot_id']) ? trim((string) $_POST['pilot_id']) : '';
-        $form['email'] = isset($_POST['email']) ? trim((string) $_POST['email']) : '';
-        $password = isset($_POST['password']) ? (string) $_POST['password'] : '';
-        $passwordConfirmation = isset($_POST['password_confirm']) ? (string) $_POST['password_confirm'] : '';
-        $form['accept_terms'] = isset($_POST['accept_terms']);
+        $form['statut'] = postString('statut', 'etudiant');
+        $form['nom'] = postString('nom');
+        $form['prenom'] = postString('prenom');
+        $form['classe'] = postString('classe');
+        $form['pilot_id'] = postString('pilot_id');
+        $form['email'] = postString('email');
+        $password = (string) ($_POST['password'] ?? '');
+        $passwordConfirmation = (string) ($_POST['password_confirm'] ?? '');
+        $form['accept_terms'] = postBool('accept_terms');
 
-        if (!in_array($form['statut'], ['etudiant', 'pilote'], true)) {
+        if ($form['statut'] !== 'etudiant' && $form['statut'] !== 'pilote') {
             $errors[] = 'Le statut selectionne est invalide.';
         }
 
