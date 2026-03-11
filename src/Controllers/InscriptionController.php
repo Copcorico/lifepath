@@ -1,15 +1,25 @@
 <?php
 declare(strict_types=1);
 
-use App\Model\StudentRegistrationModel;
+use App\Model\RegistrationModel;
 use Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
+function postString(string $name, string $default = ''): string
+{
+    return trim((string) ($_POST[$name] ?? $default));
+}
+
+function postBool(string $name): bool
+{
+    return isset($_POST[$name]);
+}
+
 $projectRoot = dirname(__DIR__, 2);
 
 require_once $projectRoot . '/vendor/autoload.php';
-require_once $projectRoot . '/src/Models/StudentRegistrationModel.php';
+require_once $projectRoot . '/src/Models/RegistrationModel.php';
 
 Dotenv::createImmutable($projectRoot)->safeLoad();
 
@@ -41,7 +51,7 @@ $pilots = [];
 $registrationModel = null;
 
 try {
-    $registrationModel = StudentRegistrationModel::fromEnv($_ENV);
+    $registrationModel = RegistrationModel::fromEnv($_ENV);
     $pilots = $registrationModel->getPilots();
 } catch (Throwable $exception) {
     $errors[] = $exception->getMessage();

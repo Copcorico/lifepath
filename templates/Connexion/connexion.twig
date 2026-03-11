@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>LifePath</title>
-    <link rel="stylesheet" href="assets/style_formulaire.css">
-    <link rel="icon" type="image/png" href="images/logos/personnagesansfondombre.png">
+    <link rel="stylesheet" href="/assets/style_formulaire.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
 </head>
 
 <body>
 	<header class="Connect_subscribe">
-		<img class="header_img" src="images/logos/Logo_bg_arrondi.png" alt="Logo LifePath">
+		<img class="header_img" src="/images/logos/Logo_bg_arrondi.png" alt="Logo LifePath">
 		<h1 class="tittle"><b>LifePath</b></h1>
     </header>
 
@@ -18,10 +18,26 @@
 		<section>
 			<h2>Connexion</h2>
 
+			{% if errors is not empty %}
+				<article>
+					<ul style="color:#b00020;">
+						{% for error in errors %}
+							<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</article>
+			{% endif %}
+
+			{% if success_message %}
+				<article>
+					<p style="color:#0a7a31;">{{ success_message }}</p>
+				</article>
+			{% endif %}
+
 			<article>
-				<form class="formulaire">
+				<form class="formulaire" method="post" action="">
 					<label>Email*</label><br>
-					<input name="email" type="email" required>
+					<input name="email" type="email" value="{{ form.email|e }}" required>
 					<br><br>
 
 					<label>Mot de passe*</label><br>
@@ -30,7 +46,7 @@
 
 					<button class="submit"name="connect" type="submit">Connexion</button>
 
-					<p>Pas de compte ? <a href="inscription.html">Inscrivez-vous ici</a></p>
+					<p>Pas de compte ? <a href="/src/Controllers/InscriptionController.php">Inscrivez-vous ici</a></p>
 				</form>
 			</article>
 

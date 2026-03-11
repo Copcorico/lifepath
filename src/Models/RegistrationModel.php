@@ -8,7 +8,7 @@ use PDOException;
 use RuntimeException;
 use Throwable;
 
-class StudentRegistrationModel
+class RegistrationModel
 {
     private PDO $pdo;
 
