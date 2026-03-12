@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>Profil - LifePath</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/personnagesansfondombre.png">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" type="image/png" href="images/logos/personnagesansfondombre.png">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="nav-profile-section">
-            <img  class="nav-profile-icon" src="images/profile.png" alt="logo lifePath">
+            <img  class="nav-profile-icon" src="images/profils/profile.png" alt="logo lifePath">
             <div class="nav-profile-info">
                 <h2><a href="profil.php">NOM COMPLET</a></h2>
                 <p class="navbar-pilote">NOM pilote</p>
@@ -63,7 +63,7 @@
                 <span></span>
             </div>
             <h1>LifePath</h1>
-            <img  src="images/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
+            <img  src="images/logos/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
         </header>
     </div>
 
@@ -73,7 +73,7 @@
         <form class ="profile-form">
             <div class="profile-section">
                 <div>
-                    <img class="profil-icon" src="images/profile.png" alt="Photo de profil">
+                    <img class="profil-icon" src="images/profils/profile.png" alt="Photo de profil">
                 </div>
                 
                 <div class="profile-name">
