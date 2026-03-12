@@ -1,11 +1,42 @@
 <?php
-/**
- * This is the router, the main entry point of the application.
- * It handles the routing and dispatches requests to the appropriate controller methods.
- */
 
-require "vendor/autoload.php";
+use Routeur\Routeur;
+use exception\RouteurNotFoundException;
 
+require "./../vendor/autoload.php";
+
+$routeur = new Routeur();
+
+$routeur->register('/', function() {
+    return 'Welcome page';
+});
+
+$routeur->register('/entreprise', function() {
+    return 'Entreprise page';
+});
+
+$routeur->register('/contact', function() {
+    return 'Contact page';
+});
+
+$routeur->register('/offres', function() {
+    return 'Offres page';
+});
+
+$routeur->register('/avis', function() {
+    return 'Avis page';
+});
+
+try {
+    echo $routeur->run($_SERVER['REQUEST_URI']);
+} catch (RouteurNotFoundException $e) {
+    echo $e->getMessage();
+}
+
+
+
+
+/*
 use App\Controllers\routeurController;
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
@@ -47,3 +78,4 @@ switch ($uri) {
         echo '404 Not Found';
         break;
 }
+        */
