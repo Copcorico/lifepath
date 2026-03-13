@@ -47,7 +47,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             $_SESSION['user_id'] = $user['id_profil'];
             $_SESSION['user_email'] = $user['email'];
 
-            $successMessage = 'Connexion reussie.';
+            header('Location: /', true, 302);
+            exit;
         } catch (RuntimeException $exception) {
             $errors[] = $exception->getMessage();
         }

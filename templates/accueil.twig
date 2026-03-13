@@ -1,3 +1,89 @@
+<?php
+
+$offres_stage = [
+[
+'titre' => 'Développement d’une application web interne',
+'poste' => 'Développeur Web',
+'entreprise' => 'TechSolutions',
+'lieu' => 'Paris',
+'niveau' => 'Bac +5'
+],
+
+[
+'titre' => 'Création d’une plateforme e-commerce',
+'poste' => 'Développeur Web',
+'entreprise' => 'DigitalMarket',
+'lieu' => 'Lyon',
+'niveau' => 'Bac +4'
+],
+
+[
+'titre' => 'Développement d’un site de gestion documentaire',
+'poste' => 'Développeur Web',
+'entreprise' => 'InfoSys',
+'lieu' => 'Marseille',
+'niveau' => 'Bac +5'
+],
+
+[
+'titre' => 'Conception d’une API pour application mobile',
+'poste' => 'Développeur Backend',
+'entreprise' => 'CodeFactory',
+'lieu' => 'Toulouse',
+'niveau' => 'Bac +5'
+],
+
+[
+'titre' => 'Amélioration de l’interface utilisateur d’une plateforme SaaS',
+'poste' => 'Développeur Frontend',
+'entreprise' => 'WebInnov',
+'lieu' => 'Bordeaux',
+'niveau' => 'Bac +3'
+],
+
+[
+'titre' => 'Développement d’un tableau de bord analytique',
+'poste' => 'Développeur Web',
+'entreprise' => 'DataVision',
+'lieu' => 'Lille',
+'niveau' => 'Bac +5'
+],
+
+[
+'titre' => 'Création d’une application de gestion des stocks',
+'poste' => 'Développeur Full Stack',
+'entreprise' => 'SoftLogistics',
+'lieu' => 'Nantes',
+'niveau' => 'Bac +4'
+],
+
+[
+'titre' => 'Optimisation d’un site web existant',
+'poste' => 'Développeur Web',
+'entreprise' => 'NextTech',
+'lieu' => 'Strasbourg',
+'niveau' => 'Bac +3'
+],
+
+[
+'titre' => 'Développement d’un portail client',
+'poste' => 'Développeur Full Stack',
+'entreprise' => 'CloudNet',
+'lieu' => 'Montpellier',
+'niveau' => 'Bac +5'
+],
+
+[
+'titre' => 'Conception d’un système de gestion des utilisateurs',
+'poste' => 'Développeur Web',
+'entreprise' => 'InnovApps',
+'lieu' => 'Nice',
+'niveau' => 'Bac +4'
+]
+
+];
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -34,7 +120,7 @@
         <li class="nav-menu-item">
             <div class="row" onclick="toggleRow(this)">
                 <div class="nav-container-menu">
-                    <a href="index.html">Accueil </a>
+                    <a href="./">Accueil </a>
                     <div class="arrow">></div>
                 </div>
                 <ul class="nav-submenu">
@@ -44,12 +130,12 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-menu-item"><a href="src/Controllers/InscriptionController.php">Inscription</a></li>
-        <li class="nav-menu-item"><a href="/templates/Connexion/connexion.twig">Connexion</a></li>
-        <li class="nav-menu-item"><a href="/templates/Offres/offres.twig">Nos offres</a></li>
-        <li class="nav-menu-item"><a href="/templates/Entreprises/entreprise.twig">Entreprise</a></li>
-        <li class="nav-menu-item"><a href="/templates/Avis/avis.twig">Avis</a></li>
-        <li class="nav-menu-item"><a href="/templates/Legale/legale.twig">Mention légal</a></li>
+        <li class="nav-menu-item"><a href="inscription">Inscription</a></li>
+        <li class="nav-menu-item"><a href="connexion">Connexion</a></li>
+        <li class="nav-menu-item"><a href="offres">Nos offres</a></li>
+        <li class="nav-menu-item"><a href="entreprise">Entreprise</a></li>
+        <li class="nav-menu-item"><a href="avis">Avis</a></li>
+        <li class="nav-menu-item"><a href="legale">Mention légal</a></li>
     </ul>
 </nav>
 
@@ -74,7 +160,7 @@
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
                 type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
             </p>
-            <button class="apropos-bouton" onclick="window.location.href= 'contact.html'">-></button>
+            <button class="apropos-bouton" onclick="window.location.href= 'contact'">-></button>
         </div>
     </article>
 
@@ -82,64 +168,21 @@
     <h2 class="offers-header" id="offres">Offres</h2>
 
     <div class="offre-global-container">
-
-            <article class="offre-container">
-                <div class="coeur"></div>
-                <img src="images/entreprise/entreprise.jpg" alt="imag de l'offre" class="offre-img">
-                <h2>Titre de l'offre de stage</h2>
-                <ul class="offre-ul">
-                    <li class="offres-li">Poste : Développeur Web</li>
-                    <li class="offres-li">Entreprise : TechSolutions</li>
-                    <li class="offres-li">Lieu : Paris</li>
-                    <li class="offres-li">Bac +5</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-            </article>
-            <article  class="offre-container">
-                <img src="images/entreprise/entreprise2.jpg" alt="imag de l'offre" class="offre-img">
-                <h2>Titre de l'offre de stage</h2>
-                <ul>
-                    <li>Poste : Développeur Web</li>
-                    <li>Entreprise : TechSolutions</li>
-                    <li>Lieu : Paris</li>
-                    <li>Bac +5</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-            </article>
-            <article  class="offre-container">
-                <div class="coeur"></div>
-                <img src="images/entreprise/offre1.png" alt="imag de l'offre" class="offre-img">
-                <h2>Titre de l'offre de stage</h2>
-                <ul>
-                    <li>Poste : Développeur Web</li>
-                    <li>Entreprise : TechSolutions</li>
-                    <li>Lieu : Paris</li>
-                    <li>Bac +5</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-            </article>
-            <article  class="offre-container">
-                <img src="images/entreprise/offre2.png" alt="imag de l'offre" class="offre-img">
-                <h2>Titre de l'offre de stage</h2>
-                <ul>
-                    <li>Poste : Développeur Web</li>
-                    <li>Entreprise : TechSolutions</li>
-                    <li>Lieu : Paris</li>
-                    <li>Bac +5</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-            </article>
-            <article  class="offre-container">
-                <img src="images/entreprise/offre3.png" alt="imag de l'offre" class="offre-img">
-                <h2>Titre de l'offre de stage</h2>
-                <ul>
-                    <li>Poste : Développeur Web</li>
-                    <li>Entreprise : TechSolutions</li>
-                    <li>Lieu : Paris</li>
-                    <li>Bac +5</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-            </article>
+            <?php 
+			foreach ($offres_stage as $offre) {
+				echo '<article class="offre-container">';
+				echo '<img src="images/entreprise.jpg" alt="imag de l\'offre" class="offre-img">';
+				echo '<h2>' . $offre['titre'] . '</h2>';
+				echo '<ul class="offre-ul">';
+				echo '<li class="offres-li">Poste : ' . $offre['poste'] . '</li>';
+				echo '<li class="offres-li">Entreprise : ' . $offre['entreprise'] . '</li>';
+				echo '<li class="offres-li">Lieu : ' . $offre['lieu'] . '</li>';
+				echo '<li class="offres-li">Niveau : ' . $offre['niveau'] . '</li>';
+				echo '</ul>';
+				echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>';
+				echo '</article>';
+			}
+			?>
     </div>
     <!-- Comptes -->
     <h2 class="compte-title" id="compte">Comptes</h2>
@@ -324,7 +367,7 @@
 
 <footer>
 <p>&copy; 2026 Tous droits réservés</p>
-<a href="legale.html" > Mentions légales et politique de confidentialité</a>
+<a href="legale" > Mentions légales et politique de confidentialité</a>
 </footer>
 
 </html>
