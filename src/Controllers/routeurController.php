@@ -16,7 +16,33 @@ class routeurController extends Controller {
     }
 
     public function welcomePage() {
-        echo $this->templateEngine->render('accueil.twig');
+        $offresEmploi = [
+            [
+                'titre' => 'Développement d\'une application web interne',
+                'poste' => 'Développeur Web',
+                'entreprise' => 'TechSolutions',
+                'lieu' => 'Paris',
+                'niveau' => 'Bac +5'
+            ],
+            [
+                'titre' => 'Création d\'une plateforme e-commerce',
+                'poste' => 'Développeur Full Stack',
+                'entreprise' => 'DigitalMarket',
+                'lieu' => 'Lyon',
+                'niveau' => 'Bac +4'
+            ],
+            [
+                'titre' => 'Conception d\'une API pour application mobile',
+                'poste' => 'Développeur Backend',
+                'entreprise' => 'CodeFactory',
+                'lieu' => 'Toulouse',
+                'niveau' => 'Bac +5'
+            ]
+        ];
+
+        echo $this->templateEngine->render('accueil.twig', [
+            'offres_emploi' => $offresEmploi
+        ]);
     }
 
     public function inscriptionPage() {
