@@ -1,89 +1,3 @@
-<?php
-
-$offres_stage = [
-[
-'titre' => 'Développement d’une application web interne',
-'poste' => 'Développeur Web',
-'entreprise' => 'TechSolutions',
-'lieu' => 'Paris',
-'niveau' => 'Bac +5'
-],
-
-[
-'titre' => 'Création d’une plateforme e-commerce',
-'poste' => 'Développeur Web',
-'entreprise' => 'DigitalMarket',
-'lieu' => 'Lyon',
-'niveau' => 'Bac +4'
-],
-
-[
-'titre' => 'Développement d’un site de gestion documentaire',
-'poste' => 'Développeur Web',
-'entreprise' => 'InfoSys',
-'lieu' => 'Marseille',
-'niveau' => 'Bac +5'
-],
-
-[
-'titre' => 'Conception d’une API pour application mobile',
-'poste' => 'Développeur Backend',
-'entreprise' => 'CodeFactory',
-'lieu' => 'Toulouse',
-'niveau' => 'Bac +5'
-],
-
-[
-'titre' => 'Amélioration de l’interface utilisateur d’une plateforme SaaS',
-'poste' => 'Développeur Frontend',
-'entreprise' => 'WebInnov',
-'lieu' => 'Bordeaux',
-'niveau' => 'Bac +3'
-],
-
-[
-'titre' => 'Développement d’un tableau de bord analytique',
-'poste' => 'Développeur Web',
-'entreprise' => 'DataVision',
-'lieu' => 'Lille',
-'niveau' => 'Bac +5'
-],
-
-[
-'titre' => 'Création d’une application de gestion des stocks',
-'poste' => 'Développeur Full Stack',
-'entreprise' => 'SoftLogistics',
-'lieu' => 'Nantes',
-'niveau' => 'Bac +4'
-],
-
-[
-'titre' => 'Optimisation d’un site web existant',
-'poste' => 'Développeur Web',
-'entreprise' => 'NextTech',
-'lieu' => 'Strasbourg',
-'niveau' => 'Bac +3'
-],
-
-[
-'titre' => 'Développement d’un portail client',
-'poste' => 'Développeur Full Stack',
-'entreprise' => 'CloudNet',
-'lieu' => 'Montpellier',
-'niveau' => 'Bac +5'
-],
-
-[
-'titre' => 'Conception d’un système de gestion des utilisateurs',
-'poste' => 'Développeur Web',
-'entreprise' => 'InnovApps',
-'lieu' => 'Nice',
-'niveau' => 'Bac +4'
-]
-
-];
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -168,8 +82,7 @@ $offres_stage = [
     <h2 class="offers-header" id="offres">Offres</h2>
 
     <div class="offre-global-container">
-            <?php 
-			foreach ($offres_stage as $offre) {
+            <% for each ($offres_emploi as $offre) {
 				echo '<article class="offre-container">';
 				echo '<img src="images/entreprise.jpg" alt="imag de l\'offre" class="offre-img">';
 				echo '<h2>' . $offre['titre'] . '</h2>';
@@ -182,7 +95,7 @@ $offres_stage = [
 				echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>';
 				echo '</article>';
 			}
-			?>
+			%>
     </div>
     <!-- Comptes -->
     <h2 class="compte-title" id="compte">Comptes</h2>
