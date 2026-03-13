@@ -9,9 +9,9 @@ $routeur = new Routeur();
 
 $routeur->register('/', ['App\Controllers\routeurController', 'welcomePage']);
 
-$routeur->register('/connexion', ['App\Controllers\routeurController', 'connexionPage']);
+$routeur->register('/connexion', ['App\Controllers\AuthentificationController', 'connexionPage']);
 
-$routeur->register('/inscription', ['App\Controllers\routeurController', 'inscriptionPage']);
+$routeur->register('/inscription', ['App\Controllers\AuthentificationController', 'inscriptionPage']);
 
 $routeur->register('/entreprise', ['App\Controllers\routeurController', 'entreprisePage']);
 
@@ -30,16 +30,16 @@ $routeur->register('/deconnexion', ['App\Controllers\routeurController', 'deconn
 // Keep legacy links functional while templates are progressively migrated.
 $legacyRoutes = [
     '/index.html' => ['App\Controllers\routeurController', 'welcomePage'],
-    '/connexion.html' => ['App\Controllers\routeurController', 'connexionPage'],
-    '/inscription.html' => ['App\Controllers\routeurController', 'inscriptionPage'],
+    '/connexion.html' => ['App\Controllers\AuthentificationController', 'connexionPage'],
+    '/inscription.html' => ['App\Controllers\AuthentificationController', 'inscriptionPage'],
     '/offres.html' => ['App\Controllers\routeurController', 'offresPage'],
     '/entreprise.html' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/avis.html' => ['App\Controllers\routeurController', 'avisPage'],
     '/legale.html' => ['App\Controllers\routeurController', 'legalePage'],
     '/contact.html' => ['App\Controllers\routeurController', 'contactPage'],
-    '/src/Controllers/InscriptionController.php' => ['App\Controllers\routeurController', 'inscriptionPage'],
-    '/src/Controllers/ConnexionController.php' => ['App\Controllers\routeurController', 'connexionPage'],
-    '/templates/Connexion/connexion.twig' => ['App\Controllers\routeurController', 'connexionPage'],
+    '/src/Controllers/InscriptionController.php' => ['App\Controllers\AuthentificationController', 'inscriptionPage'],
+    '/src/Controllers/ConnexionController.php' => ['App\Controllers\AuthentificationController', 'connexionPage'],
+    '/templates/Connexion/connexion.twig' => ['App\Controllers\AuthentificationController', 'connexionPage'],
     '/templates/Offres/offres.twig' => ['App\Controllers\routeurController', 'offresPage'],
     '/templates/Entreprises/entreprise.twig' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/templates/Avis/avis.twig' => ['App\Controllers\routeurController', 'avisPage'],

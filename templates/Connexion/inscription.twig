@@ -94,13 +94,13 @@
                         </div>
 
                         <input class="btn_color" type="checkbox" name="accept_terms" {% if form.accept_terms %}checked{% endif %} required>
-                        J'accepte les <a href="mentions-legales.html">Conditions d'utilisations et la Politique de confidentialite</a>
+                        J'accepte les <a href="legale">Conditions d'utilisations et la Politique de confidentialite</a>
                         <br><br>
 
                         <button class="submit" name="submit" type="submit">Inscription</button>
                     </form>
 
-                    <p>Deja un compte ? <a href="/src/Controllers/ConnexionController.php">Connectez-vous</a></p>
+                    <p>Deja un compte ? <a href="connexion">Connectez-vous</a></p>
                 </div>
 
                 <div id="form-entreprise" class="form-section{% if form.mode == 'entreprise' %} active{% endif %}">
@@ -147,6 +147,6 @@
     </section>
 </main>
 
-<script src="/script_form.js?v=20260311"></script>
+<script src="script_form.js?v=20260313"></script>
 </body>
 </html>

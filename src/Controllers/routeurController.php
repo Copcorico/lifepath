@@ -20,11 +20,13 @@ class routeurController extends Controller {
     }
 
     public function inscriptionPage() {
-        echo $this->templateEngine->render('Connexion/inscription.twig');
+        $authController = new AuthentificationController($this->templateEngine);
+        $authController->inscriptionPage();
     }
 
     public function connexionPage() {
-        echo $this->templateEngine->render('Connexion/connexion.twig');
+        $authController = new AuthentificationController($this->templateEngine);
+        $authController->connexionPage();
     }
 
     public function entreprisePage() {
