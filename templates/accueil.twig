@@ -1,3 +1,7 @@
+<%
+$offres_emploi = getOffresEmploi();
+%>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -82,7 +86,7 @@
     <h2 class="offers-header" id="offres">Offres</h2>
 
     <div class="offre-global-container">
-            <% for each ($offres_emploi as $offre) {
+            <% for each ($offres_emploi as $offre)  { %>
 				echo '<article class="offre-container">';
 				echo '<img src="images/entreprise.jpg" alt="imag de l\'offre" class="offre-img">';
 				echo '<h2>' . $offre['titre'] . '</h2>';
@@ -94,8 +98,7 @@
 				echo '</ul>';
 				echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>';
 				echo '</article>';
-			}
-			%>
+			<% } %>
     </div>
     <!-- Comptes -->
     <h2 class="compte-title" id="compte">Comptes</h2>
