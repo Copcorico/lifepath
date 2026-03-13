@@ -89,12 +89,12 @@ $offres_emploi = getOffresEmploi();
             <% for each ($offres_emploi as $offre) %>
 				<article class="offre-container">
 			        <img src="images/entreprise.jpg" alt="imag de l\'offre" class="offre-img">
-				    <h2> {{ $offre['titre'] }} </h2>
+				    <h2> {{ offre['titre'] }} </h2>
 				    <ul class="offre-ul">
-                        <li class="offres-li"> Poste : {{ $offre['poste'] }} </li>
-                        <li class="offres-li">Entreprise : {{ $offre['entreprise'] }} </li>
-                        <li class="offres-li">Lieu :  {{ $offre['lieu'] }} </li>
-                        <li class="offres-li">Niveau :  {{ $offre['niveau'] }}</li>
+                        <li class="offres-li"> Poste : {{ offre['poste'] }} </li>
+                        <li class="offres-li">Entreprise : {{ offre['entreprise'] }} </li>
+                        <li class="offres-li">Lieu :  {{ offre['lieu'] }} </li>
+                        <li class="offres-li">Niveau :  {{ offre['niveau'] }}</li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
                 </article>
