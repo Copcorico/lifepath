@@ -94,62 +94,69 @@
     <main>
         <article class="entreprise-container">
             <section class="entreprise-section">
-                <h1>Nom de l'entreprise</h1>
+                <h1>{{ company.nom }}</h1>
                 <div class="star-rating">
-                    ⭐⭐⭐⭐☆ <span>(4,2)</span>
+                    {% for i in 1..5 %}
+                        {% if i <= company.note %}⭐{% else %}☆{% endif %}
+                    {% endfor %}
+                    <span>({{ company.note }}/5)</span>
                 </div>
             </section>
             <p class="entreprise-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione maxime
-                reprehenderit deleniti, expedita suscipit cupiditate?
+                {{ company.description }}
             </p>
             <ul class="entreprise-info">
-                <li>Domaine : Informatique</li>
-                <li>Localisation : Saint-Nazaire</li>
-                <li>Taille : 50-100 salariés</li>
+                <li>Taille : {{ company.nombre_employes }} salariés</li>
             </ul>
 
-            <section class="offres-carousel">
+            <section class="offres-carousel" id="offres">
                 <h2>Offres</h2>
                 <div class="carousel">
-                    <button class="prev">&lt;</button>
+                    {% set companyId = company.id_entreprise|default(0) %}
+                    {% if prevPage %}
+                        <a class="prev" href="?id={{ companyId }}&page={{ prevPage }}#offres" aria-label="Offre précédente">&lt;</a>
+                    {% else %}
+                        <span class="prev" aria-disabled="true">&lt;</span>
+                    {% endif %}
                     <div class="carousel-track">
-                        <!-- exemple d'offre unique au centre -->
-                        <div class="offre-item">
-                            <div class="offre-card">
-                                <img src="images/entreprise/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                                <div class="offre-card-info">
-                                    <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                                    <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
+                        {% if currentOffre %}
+                            <div class="offre-item">
+                                <div class="offre-card">
+                                    <img src="images/entreprise/entreprise.jpg" alt="{{ currentOffre.titre }}" class="offre-card-img">
+                                    <div class="offre-card-info">
+                                        <h3 class="offre-card-title">{{ currentOffre.titre }}</h3>
+                                        <div class="offre-card-meta">
+                                            {{ currentOffre.localisation|default('Non renseignee') }} • {{ currentOffre.niveau|default('Niveau non precise') }}
+                                        </div>
+                                        <p>{{ currentOffre.detail|default('Aucun detail disponible.') }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- autres éléments peuvent être ajoutés et seront masqués par le carousel -->
-                        <div class="offre-item">
-                            <div class="offre-card">
-                                <img src="images/entreprise/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                                <div class="offre-card-info">
-                                    <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                                    <div class="offre-card-meta">4.0 ★ • St Nazaire • Bac +3</div>
+                        {% else %}
+                            <div class="offre-item">
+                                <div class="offre-card">
+                                    <div class="offre-card-info">
+                                        <h3 class="offre-card-title">Aucune offre disponible</h3>
+                                        <div class="offre-card-meta">Cette entreprise n'a pas encore publie d'offre.</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="offre-item">
-                            <div class="offre-card">
-                                <img src="images/entreprise/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                                <div class="offre-card-info">
-                                    <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                                    <div class="offre-card-meta">3.8 ★ • St Nazaire • Bac +2</div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
-                    <button class="next">&gt;</button>
+                    {% if nextPage %}
+                        <a class="next" href="?id={{ companyId }}&page={{ nextPage }}#offres" aria-label="Offre suivante">&gt;</a>
+                    {% else %}
+                        <span class="next" aria-disabled="true">&gt;</span>
+                    {% endif %}
                 </div>
                 <div class="carousel-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    {% if totalPages > 1 %}
+                        {% for i in 1..totalPages %}
+                            <a class="dot{% if i == page %} active{% endif %}" href="?id={{ companyId }}&page={{ i }}#offres" aria-label="Aller a l'offre {{ i }}"></a>
+                        {% endfor %}
+                    {% else %}
+                        <span class="dot active"></span>
+                    {% endif %}
                 </div>
             </section>
         </article>
@@ -160,43 +167,6 @@
         <a href="legale.html">Mentions légales et politique de confidentialité</a>
     </footer>
 
-    <script>
-        // simple carousel logic
-        const track = document.querySelector('.carousel-track');
-        const items = Array.from(track.children);
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
-        const dots = document.querySelectorAll('.dot');
 
-        let currentIndex = 0;
-        function updateCarousel() {
-            const offset = -currentIndex * 100;
-            track.style.transform = `translateX(${offset}%)`;
-            dots.forEach((d,i) => d.classList.toggle('active', i === currentIndex));
-        }
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateCarousel();
-        });
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateCarousel();
-        });
-        dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                currentIndex = idx;
-                updateCarousel();
-            });
-        });
-        updateCarousel();
-
-        // navigation toggle
-        function toggleNav() {
-            const navbar = document.getElementById('navbar');
-            const overlay = document.getElementById('overlay');
-            navbar.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
