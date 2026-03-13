@@ -16,7 +16,11 @@ class routeurController extends Controller {
     }
 
     public function welcomePage() {
-        echo $this->templateEngine->render('accueil.twig');
+        $offresEmploi = $this->model->getHomeOffers();
+
+        echo $this->templateEngine->render('accueil.twig', [
+            'offres_emploi' => $offresEmploi,
+        ]);
     }
 
     public function inscriptionPage() {
