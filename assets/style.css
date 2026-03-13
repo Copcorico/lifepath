@@ -991,16 +991,29 @@ footer {
 
     .offre-global-container {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 20px;
         padding: 20px;
     }
-
+    .offre-global-container h2{
+        font-size: 30px;
+    }
+    .offre-global-container ul{
+        font-size: 13px;
+    }
+    .offre-global-container p{
+        font-size: 20px;
+    }
     .offre-container {
         margin-left: 0;
         margin-right: 0;
         padding-left: 5%;
         padding-right: 5%;
+    }
+    /* carousel comptes */
+    .compte-label img{
+        width: 120px;
+        height: 120px;
     }
 }
 
