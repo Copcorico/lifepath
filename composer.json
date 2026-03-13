@@ -8,13 +8,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
-        }
-    }
-
-    "autoload": {
-        "psr-4": {
-            "routeur\\" : "routeur/",
+            "App\\": "src/",
+            "Routeur\\": "routeur/",
             "exceptions\\" : "exceptions/"
         }
     }
