@@ -82,7 +82,7 @@
     <h2 class="offers-header" id="offres">Offres</h2>
 
     <div class="offre-global-container">
-            <% for each ($offres_emploi as $offre) %>
+            {% for each ($offres_emploi as $offre) %}
 				<article class="offre-container">
 			        <img src="images/entreprise.jpg" alt="imag de l\'offre" class="offre-img">
 				    <h2> {{ offre['titre'] }} </h2>
@@ -94,7 +94,7 @@
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
                 </article>
-			<% endfor %>
+			{% endfor %}
     </div>
     <!-- Comptes -->
     <h2 class="compte-title" id="compte">Comptes</h2>
