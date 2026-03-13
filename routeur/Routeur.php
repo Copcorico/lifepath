@@ -1,8 +1,8 @@
 <?php
 
-use exception\RouteurNotFoundException;
-
 namespace Routeur;
+
+use exception\RouteurNotFoundException;
 
 class Routeur 
 {
