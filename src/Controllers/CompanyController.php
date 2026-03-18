@@ -23,12 +23,16 @@ if (session_status() === PHP_SESSION_NONE) {
 $companyModel = new CompanyModel();
 $companyId = (int)($_GET['id'] ?? 0);
 
-$company = $companyModel->getCompanyById(1);
+if ($companyId <= 0) {
+    $companyId = 1;
+}
+
+$company = $companyModel->getCompanyById($companyId);
 if (!$company) {
     die('Entreprise non trouvée.');
 }
 
-$offres = $companyModel->getOffresByCompanyId(1);
+$offres = $companyModel->getOffresByCompanyId($companyId);
 
 $offresPerPage = 1;
 $totalOffres = count($offres);

@@ -46,30 +46,29 @@
                     <form method="post" action="">
                         <input type="hidden" name="mode" value="particulier">
 
-                        <div class="form-group">
-                            <label>Statut*</label><br>
-                            <input class="btn_color" type="radio" id="statut-etudiant" name="statut" value="etudiant" required {% if form.statut == 'etudiant' %}checked{% endif %}> Etudiant <br>
+                        <div class="form-group" style="width:100%">
+                            <label>Statut*</label>
+                            <input class="btn_color" type="radio" id="statut-etudiant" name="statut" value="etudiant" required {% if form.statut == 'etudiant' %}checked{% endif %}> Etudiant
                             <input class="btn_color" type="radio" id="statut-pilote" name="statut" value="pilote" required {% if form.statut == 'pilote' %}checked{% endif %}> Pilote
-                            <br><br>
                         </div>
 
                         <div class="form-group">
-                            <label>Nom*</label><br>
+                            <label>Nom*</label>
                             <input type="text" name="nom" size="25" placeholder="Dupont" value="{{ form.nom|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Prenom*</label><br>
+                            <label>Prenom*</label>
                             <input type="text" name="prenom" size="25" placeholder="Titouan" value="{{ form.prenom|e }}" required>
                         </div>
 
                         <div class="form-group" id="groupe-classe">
-                            <label>Classe*</label><br>
+                            <label>Classe*</label>
                             <input type="text" id="classe" name="classe" size="25" placeholder="CPI-A2 Informatique" value="{{ form.classe|e }}" required>
                         </div>
 
                         <div class="form-group" id="groupe-pilote" {% if form.statut != 'etudiant' %}hidden{% endif %}>
-                            <label for="pilote">Pilote</label><br>
+                            <label for="pilote">Pilote</label>
                             <select id="pilote" name="pilot_id">
                                 <option value="">Selectionnez un pilote</option>
                                 {% for pilot in pilots %}
@@ -79,23 +78,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email*</label><br>
+                            <label for="email">Email*</label>
                             <input type="email" id="email" name="email" size="25" placeholder="turlututu@viacesi.fr" value="{{ form.email|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Mot de passe*</label><br>
+                            <label>Mot de passe*</label>
                             <input type="password" name="password" size="25" placeholder="********" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Confirmation</label><br>
+                            <label>Confirmation</label>
                             <input type="password" name="password_confirm" size="25" placeholder="********" required>
                         </div>
 
-                        <input class="btn_color" type="checkbox" name="accept_terms" {% if form.accept_terms %}checked{% endif %} required>
-                        J'accepte les <a href="legale">Conditions d'utilisations et la Politique de confidentialite</a>
-                        <br><br>
+                        <div class="checkbox-container" style="width:100%">
+                            <input class="btn_color" type="checkbox" name="accept_terms" required>
+                            <label>J'accepte les <a href="legale">Conditions d'utilisation et la Politique de confidentialité</a></label>
+                        </div>
 
                         <button class="submit" name="submit" type="submit">Inscription</button>
                     </form>
@@ -110,32 +110,32 @@
                         <input type="hidden" name="mode" value="entreprise">
 
                         <div class="form-group">
-                            <label for="societe">Nom de la societe*</label><br>
+                            <label for="societe">Nom de la societe*</label>
                             <input type="text" id="societe" name="societe" placeholder="Game Freak" value="{{ entreprise_form.societe|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="adresse">Adresse du siege social*</label><br>
+                            <label for="adresse">Adresse du siege social*</label>
                             <input type="text" id="adresse" name="adresse" placeholder="123 Rue de la Paix" value="{{ entreprise_form.adresse|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email-pro">Email*</label><br>
+                            <label for="email-pro">Email*</label>
                             <input type="email" id="email-pro" name="email-pro" placeholder="contact@gamefreak.fr" value="{{ entreprise_form.email|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="telephone-pro">Telephone*</label><br>
+                            <label for="telephone-pro">Telephone*</label>
                             <input type="tel" id="telephone-pro" name="telephone-pro" placeholder="01 23 45 67 89" value="{{ entreprise_form.telephone|e }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="password-pro">Mot de passe*</label><br>
+                            <label for="password-pro">Mot de passe*</label>
                             <input type="password" id="password-pro" name="password-pro" placeholder="********" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="password-pro-confirm">Confirmation*</label><br>
+                            <label for="password-pro-confirm">Confirmation*</label>
                             <input type="password" id="password-pro-confirm" name="password-pro-confirm" placeholder="********" required>
                         </div>
 
