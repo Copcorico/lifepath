@@ -296,6 +296,10 @@ input[type="submit"]:active {
     background-color: transparent;
   }
 
+  /* ============================================
+   HEADER
+   ============================================ */
+
   header.Connect_subscribe {
     background-color: #94d4ebbd;
     border: #f0f0f1 solid 2px;
@@ -304,13 +308,11 @@ input[type="submit"]:active {
     height: 100vh;
     margin: 5% 0 5% 5%;
   }
-  
-  header.Connect_subscribe::after {
-    content: " iufyzgofyitfy";
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.1;
+
+  h1.tittle {
+    font-size: 2.5em;
+    margin: 0;
+    color: #142b53;
   }
 
 
@@ -348,6 +350,23 @@ input[type="submit"]:active {
   .form-group label {
     color: var(--primary-color);
     font-size: 0.9em;
+  }
+
+  .form-particulier, .form-entreprise {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: start;
+    gap: 2%;
+  }
+
+  /* ============================================
+   TITRE & TYPOGRAPHIE
+   ============================================ */
+  h2 {
+    text-align: center;
   }
 
   /* ============================================
