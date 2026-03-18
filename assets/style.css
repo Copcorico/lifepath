@@ -901,6 +901,45 @@ footer {
     .similar-offers-grid {
         grid-template-columns: 1fr;
     }
+    .similar-offer-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .stat {
+        font-size: 0.85em;
+        padding: 12px;
+    }
+    .stat.yellow .arrow {
+        position: static;
+        display: inline;
+        margin-left: 10px;
+        transform: none;
+    }
+    .discover-company {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    .discover-company h4 {
+        font-size: 1.1em;
+    }
+    .discover-company .arrow {
+        font-size: 1.5em;
+    }
+    .similar-offers {
+        padding: 10px;
+        margin-top: 15px;
+    }
+    .similar-offers h3 {
+        font-size: 1.1em;
+        padding: 8px;
+    }
+    .similar-offer-item {
+        font-size: 0.9em;
+        padding: 8px 0;
+    }
+    .arrow.large {
+        font-size: 2em;
+    }
 }
 
 
