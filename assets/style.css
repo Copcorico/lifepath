@@ -27,7 +27,7 @@ a {
 }
 
 p {
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 li {
@@ -179,7 +179,7 @@ li {
 }
 
 .arrow {
-    margin-left: 55%;
+    margin-left: 10px;
     margin-right: 0%;
     margin-bottom: 0%;
     margin-top: 0%;
@@ -924,68 +924,42 @@ footer {
         gap: 0;
     }
     
-    /* Stats section - super étroit */
+    /* Fix: Stats section constraints */
     .similar-offer-stats {
-        flex-direction: column;
-        gap: 5px !important;
         width: 100%;
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
+        flex-direction: column;
+        gap: 5px;
     }
     
     .stat {
-        font-size: 0.8em;
+        min-width: 0;
+        word-break: break-word;
         padding: 5px;
-        width: 100%;
         margin: 0;
-        box-sizing: border-box !important;
-        flex: none !important;
-        line-height: 1.2;
+        box-sizing: border-box;
     }
     
     .stat p {
+        font-size: 0.9rem;
         margin: 0;
         padding: 0;
-        word-break: break-word;
-        white-space: normal;
     }
     
     .stat.yellow .arrow {
         position: static;
         display: inline;
-        margin-left: 0;
+        font-size: 1rem;
+        margin-left: 5px;
     }
     
-    /* Découvrez section */
-    .discover-company {
-        padding: 5px;
-        font-size: 0.8em;
-        margin: 5px 0;
-        max-width: 100%;
-    }
-    
-    .discover-company h4 {
-        font-size: 1em;
-        margin: 0 0 5px 0;
-    }
-    
-    .discover-company p {
-        margin: 0 0 5px 0;
-        font-size: 0.8em;
-    }
-    
-    .discover-company .arrow {
-        font-size: 1.2em;
-        margin: 0;
-    }
-    
-    /* Similar offers section */
+    /* Fix: Similar offers overflow */
     .similar-offers {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
         padding: 0;
         margin: 5px 0;
-        gap: 0;
-        overflow: hidden;
     }
     
     .similar-offers h3 {
@@ -995,9 +969,37 @@ footer {
     }
     
     .similar-offer-item {
-        font-size: 0.8em;
         padding: 5px 0;
         gap: 5px;
+    }
+    
+    .similar-offer-item p {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    /* Fix: Discover company section */
+    .discover-company {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 5px;
+        margin: 5px 0;
+    }
+    
+    .discover-company h4 {
+        font-size: 1em;
+        margin: 0 0 5px 0;
+    }
+    
+    .discover-company p {
+        font-size: 0.9rem;
+        margin: 0 0 5px 0;
+    }
+    
+    .discover-company .arrow {
+        font-size: 1.2em;
+        margin: 0;
     }
     
     .arrow.large {
