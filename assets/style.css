@@ -889,85 +889,119 @@ footer {
 
     main.offer-detail {
         font-size: 1rem;
-        padding: 10px;
+        padding: 5px;
+        margin: 0;
     }
+    
     .offer-card {
-        padding: 10px;
+        padding: 8px;
     }
+    
     .offer-title {
         font-size: 1.2em;
     }
+    
     .offer-company {
         font-size: 0.9em;
     }
+    
     .offer-section h3 {
         font-size: 1.1em;
     }
+    
     .offer-detail-row {
         flex-direction: column;
         align-items: flex-start;
     }
+    
     .label {
         min-width: auto;
     }
+    
     .similar-offers-grid {
         grid-template-columns: 1fr;
+        padding: 0;
+        gap: 0;
     }
+    
+    /* Stats section - super étroit */
     .similar-offer-stats {
         flex-direction: column;
-        gap: 8px;
+        gap: 5px !important;
         width: 100%;
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
     }
+    
     .stat {
-        font-size: 0.85em;
-        padding: 10px;
+        font-size: 0.8em;
+        padding: 5px;
         width: 100%;
-        box-sizing: border-box;
-        flex: none;
+        margin: 0;
+        box-sizing: border-box !important;
+        flex: none !important;
+        line-height: 1.2;
     }
+    
     .stat p {
         margin: 0;
-        word-wrap: break-word;
+        padding: 0;
+        word-break: break-word;
+        white-space: normal;
     }
+    
     .stat.yellow .arrow {
         position: static;
         display: inline;
-        margin-left: 5px;
-        transform: none;
+        margin-left: 0;
     }
+    
+    /* Découvrez section */
     .discover-company {
-        padding: 10px;
-        font-size: 0.9em;
+        padding: 5px;
+        font-size: 0.8em;
+        margin: 5px 0;
         max-width: 100%;
     }
+    
     .discover-company h4 {
-        font-size: 1.1em;
-        margin: 0 0 8px 0;
+        font-size: 1em;
+        margin: 0 0 5px 0;
     }
+    
     .discover-company p {
-        margin: 0 0 8px 0;
+        margin: 0 0 5px 0;
+        font-size: 0.8em;
     }
+    
     .discover-company .arrow {
-        font-size: 1.5em;
-    }
-    .similar-offers {
-        padding: 8px;
-        margin-top: 15px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .similar-offers h3 {
-        font-size: 1.1em;
-        padding: 8px;
+        font-size: 1.2em;
         margin: 0;
     }
-    .similar-offer-item {
-        font-size: 0.9em;
-        padding: 8px 0;
+    
+    /* Similar offers section */
+    .similar-offers {
+        padding: 0;
+        margin: 5px 0;
+        gap: 0;
+        overflow: hidden;
     }
+    
+    .similar-offers h3 {
+        font-size: 0.95em;
+        padding: 5px;
+        margin: 0;
+    }
+    
+    .similar-offer-item {
+        font-size: 0.8em;
+        padding: 5px 0;
+        gap: 5px;
+    }
+    
     .arrow.large {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 }
 
