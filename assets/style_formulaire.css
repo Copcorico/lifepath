@@ -280,3 +280,49 @@ input[type="submit"]:active {
   color: #0066cc;
   text-decoration: underline;
 }
+
+
+/* ============================================
+   VERSION PC
+   ============================================ */
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    background-image: url('../images/backgrounds/wmremove-transformed.png');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+  }
+
+  header.Connect_subscribe {
+    background-color: var(--primary-color);
+    border: #f0f0f1 solid 2px;
+    border-radius: 12px;
+    width: 40%;
+    height: 100vh;
+    position: fixed;
+  }
+
+  main {
+    background-color: #f0e278d6;
+    border: gray solid 2px;
+    border-radius: 12px;
+    width: 50%;
+    margin-left: 45%;
+    margin-top: 5%;
+    padding: 3%;
+  }
+
+  form {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-group label {
+    color: var(--primary-color);
+    font-size: 100%;
+  }
+
+}
