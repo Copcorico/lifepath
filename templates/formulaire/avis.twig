@@ -13,73 +13,8 @@
 </head>
 
 <body>
-	<!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="hamburger" onclick="toggleNav()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="profile-section">
-            <img  class="profile-icon" src="images/profils/profile.png" alt="logo lifePath">
-            <div class="profile-info">
-                <h2>NOM COMPLET</h2>
-                <p class="navbar-pilote">NOM pilote</p>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <ul class="menu">
-            <li class="menu-item active">
-                <a href="index.html">
-                    <div class="home-icon"></div>
-                    Accueil
-                    <span class="arrow">∨</span>
-                </a>
-                <ul class="submenu">
-                    <li><a href="#offres">Offres</a></li>
-                    <li><a href="#apropos">Entreprises</a></li>
-                    <li><a href="#compte">Comptes</a></li>
-                </ul>
-                <a href="inscription.html">
-                    Inscription
-                </a>
-                <a href="connexion.html">
-                    Connexion
-                </a>
-                <a href="offres.html">
-                    Nos offres
-                </a>
-                <a href="entreprise.html">
-                    Entreprise
-                </a>
-                <a href="avis.html">
-                    Avis
-                </a>
-                <a href="legale.html">
-                    Mention légal
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="main-content">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-hamburger" onclick="toggleNav()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <h1>LifePath</h1>
-            <img  src="images/logos/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
-        </header>
-    </div>
+{# Navbar #}
+{% include 'style_base/header-navbar.twig' %}
 
 	<section>
 
