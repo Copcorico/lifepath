@@ -5,13 +5,92 @@ use exceptions\RouteurNotFoundException;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$routeur = new Routeur();
+// Démarrer la session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Charger les variables d'environnement
+$projectRoot = dirname(__DIR__);
+$dotenv = \Dotenv\Dotenv::createImmutable($projectRoot);
+$dotenv->load();
+
+// Créer la connexion PDO
+$dsn = $_ENV['DB_DSN'] ?? "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4";
+$db = new \PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
+
+// Créer le moteur Twig avec accès à la session
+$loader = new \Twig\Loader\FilesystemLoader($projectRoot . '/templates');
+$twig = new \Twig\Environment($loader);
+
+// Ajouter les variables globales Twig
+$twig->addGlobal('app', [
+    'session' => new \App\Twig\SessionBag()
+]);
+
+// Gérer POST /inscription avant le routeur
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
+
+if ($basePath !== '' && $basePath !== '.' && str_starts_with($uri, $basePath)) {
+    $uri = substr($uri, strlen($basePath));
+}
+
+if ($uri === '/index.php') {
+    $uri = '/';
+} elseif (str_starts_with($uri, '/index.php/')) {
+    $uri = substr($uri, strlen('/index.php'));
+}
+
+$uri = '/' . ltrim((string) $uri, '/');
+$path = explode('?', $uri)[0];
+$path = '/' . ltrim($path, '/');
+if ($path !== '/') {
+    $path = rtrim($path, '/');
+}
+
+// Traiter POST /inscription avec AuthController
+if ($path === '/inscription' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $authController = new \App\Controllers\AuthController($twig, $db);
+    $authController->inscription();
+    exit;
+}
+
+// Traiter GET /inscription avec routeurController ayant la BD
+if ($path === '/inscription' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $routeurController = new \App\Controllers\routeurController($twig, $db);
+    $routeurController->inscriptionPage();
+    exit;
+}
+
+// Traiter POST /connexion avec AuthController
+if ($path === '/connexion' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $authController = new \App\Controllers\AuthController($twig, $db);
+    $authController->connexion();
+    exit;
+}
+
+// Traiter GET /connexion avec routeurController ayant la BD
+if ($path === '/connexion' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $routeurController = new \App\Controllers\routeurController($twig, $db);
+    $routeurController->connexionPage();
+    exit;
+}
+
+// Traiter /déconnexion
+if ($path === '/deconnexion') {
+    session_destroy();
+    header('Location: /');
+    exit;
+}
+
+$routeur = new Routeur($db, $twig);
 
 $routeur->register('/', ['App\Controllers\routeurController', 'welcomePage']);
 
-$routeur->register('/connexion', ['App\Controllers\AuthentificationController', 'connexionPage']);
+$routeur->register('/connexion', ['App\Controllers\routeurController', 'connexionPage']);
 
-$routeur->register('/inscription', ['App\Controllers\AuthentificationController', 'inscriptionPage']);
+$routeur->register('/inscription', ['App\Controllers\routeurController', 'inscriptionPage']);
 
 $routeur->register('/entreprise', ['App\Controllers\routeurController', 'entreprisePage']);
 
@@ -25,21 +104,19 @@ $routeur->register('/legale', ['App\Controllers\routeurController', 'legalePage'
 
 $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage']);
 
-$routeur->register('/deconnexion', ['App\Controllers\routeurController', 'deconnexion']);
-
 // Keep legacy links functional while templates are progressively migrated.
 $legacyRoutes = [
     '/index.html' => ['App\Controllers\routeurController', 'welcomePage'],
-    '/connexion.html' => ['App\Controllers\AuthentificationController', 'connexionPage'],
-    '/inscription.html' => ['App\Controllers\AuthentificationController', 'inscriptionPage'],
+    '/connexion.html' => ['App\Controllers\routeurController', 'connexionPage'],
+    '/inscription.html' => ['App\Controllers\routeurController', 'inscriptionPage'],
     '/offres.html' => ['App\Controllers\routeurController', 'offresPage'],
     '/entreprise.html' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/avis.html' => ['App\Controllers\routeurController', 'avisPage'],
     '/legale.html' => ['App\Controllers\routeurController', 'legalePage'],
     '/contact.html' => ['App\Controllers\routeurController', 'contactPage'],
-    '/src/Controllers/InscriptionController.php' => ['App\Controllers\AuthentificationController', 'inscriptionPage'],
-    '/src/Controllers/ConnexionController.php' => ['App\Controllers\AuthentificationController', 'connexionPage'],
-    '/templates/Connexion/connexion.twig' => ['App\Controllers\AuthentificationController', 'connexionPage'],
+    '/src/Controllers/InscriptionController.php' => ['App\Controllers\routeurController', 'inscriptionPage'],
+    '/src/Controllers/ConnexionController.php' => ['App\Controllers\routeurController', 'connexionPage'],
+    '/templates/Connexion/connexion.twig' => ['App\Controllers\routeurController', 'connexionPage'],
     '/templates/Offres/offres.twig' => ['App\Controllers\routeurController', 'offresPage'],
     '/templates/Entreprises/entreprise.twig' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/templates/Avis/avis.twig' => ['App\Controllers\routeurController', 'avisPage'],

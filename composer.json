@@ -11,6 +11,15 @@
             "App\\": "src/",
             "Routeur\\": "routeur/",
             "exceptions\\" : "exceptions/"
-        }
+        },
+        "classmap": [
+            "src/Models/ProfilModel.php",
+            "src/Models/ParticulierModel.php",
+            "src/Models/EtudiantModel.php",
+            "src/Models/PilotModel.php",
+            "src/Models/EntrepriseModel.php",
+            "src/Models/routeurModel.php",
+            "src/Models/CompanyModel.php"
+        ]
     }
 }

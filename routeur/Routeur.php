@@ -8,6 +8,14 @@ use exceptions\RouteurNotFoundException;
 class Routeur 
 {
     private array $routes = [];
+    private $db = null;
+    private $twig = null;
+
+    public function __construct($db = null, $twig = null)
+    {
+        $this->db = $db;
+        $this->twig = $twig;
+    }
 
     public function register(string $path, callable|array $action): void
     {
@@ -32,7 +40,16 @@ class Routeur
         else if (is_array($action)) { //&& count($action) === 2
             [$class, $method] = $action;
             if (class_exists($class) && method_exists($class, $method)) {
-                $instance = new $class();
+                // Essayer de passer les dépendances au constructeur
+                try {
+                    if ($this->db && $this->twig) {
+                        $instance = new $class($this->twig, $this->db);
+                    } else {
+                        $instance = new $class();
+                    }
+                } catch (\Exception $e) {
+                    $instance = new $class();
+                }
                 return call_user_func_array([$instance, $method], []);
             }
         }
