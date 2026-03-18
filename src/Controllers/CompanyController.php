@@ -9,7 +9,7 @@ use Twig\Loader\FilesystemLoader;
 $projectRoot = dirname(__DIR__, 2);
 
 require_once $projectRoot . '/vendor/autoload.php';
-require_once $projectRoot . '/src/Models/CompagnyModel.php';
+require_once $projectRoot . '/src/Models/CompanyModel.php';
 
 Dotenv::createImmutable($projectRoot)->safeLoad();
 
@@ -23,12 +23,12 @@ if (session_status() === PHP_SESSION_NONE) {
 $companyModel = new CompanyModel();
 $companyId = (int)($_GET['id'] ?? 0);
 
-$company = $companyModel->getCompagnyById($companyId);
+$company = $companyModel->getCompanyById(1);
 if (!$company) {
     die('Entreprise non trouvée.');
 }
 
-$offres = $companyModel->getOffresByCompanyId($companyId);
+$offres = $companyModel->getOffresByCompanyId(1);
 
 $offresPerPage = 1;
 $totalOffres = count($offres);
