@@ -307,7 +307,7 @@ input[type="submit"]:active {
     border: #f0f0f1 solid 2px;
     border-radius: 12px;
     width: 30%;
-    height: 80vh;
+    height: 90vh;
     margin: 3% 0 3% 3%;
   }
 
@@ -335,7 +335,7 @@ input[type="submit"]:active {
    ============================================ */
   main {
     overflow-y: auto; 
-    height: 80vh;
+    height: 90vh;
     background-color: #f0e278b9;
     border: gray solid 2px;
     border-radius: 12px;
