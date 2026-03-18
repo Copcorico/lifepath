@@ -312,9 +312,10 @@ input[type="submit"]:active {
   h1.tittle::before {
     content: "Bienvenue sur ";
     display: block;
+    text-align: center;
     width: 50px;
     height: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 10%;
   }
 
   h1.tittle {
@@ -348,14 +349,7 @@ input[type="submit"]:active {
 
   form {
     width: 80%;
-    margin: 2%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: start;
-    gap: 2%;
+    margin: 0.50%;
   }
 
   .form-group {
@@ -369,10 +363,9 @@ input[type="submit"]:active {
 
   .form-section.active {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     align-content: start;
     gap: 2%;
   }
