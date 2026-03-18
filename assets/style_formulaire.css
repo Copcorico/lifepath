@@ -288,6 +288,8 @@ input[type="submit"]:active {
 
 @media (min-width: 1024px) {
   body {
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: row;
     background-image: url('../images/backgrounds/wmremove-transformed.png');
@@ -313,8 +315,8 @@ input[type="submit"]:active {
     content: "Bienvenue sur ";
     display: block;
     text-align: center;
-    width: 50px;
-    height: 4px;
+    width: 100%;
+    height: auto;
     margin-bottom: 20%;
     font-size: 0.75em;
   }
@@ -330,6 +332,8 @@ input[type="submit"]:active {
   }
 
   main {
+    overflow-y: auto; 
+    height: 90vh;
     background-color: #f0e278b9;
     border: gray solid 2px;
     border-radius: 12px;
@@ -355,8 +359,8 @@ input[type="submit"]:active {
   }
 
   form {
-    width: 80%;
-    margin: 0.50%;
+    width: 100%;
+    margin: 0%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -380,7 +384,7 @@ input[type="submit"]:active {
     gap: 2%;
   }
 
-  .form-section.active h2,
+  /*.form-section.active h2,
   .form-section.active button,
   .form-section.active .checkbox-container,
   .form-section.active .login-link {
@@ -392,6 +396,13 @@ input[type="submit"]:active {
   form input[type="hidden"],
   .form-section.active .checkbox-container,
   .form-section.active .login-link {
+    width: 100%;
+  }*/
+
+  form h2,
+  form button,
+  form .checkbox-container,
+  form > input[type="hidden"] {
     width: 100%;
   }
 
