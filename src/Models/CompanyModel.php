@@ -41,6 +41,31 @@ class CompanyModel
         return $stmt->fetchAll();
     }
 
+    public function searchCompaniesByName(string $name): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT *
+             FROM ENTREPRISES
+             WHERE nom LIKE :name
+             ORDER BY nom ASC'
+        );
+        $stmt->execute(['name' => '%' . $name . '%']);
+        return $stmt->fetchAll();
+    }
+
+    public function getAllCompanies(int $limit = 50): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT *
+             FROM ENTREPRISES
+             ORDER BY nom ASC
+             LIMIT :limit'
+        );
+        $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function deleteCompanyById(int $id): bool
     {
         $stmt = $this->pdo->prepare('DELETE FROM ENTREPRISES WHERE id_entreprise = :id');
