@@ -39,6 +39,7 @@
                         <li class="offres-li">Niveau : {{ offre['niveau']|default('Non précisé') }}</li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
+                    <a href="/entreprise?id={{ offre['id_entreprise']|default(0) }}" class="btn-postuler">Voir la fiche entreprise</a>
                 </article>
 			{% else %}
 				<p>Aucune offre disponible pour le moment.</p>
