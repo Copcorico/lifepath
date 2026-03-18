@@ -357,10 +357,6 @@ input[type="submit"]:active {
     width: 50%;
   }
 
-  .form-group.half-width {
-    width: 48%;
-  }
-
   .form-section.active {
     display: flex;
     flex-direction: row;
@@ -368,6 +364,13 @@ input[type="submit"]:active {
     justify-content: space-between;
     align-content: start;
     gap: 2%;
+  }
+
+  .form-section.active h2,
+  .form-section.active button,
+  .form-section.active .checkbox-container,
+  .form-section.active .login-link {
+    width: 100%;
   }
 
   /* ============================================
