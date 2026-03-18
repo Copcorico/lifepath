@@ -330,11 +330,9 @@ input[type="submit"]:active {
    ============================================ */
 
   .form-group label {
-    display: block;
-    font-size: 1em;
     font-weight: 500;
-    margin-bottom: 1%;
-    color: #333;
+    color: var(--primary-color);
+    font-size: 0.9em;
   }
 
   form {
@@ -347,12 +345,7 @@ input[type="submit"]:active {
     width: 100%;
   }
 
-  .form-group label {
-    color: var(--primary-color);
-    font-size: 0.9em;
-  }
-
-  .form-particulier, .form-entreprise {
+  .form-section.active {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -366,12 +359,14 @@ input[type="submit"]:active {
    TITRE & TYPOGRAPHIE
    ============================================ */
   h2 {
-    text-align: center;
+    text-align: start;
+    font-size: 0.9em;
   }
 
+  
   /* ============================================
-   INPUTS & SÉLECTEURS
-   ============================================ */
+    INPUTS & SÉLECTEURS
+    ============================================ */
   input[type="text"],
   input[type="email"],
   input[type="password"],
