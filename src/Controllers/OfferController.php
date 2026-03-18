@@ -103,4 +103,137 @@ class OfferController
             ]);
         }
     }
+
+    public function addToFavoris(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['error' => 'Method not allowed']);
+            return;
+        }
+
+        try {
+            $offerId = intval($_POST['id_offre'] ?? 0);
+            $favoriId = intval($_POST['id_favori'] ?? 0);
+
+            if (!$offerId || !$favoriId) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Les paramètres id_offre et id_favori sont requis']);
+                return;
+            }
+
+            $result = $this->offerModel->addToFavoris($offerId, $favoriId);
+
+            if (!$result) {
+                http_response_code(500);
+                echo json_encode(['error' => 'Erreur lors de l\'ajout aux favoris']);
+                return;
+            }
+
+            http_response_code(201);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Offre ajoutée aux favoris'
+            ]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Erreur lors de l\'ajout aux favoris',
+                'details' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function removeFromFavoris(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['error' => 'Method not allowed']);
+            return;
+        }
+
+        try {
+            $offerId = intval($_POST['id_offre'] ?? 0);
+            $favoriId = intval($_POST['id_favori'] ?? 0);
+
+            if (!$offerId || !$favoriId) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Les paramètres id_offre et id_favori sont requis']);
+                return;
+            }
+
+            $result = $this->offerModel->removeFromFavoris($offerId, $favoriId);
+
+            if (!$result) {
+                http_response_code(500);
+                echo json_encode(['error' => 'Erreur lors de la suppression des favoris']);
+                return;
+            }
+
+            http_response_code(200);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Offre supprimée des favoris'
+            ]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Erreur lors de la suppression des favoris',
+                'details' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getUserFavoris(int $favoriId): void
+    {
+        try {
+            if (!$favoriId) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Le paramètre id_favori est requis']);
+                return;
+            }
+
+            $offers = $this->offerModel->getFavorisByUser($favoriId);
+
+            echo json_encode([
+                'success' => true,
+                'offers' => $offers
+            ]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Erreur lors de la récupération des offres favorites',
+                'details' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function checkIsFavori(): void
+    {
+        try {
+            $offerId = intval($_GET['id_offre'] ?? 0);
+            $favoriId = intval($_GET['id_favori'] ?? 0);
+
+            if (!$offerId || !$favoriId) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Les paramètres id_offre et id_favori sont requis']);
+                return;
+            }
+
+            $isFavori = $this->offerModel->isFavori($offerId, $favoriId);
+            $count = $this->offerModel->getFavorisCount($offerId);
+
+            echo json_encode([
+                'success' => true,
+                'is_favori' => $isFavori,
+                'count' => $count
+            ]);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Erreur lors de la vérification du favori',
+                'details' => $e->getMessage()
+            ]);
+        }
+    }
 }

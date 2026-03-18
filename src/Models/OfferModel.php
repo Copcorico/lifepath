@@ -80,4 +80,66 @@ class OfferModel
         $stmt = $this->pdo->prepare('DELETE FROM OFFRES WHERE id_offre = :id_offre');
         return $stmt->execute(['id_offre' => $offerId]);
     }
+
+    public function addToFavoris(int $offerId, int $favoriId): bool
+    {
+        $stmt = $this->pdo->prepare(
+            'INSERT INTO FAVORIS (id_offre, id_favori) VALUES (:id_offre, :id_favori)'
+        );
+
+        return $stmt->execute([
+            'id_offre' => $offerId,
+            'id_favori' => $favoriId
+        ]);
+    }
+
+    public function removeFromFavoris(int $offerId, int $favoriId): bool
+    {
+        $stmt = $this->pdo->prepare(
+            'DELETE FROM FAVORIS WHERE id_offre = :id_offre AND id_favori = :id_favori'
+        );
+
+        return $stmt->execute([
+            'id_offre' => $offerId,
+            'id_favori' => $favoriId
+        ]);
+    }
+
+    public function isFavori(int $offerId, int $favoriId): bool
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT id_favori FROM FAVORIS WHERE id_offre = :id_offre AND id_favori = :id_favori'
+        );
+
+        $stmt->execute([
+            'id_offre' => $offerId,
+            'id_favori' => $favoriId
+        ]);
+
+        return $stmt->fetch() !== false;
+    }
+
+    public function getFavorisByUser(int $favoriId): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT o.* FROM OFFRES o 
+             INNER JOIN FAVORIS f ON o.id_offre = f.id_offre 
+             WHERE f.id_favori = :id_favori'
+        );
+
+        $stmt->execute(['id_favori' => $favoriId]);
+        return $stmt->fetchAll();
+    }
+
+    public function getFavorisCount(int $offerId): int
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT COUNT(*) as count FROM FAVORIS WHERE id_offre = :id_offre'
+        );
+
+        $stmt->execute(['id_offre' => $offerId]);
+        $result = $stmt->fetch();
+
+        return $result['count'] ?? 0;
+    }
 }
