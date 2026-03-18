@@ -13,6 +13,7 @@ main {
 main.offer-detail {
     margin: 0;
     padding: 0;
+    font-size: 1rem;
 }
 
 h2 {
@@ -737,7 +738,7 @@ footer {
 }
 
 .similar-offers-grid.single .similar-offer-list {
-    width: calc(100% + 30px);
+    width: 100%;
 }
 
 .similar-offer-item {
@@ -873,6 +874,33 @@ footer {
     .prev, .next { font-size: 1.5em; }
     .carousel-dots { margin-top: 6px; }
     .dot { width: 8px; height: 8px; }
+
+    main.offer-detail {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .offer-card {
+        padding: 10px;
+    }
+    .offer-title {
+        font-size: 1.2em;
+    }
+    .offer-company {
+        font-size: 0.9em;
+    }
+    .offer-section h3 {
+        font-size: 1.1em;
+    }
+    .offer-detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .label {
+        min-width: auto;
+    }
+    .similar-offers-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 
