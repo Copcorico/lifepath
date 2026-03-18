@@ -3,35 +3,103 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="Découvrez toutes nos offres d'emploi sur Lebonplan : stages et alternances dans les meilleures entreprises. Postulez en ligne facilement !">
-	<meta name="keywords" content="lebonplan, offres emploi, stage, alternance, recrutement, carrière, opportunités">
-	<meta name="robots" content="index, follow">
-	<link rel="canonical" href="https://www.lifePath.fr/offres.html">
+	<meta name="description" content="Venez rechercher la perle rare ou vendre un article.">
 	<link rel="stylesheet" href="assets/style.css">
-	<title>Offres d'Emploi, Stage et Alternance - Lebonplan Recrutement</title>
+	<title>Sites de petites annonces - Lebonplan</title>
 </head>
 
 <body>
 {# Navbar #}
 {% include 'style_base/header-navbar.twig' %}
-	<main>
-		<div>
-			<h1 class="center">Postuler à nos offres disponibles</h1>
-			<h2>Choisissez quelles types d'offres vous souhaitez</h2>
-		</div>
-		<div class="offers">
-		<div class="offer clickable">
-			<h1 class="center"><a href="offres-stage.html">STAGE</a></h1>
-			<h2 class="small center">Nos offres de stage avec nos entreprise partenaires</h2>
-		</div>
-		<div class="offer clickable">
-			<h1 class="center"><a href="#">ALTERNANCE</a></h1>
-			<h2 class="small center">Nos offres d'alternance avec nos entreprise partenaires</h2>
-		</div>
-		</div>
-	</main>
+	<main class="offer-detail">
+		<div class="offer-card">
+			<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
+			<h1 class="offer-title">Stage - Administrateur Système et Réseau H/F</h1>
+			<p class="offer-company">IBM | Pornichet - 44</p>
+			<section class="offer-section">
+				<h3>Détail de l'offre</h3>
+				<div class="offer-detail-row">
+					<span class="label">Domaine:</span>
+					<span class="badge badge-blue">Stage 3D/2D (28 heures)</span>
+				</div>
+				<div class="offer-detail-row">
+					<span class="label">Type de poste:</span>
+					<span class="badge badge-yellow">CDI, long-terme</span>
+				</div>
 
-	<footer class="footer">	2026 - Tous droits réservés - Web4All | <a href="mentions-legales.html">Mentions légales</a>	</footer>
+				<div class="offer-detail-row">
+					<span class="label">Lieu:</span>
+					<span class="badge badge-light">Pornichet, France</span>
+				</div>
+				<div class="offer-detail-row">
+					<span class="label">Durée:</span>
+					<span class="badge badge-light">3 mois</span>
+				</div>
+				<div class="offer-detail-row">
+					<span class="label">Salaire:</span>
+					<span class="badge badge-yellow">5k€</span>
+				</div>
+				<div class="offer-detail-row">
+					<span class="label">Poste:</span>
+					<span class="badge badge-yellow">Ingénieur informatique</span>
+				</div>
+			</section>
+			<section class="offer-section">
+				<h3>Profil recherché</h3>
+				<p class="offer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Numquam dicunt alii a te esse.</p>
+			</section>
+			<section class="offer-section">
+				<h3>Description</h3>
+				<p class="offer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Recusantium excepturi concipit non harum quo nec consequatur sed. Recusantium excepturi concipit non harum quo nec consequatur sed.</p>
+			</section>
+			<div class="offer-action">
+				<a href="offres-stage-postuler.html" class="btn-postuler">Postuler</a>
+			</div>
+		</div>
+
+		<section class="similar-offers">
+			<div class="similar-offer-stats">
+				<div class="stat blue">
+					<p>300 personnes ont postulé à l'offre</p>
+				</div>
+				<div class="stat yellow">
+					<p>5 offres disponibles chez "entreprise"</p>
+					<span class="arrow">→</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="discover-company">
+			<h4>Découvrez l'entreprise :</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis.</p>
+			<span class="arrow">→</span>
+		</section>
+
+		<section class="similar-offers">
+			<h3>Offres similaires</h3>
+			<div class="similar-offers-grid single">
+				<div class="similar-offer-list">
+					<div class="similar-offer-item">
+						<p>Stage dev web</p>
+						<span class="arrow large">→</span>
+					</div>
+					<div class="similar-offer-item">
+						<p>Stage dev logiciel</p>
+						<span class="arrow large">→</span>
+					</div>
+					<div class="similar-offer-item">
+						<p>Stage analyse de données</p>
+						<span class="arrow large">→</span>
+					</div>
+				</div>
+			</div>
+			<button class="btn-postuler">Voir plus</button>
+		</section>
+	</main>
+    <footer>
+    <p>&copy; 2026 Tous droits réservés</p>
+    <a href="legale.html" > Mentions légales et politique de confidentialité</a>
+    </footer>
 	<script src="script.js"></script>
 </body>
 
