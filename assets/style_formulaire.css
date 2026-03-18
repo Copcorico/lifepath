@@ -280,3 +280,133 @@ input[type="submit"]:active {
   color: #0066cc;
   text-decoration: underline;
 }
+
+
+/* ============================================
+   VERSION PC
+   ============================================ */
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    background-image: url('../images/backgrounds/wmremove-transformed.png');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+  }
+
+  /* ============================================
+   HEADER
+   ============================================ */
+
+  header.Connect_subscribe {
+    background-color: #94d4ebbd;
+    border: #f0f0f1 solid 2px;
+    border-radius: 12px;
+    width: 30%;
+    height: 100vh;
+    margin: 5% 0 5% 5%;
+  }
+
+  h1.tittle::before {
+    content: "Bienvenue sur ";
+    display: block;
+    text-align: center;
+    width: 50px;
+    height: 4px;
+    margin-bottom: 10%;
+  }
+
+  h1.tittle {
+    font-size: 2.5em;
+    margin: 0;
+    color: #142b53;
+  }
+
+  img.header_img {
+   display:none;
+  }
+
+  main {
+    background-color: #f0e278b9;
+    border: gray solid 2px;
+    border-radius: 12px;
+    width: 60%;
+    margin: 5% 5% 5% 0;
+    padding: 3%;
+  }
+
+  /* ============================================
+   GROUPES DE FORMULAIRES
+   ============================================ */
+
+  .form-group label {
+    font-weight: 500;
+    color: var(--primary-color);
+    font-size: 0.9em;
+  }
+
+  form {
+    width: 80%;
+    margin: 0.50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: start;
+    gap: 2%;
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 3%;
+    width: 48%;
+  }
+
+  .form-section.active {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: start;
+    gap: 2%;
+  }
+
+  .form-section.active h2,
+  .form-section.active button,
+  .form-section.active .checkbox-container,
+  .form-section.active .login-link {
+    width: 100%;
+  }
+  
+  form h2,
+  form button,
+  form input[type="hidden"],
+  .form-section.active .checkbox-container,
+  .form-section.active .login-link {
+    width: 100%;
+  }
+
+  /* ============================================
+   TITRE & TYPOGRAPHIE
+   ============================================ */
+  h2 {
+    text-align: start;
+    font-size: 0.9em;
+  }
+
+  
+  /* ============================================
+    INPUTS & SÉLECTEURS
+    ============================================ */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 0.725em;
+  }
+
+}
