@@ -335,7 +335,12 @@ input[type="submit"]:active {
     border-radius: 12px;
     width: 60%;
     margin: 5% 5% 5% 0;
-    padding: 1%;
+    padding: 0%;
+  }
+
+  .container {
+    padding: 0%;
+    margin: 0;
   }
 
   /* ============================================
