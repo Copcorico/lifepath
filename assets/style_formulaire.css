@@ -307,8 +307,8 @@ input[type="submit"]:active {
     border: #f0f0f1 solid 2px;
     border-radius: 12px;
     width: 30%;
-    height: 100vh;
-    margin: 5% 0 5% 5%;
+    height: 80vh;
+    margin: 3% 0 3% 3%;
   }
 
   h1.tittle::before {
@@ -317,7 +317,7 @@ input[type="submit"]:active {
     text-align: center;
     width: 100%;
     height: auto;
-    margin-bottom: 20%;
+    margin-bottom: 15%;
     font-size: 0.75em;
   }
 
@@ -330,15 +330,17 @@ input[type="submit"]:active {
   img.header_img {
    display:none;
   }
-
+  /* ============================================
+   MAIN & LAYOUT
+   ============================================ */
   main {
     overflow-y: auto; 
-    height: 90vh;
+    height: 80vh;
     background-color: #f0e278b9;
     border: gray solid 2px;
     border-radius: 12px;
     width: 60%;
-    margin: 5% 5% 5% 0;
+    margin: 3% 5% 3% 0;
     padding: 0%;
   }
 
