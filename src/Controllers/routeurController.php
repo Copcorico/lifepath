@@ -2,11 +2,15 @@
 namespace App\Controllers;
 
 use App\Models\routeurModel;
+use App\Models\Pilot;
 
 class routeurController extends Controller {
+    
+    private $db;
 
-    public function __construct($templateEngine = null) {
+    public function __construct($templateEngine = null, $db = null) {
         $this->model = new routeurModel();
+        $this->db = $db;
         if ($templateEngine === null) {
             $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__, 2) . '/templates');
             $this->templateEngine = new \Twig\Environment($loader);
@@ -49,13 +53,42 @@ class routeurController extends Controller {
     }
 
     public function inscriptionPage() {
-        $authController = new AuthentificationController($this->templateEngine);
-        $authController->inscriptionPage();
+        // Gérer le POST du formulaire d'inscription
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->db) {
+            $authController = new AuthController($this->templateEngine, $this->db);
+            $authController->inscription();
+            return;
+        }
+        
+        // Charger les pilots si on a une connexion BDD
+        $pilots = [];
+        if ($this->db) {
+            $pilotModel = new Pilot($this->db);
+            $pilots = $pilotModel->getPilots();
+        }
+        
+        echo $this->templateEngine->render('Connexion/inscription.twig', [
+            'errors' => [],
+            'success_message' => null,
+            'form' => [],
+            'entreprise_form' => [],
+            'pilots' => $pilots,
+        ]);
     }
 
     public function connexionPage() {
-        $authController = new AuthentificationController($this->templateEngine);
-        $authController->connexionPage();
+        // Gérer le POST du formulaire de connexion
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->db) {
+            $authController = new AuthController($this->templateEngine, $this->db);
+            $authController->connexion();
+            return;
+        }
+        
+        echo $this->templateEngine->render('Connexion/connexion.twig', [
+            'errors' => [],
+            'success_message' => null,
+            'form' => [],
+        ]);
     }
 
     public function entreprisePage() {

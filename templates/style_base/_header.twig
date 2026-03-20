@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LifePath{% endblock %}</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="header-main-content">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h1 class="title">LifePath</h1>
+        <img  src="images/logos/personnagesansfondombre.png" alt="logo lifePath" class="header-icon" >
+    </header>
+</div>
+
+{% block content %}{% endblock %}
+
+<script src="script.js"></script>
+</body>
+</html>
