@@ -8,13 +8,13 @@
 	<meta name="robots" content="index, follow">
 	<link rel="canonical" href="https://www.lifepath.fr/avis.html">
 	<link rel="stylesheet" href="assets/style.css">
-	<!--<link rel="stylesheet" href="style_formulaire.css">-->
+	<link rel="stylesheet" href="assets/style_formulaire.css">
 	<title>Avis Clients - Partagez votre Expérience LifePath</title>
 </head>
 
 <body>
 {# Navbar #}
-{% include 'style_base/header-navbar.twig' %}
+{% include 'style_base/_navbar.twig' %}
 
 	<section>
 
@@ -89,9 +89,8 @@
 	</section>
 
 
-	<footer class="footer">
-		<em>2026 - Tous droits réservés</em> | <a href="mentions-legales.html">Mentions légales</a>
-	</footer>
+	{# Footer #}
+	{% include 'style_base/_footer.twig' %}
 	<script src="script.js"></script>
 </body>
 

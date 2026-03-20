@@ -11,7 +11,7 @@
 
 <body>
 {# Navbar #}
-{% include 'style_base/header-navbar.twig' %}
+{% include 'style_base/_navbar.twig' %}
 	<main>
 		<div>
 			<h1 class="center">Postuler à une offre de stage</h1>
@@ -84,8 +84,8 @@
 		</div>
 	</main>
 
-	<footer class="footer">	2026 - Tous droits réservés - Web4All | <a href="mentions-legales.html">Mentions légales</a>	</footer>
-	<script src="script.js"></script>
+	{# Footer #}
+	{% include 'style_base/_footer.twig' %}	<script src="script.js"></script>
 </body>
 
 </html>

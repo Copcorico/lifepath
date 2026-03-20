@@ -10,7 +10,9 @@
 
 <body>
 {# Navbar #}
-{% include 'style_base/header-navbar.twig' %}
+{% include 'style_base/_navbar.twig' %}
+{# Header #}
+{% include 'style_base/_header.twig' %}
 <section>
     <!-- A propos -->
     <article class="apropos-container"></article>
@@ -224,12 +226,9 @@
             </div>
     </section>
 </section>
+{# Footer #}
+{% include 'style_base/_footer.twig' %}
 <script src="script.js"></script>
 </body>
-
-<footer>
-<p>&copy; 2026 Tous droits réservés</p>
-<a href="legale" > Mentions légales et politique de confidentialité</a>
-</footer>
 
 </html>

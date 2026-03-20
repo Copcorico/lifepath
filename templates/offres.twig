@@ -11,7 +11,8 @@
 
 <body>
 {# Navbar #}
-{% include 'style_base/header-navbar.twig' %}
+{% include 'style_base/_navbar.twig' %}
+
 	<main class="offer-detail">
 		<div class="offer-card">
 			<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
@@ -97,10 +98,8 @@
 			<button class="btn-postuler">Voir plus</button>
 		</section>
 	</main>
-    <footer>
-    <p>&copy; 2026 Tous droits réservés</p>
-    <a href="legale.html" > Mentions légales et politique de confidentialité</a>
-    </footer>
+    {# Footer #}
+	{% include 'style_base/_footer.twig' %}
 	<script src="script.js"></script>
 </body>
 
