@@ -18,6 +18,7 @@ class routeurController extends Controller {
     public function welcomePage() {
         $offresEmploi = [
             [
+                'id_entreprise' => 1,
                 'titre' => 'Développement d\'une application web interne',
                 'poste' => 'Développeur Web',
                 'entreprise' => 'TechSolutions',
@@ -25,6 +26,7 @@ class routeurController extends Controller {
                 'niveau' => 'Bac +5'
             ],
             [
+                'id_entreprise' => 2,
                 'titre' => 'Création d\'une plateforme e-commerce',
                 'poste' => 'Développeur Full Stack',
                 'entreprise' => 'DigitalMarket',
@@ -32,6 +34,7 @@ class routeurController extends Controller {
                 'niveau' => 'Bac +4'
             ],
             [
+                'id_entreprise' => 3,
                 'titre' => 'Conception d\'une API pour application mobile',
                 'poste' => 'Développeur Backend',
                 'entreprise' => 'CodeFactory',
@@ -56,7 +59,8 @@ class routeurController extends Controller {
     }
 
     public function entreprisePage() {
-        echo $this->templateEngine->render('entreprise.twig');
+        $companyController = new CompanyController($this->templateEngine);
+        $companyController->displayCompanyPage();
     }
 
     public function offresPage() {

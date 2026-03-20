@@ -24,7 +24,7 @@
                 <h1>{{ company.nom }}</h1>
                 <div class="star-rating">
                     {% for i in 1..5 %}
-                        {% if i <= company.note %}⭐{% else %}☆{% endif %}
+                        {% if i <= company.note %}★{% else %}☆{% endif %}
                     {% endfor %}
                     <span>({{ company.note }}/5)</span>
                 </div>
