@@ -4,19 +4,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Venez rechercher la perle rare ou vendre un article.">
+	<meta name="description" content="Détail d'une offre de stage - LifePath">
 	<link rel="stylesheet" href="assets/style.css">
-	<title>Sites de petites annonces - Lebonplan</title>
+	<title>Détail de l'offre - LifePath</title>
 </head>
 
 <body>
-{# Navbar #}
-{% include 'style_base/header-navbar.twig' %}
+	{# Navbar #}
+	{% include 'style_base/header-navbar.twig' %}
+
 	<main class="offer-detail">
 		<div class="offer-card">
 			<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
-			<h1 class="offer-title">Stage - Administrateur Système et Réseau H/F</h1>
-			<p class="offer-company">IBM | Pornichet - 44</p>
+
+			<div class="offer-header">
+				<h1 class="offer-title">Titre de l'offre de stage</h1>
+				<p class="offer-reference">OSR117 <span class="rating">4.7</span></p>
+			</div>
+
 			<section class="offer-section">
 				<h3>Détail de l'offre</h3>
 				<div class="offer-detail-row">
@@ -27,7 +32,6 @@
 					<span class="label">Type de poste:</span>
 					<span class="badge badge-yellow">CDI, long-terme</span>
 				</div>
-
 				<div class="offer-detail-row">
 					<span class="label">Lieu:</span>
 					<span class="badge badge-light">Pornichet, France</span>
@@ -45,14 +49,17 @@
 					<span class="badge badge-yellow">Ingénieur informatique</span>
 				</div>
 			</section>
+
 			<section class="offer-section">
 				<h3>Profil recherché</h3>
-				<p class="offer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Numquam dicunt alii a te esse.</p>
+				<p class="offer-description">Nous recherchons un candidat passionné par l'informatique avec une bonne maîtrise des technologies web et une capacité d'apprentissage rapide.</p>
 			</section>
+
 			<section class="offer-section">
 				<h3>Description</h3>
-				<p class="offer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Recusantium excepturi concipit non harum quo nec consequatur sed. Recusantium excepturi concipit non harum quo nec consequatur sed.</p>
+				<p class="offer-description">Rejoignez notre équipe dynamique pour un stage enrichissant dans le domaine de l'informatique. Vous travaillerez sur des projets concrets et acquerrez une expérience précieuse dans un environnement professionnel.</p>
 			</section>
+
 			<div class="offer-action">
 				<a href="offres-stage-postuler.html" class="btn-postuler">Postuler</a>
 			</div>
@@ -60,11 +67,11 @@
 
 		<section class="discover-company">
 			<h4>Découvrez l'entreprise :</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis voluptatum laboriosam nulla accusamus.</p>
 			<span class="arrow">→</span>
 		</section>
 
-		<section class="similar-offers">
+		<section class="similar-offers stats-section">
 			<div class="similar-offer-stats">
 				<div class="stat blue">
 					<p>300 personnes ont postulé à l'offre</p>
@@ -94,13 +101,15 @@
 					</div>
 				</div>
 			</div>
-			<button class="btn-postuler">Voir plus</button>
+			<button class="btn-voir-plus">Voir plus</button>
 		</section>
 	</main>
-    <footer>
-    <p>&copy; 2026 Tous droits réservés</p>
-    <a href="legale.html" > Mentions légales et politique de confidentialité</a>
-    </footer>
+
+	<footer>
+		<p>&copy; 2026 Tous droits réservés</p>
+		<a href="legale.html">Mentions légales et politique de confidentialité</a>
+	</footer>
+
 	<script src="script.js"></script>
 </body>
 
