@@ -10,8 +10,8 @@
 </head>
 
 <body>
-	{# Navbar #}
-	{% include 'style_base/header-navbar.twig' %}
+{# Navbar #}
+{% include 'style_base/_navbar.twig' %}
 
 	<main class="offer-detail">
 		<div class="offer-card">
@@ -104,12 +104,8 @@
 			<button class="btn-voir-plus">Voir plus</button>
 		</section>
 	</main>
-
-	<footer>
-		<p>&copy; 2026 Tous droits réservés</p>
-		<a href="legale.html">Mentions légales et politique de confidentialité</a>
-	</footer>
-
+    {# Footer #}
+	{% include 'style_base/_footer.twig' %}
 	<script src="script.js"></script>
 </body>
 
