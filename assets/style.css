@@ -932,8 +932,8 @@ footer {
     .similar-offer-stats {
         width: 100%;
         box-sizing: border-box;
-        flex-direction: column;
-        gap: 5px;
+        flex-direction: row;
+        gap: 10px;
     }
     
     .stat {
