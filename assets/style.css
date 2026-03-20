@@ -1064,8 +1064,9 @@ footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 20px;
+        padding: 10px 15px;
         box-sizing: border-box;
+        gap: 15px;
     }
 
     .header-hamburger {
@@ -1073,16 +1074,18 @@ footer {
     }
 
     .header h1 {
-        font-size: 250%;
+        font-size: 200%;
         color: #142b53;
         font-weight: 700;
         text-shadow: none;
         margin: 0;
+        flex-shrink: 0;
     }
 
     .header-icon {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
     }
 
     /* navbar */
