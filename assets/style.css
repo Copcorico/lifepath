@@ -869,13 +869,15 @@ footer {
 
 .stats-section {
     background-color: transparent;
-    padding: 0;
+    padding: 0 15px;
+    margin: 15px 0;
 }
 
 .stats-section .similar-offer-stats {
     width: 100%;
     display: flex;
     gap: 10px;
+    flex-direction: row;
 }
 
 /* End Region: Style Offres */
@@ -932,8 +934,8 @@ footer {
     .similar-offer-stats {
         width: 100%;
         box-sizing: border-box;
-        flex-direction: row;
-        gap: 10px;
+        flex-direction: column;
+        gap: 5px;
     }
     
     .stat {
@@ -1008,6 +1010,39 @@ footer {
     
     .arrow.large {
         font-size: 1.2em;
+    }
+
+    /* Stats remain side by side on mobile */
+    .stats-section {
+        background-color: transparent;
+        padding: 0 5px;
+        margin: 10px 0;
+    }
+
+    .stats-section .similar-offer-stats {
+        width: 100%;
+        display: flex;
+        gap: 5px;
+        flex-direction: row;
+    }
+
+    .stat {
+        flex: 1;
+        padding: 10px 5px;
+        font-size: 0.8em;
+    }
+
+    .stat p {
+        font-size: 0.9rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .stat.yellow .arrow {
+        font-size: 1rem;
+        position: static;
+        display: inline;
+        margin-left: 3px;
     }
 }
 
