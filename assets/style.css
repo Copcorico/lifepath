@@ -3,6 +3,10 @@ body {
     font-family: 'Dela gothic one', sans-serif;
     color:#142b53;
     margin: 0;
+    max-width: 390px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 main {
