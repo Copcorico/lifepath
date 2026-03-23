@@ -598,30 +598,33 @@ footer {
 
 .offer-header {
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .offer-title {
-    font-size: 1.2em;
+    font-size: 2em;
     color: #142b53;
     margin: 10px 0 5px 0;
     font-weight: bold;
 }
 
 .offer-reference {
-    font-size: 0.9em;
+    font-size: 1.3em;
     color: #666;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
 }
 
 .rating {
     background-color: #94d4eb;
-    padding: 4px 8px;
+    padding: 6px 12px;
     border-radius: 4px;
     font-weight: bold;
     color: #142b53;
+    font-size: 1.2em;
 }
 
 .offer-section {
@@ -629,12 +632,13 @@ footer {
 }
 
 .offer-section h3 {
-    font-size: 1.1em;
+    font-size: 1.5em;
     color: #142b53;
     margin-bottom: 10px;
     font-weight: bold;
     border-bottom: 2px solid #142b53;
     padding-bottom: 8px;
+    text-align: center;
 }
 
 .offer-detail-row {
