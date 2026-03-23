@@ -3,15 +3,19 @@ body {
     font-family: 'Dela gothic one', sans-serif;
     color:#142b53;
     margin: 0;
-    width: 100vw;
+    padding: 0;
+    width: 390px;
+    box-sizing: border-box;
     overflow-x: hidden;
+    transform: scale(1);
+    transform-origin: top left;
 }
 
 main {
     margin: 0;
     padding: 0;
     font-size: 1rem;
-    width: 100%;
+    width: 390px;
     box-sizing: border-box;
 }
 
@@ -19,7 +23,7 @@ main.offer-detail {
     margin: 0;
     padding: 5px;
     font-size: 1rem;
-    width: 100%;
+    width: 390px;
     box-sizing: border-box;
 }
 
@@ -662,7 +666,7 @@ footer {
 }
 
 .badge-yellow {
-    background-color: #ff0000;
+    background-color: #ffd700;
     color: #333;
 }
 
