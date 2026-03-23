@@ -3,66 +3,14 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Détail d'une offre de stage - LifePath">
-	<link rel="stylesheet" href="assets/style.css">
+	<link rel="stylesheet" href="/assets/style.css">
 	<title>Détail de l'offre - LifePath</title>
 </head>
 
 <body>
-	<!-- Overlay -->
-	<div class="overlay" id="overlay"></div>
-
-	<!-- Navbar -->
-	<nav class="navbar" id="navbar">
-		<div class="hamburger" onclick="toggleNav()">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-
-		<div class="nav-profile-section">
-			<img class="nav-profile-icon" src="images/profils/profile.png" alt="profil">
-			<div class="nav-profile-info">
-				<h2><a href="/profil">NOM COMPLET</a></h2>
-				<p class="navbar-pilote">NOM pilote</p>
-			</div>
-		</div>
-
-		<div class="divider"></div>
-
-		<ul class="nav-menu">
-			<li class="nav-menu-item">
-				<div class="row" onclick="toggleRow(this)">
-					<div class="nav-container-menu">
-						<a href="./">Accueil </a>
-						<div class="arrow">></div>
-					</div>
-					<ul class="nav-submenu">
-						<li><a href="#offres">Offres</a></li>
-						<li><a href="#apropos">Entreprises</a></li>
-						<li><a href="#compte">Comptes</a></li>
-					</ul>
-				</div>
-			</li>
-			<li class="nav-menu-item"><a href="inscription">Inscription</a></li>
-			<li class="nav-menu-item"><a href="connexion">Connexion</a></li>
-			<li class="nav-menu-item"><a href="offres">Nos offres</a></li>
-			<li class="nav-menu-item"><a href="entreprise">Entreprise</a></li>
-			<li class="nav-menu-item"><a href="avis">Avis</a></li>
-		</ul>
-	</nav>
-
-	<!-- Header -->
-	<header class="header">
-		<div class="header-hamburger" onclick="toggleNav()">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-		<h1 class="title">LifePath</h1>
-		<img src="images/logos/personnagesansfondombre.png" alt="logo lifePath" class="header-icon">
-	</header>
+	{% include 'style_base/_navbar.twig' %}
+	{% include 'style_base/_header.twig' %}
 
 	<main class="offer-detail">
 		<div class="offer-card">
@@ -161,7 +109,7 @@
 		<a href="legale.html">Mentions légales et politique de confidentialité</a>
 	</footer>
 
-	<script src="script.js"></script>
+	<script src="/script.js"></script>
 </body>
 
 </html>
