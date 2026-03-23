@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!-- Overlay -->
 <div class="overlay" id="overlay"></div>
 
@@ -11,10 +10,25 @@
     </div>
 
     <div class="nav-profile-section">
-        <img  class="nav-profile-icon" src="images/profils/profile.png" alt="logo lifePath">
+        <img  class="nav-profile-icon" src="/images/profils/profile.png" alt="logo lifePath">
         <div class="nav-profile-info">
-            <h2><a href="/profil">NOM COMPLET</a></h2>
-            <p class="navbar-pilote">NOM pilote</p>
+            {% if app.session.has('user_id') %}
+                <h2>
+                    {% if app.session.get('type') == 'particulier' %}
+                        <a href="/profil">{{ app.session.get('prenom') }} {{ app.session.get('nom') }}</a>
+                    {% else %}
+                        <a href="/profil">{{ app.session.get('societe') }}</a>
+                    {% endif %}
+                </h2>
+                {% if app.session.get('type') == 'particulier' %}
+                    <p class="navbar-pilote">Particulier</p>
+                {% else %}
+                    <p class="navbar-pilote">Entreprise</p>
+                {% endif %}
+            {% else %}
+                <h2><a href="/profil">Utilisateur</a></h2>
+                <p class="navbar-pilote">Non connecté</p>
+            {% endif %}
         </div>
     </div>
 
@@ -24,21 +38,26 @@
         <li class="nav-menu-item">
             <div class="row" onclick="toggleRow(this)">
                 <div class="nav-container-menu">
-                    <a href="./">Accueil </a>
+                    <a href="/">Accueil </a>
                     <div class="arrow">></div>
                 </div>
                 <ul class="nav-submenu">
-                    <li><a href="#offres">Offres</a></li>
-                    <li><a href="#apropos">Entreprises</a></li>
-                    <li><a href="#compte">Comptes</a></li>
+                    <li><a href="/#offres">Offres</a></li>
+                    <li><a href="/#apropos">Entreprises</a></li>
+                    <li><a href="/#compte">Comptes</a></li>
                 </ul>
             </div>
         </li>
-        <li class="nav-menu-item"><a href="inscription">Inscription</a></li>
-        <li class="nav-menu-item"><a href="connexion">Connexion</a></li>
-        <li class="nav-menu-item"><a href="offres">Nos offres</a></li>
-        <li class="nav-menu-item"><a href="entreprise">Entreprise</a></li>
-        <li class="nav-menu-item"><a href="avis">Avis</a></li>
-        <li class="nav-menu-item"><a href="legale">Mentions légales</a></li>
+        {% if not app.session.has('user_id') %}
+        <li class="nav-menu-item"><a href="/inscription">Inscription</a></li>
+        <li class="nav-menu-item"><a href="/connexion">Connexion</a></li>
+        {% endif %}
+        <li class="nav-menu-item"><a href="/offres">Nos offres</a></li>
+        <li class="nav-menu-item"><a href="/entreprise">Entreprise</a></li>
+        <li class="nav-menu-item"><a href="/avis">Avis</a></li>
+        <li class="nav-menu-item"><a href="/legale">Mention légal</a></li>
+        {% if app.session.has('user_id') %}
+        <li class="nav-menu-item"><a href="/deconnexion" style="color: #b00020; font-weight: bold;">Déconnexion</a></li>
+        {% endif %}
     </ul>
 </nav>

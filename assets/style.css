@@ -40,14 +40,14 @@ li {
 
 /*#region Navbar */
 .navbar {
-    width: 70%;
+    width: min(82vw, 360px);
     /*100vh*/
-    height: 100%;
+    height: 100dvh;
     background-color: #142b53;
     color: #f0f0f1;
     padding: 20px;
     position: fixed;
-    left: -80%;
+    left: -100%;
     top: 0;
     display: flex;
     flex-direction: column;
@@ -213,8 +213,10 @@ li {
 /*#endregion */
 
 /*#region header*/
-header {
+.header {
     position: sticky;
+    top: 0;
+    z-index: 500;
     background-color: #f0e278;
     color: #142b53;
     text-align: center;
@@ -271,27 +273,26 @@ header {
 }
 
 .forme-apropos {
-    width: 80%;
-    height: 5%;
+    width: min(88%, 960px);
+    height: auto;
     margin: 5% auto;
-    border: 50px solid #142b53;
+    border: 0;
     border-radius: 24px;
     background-color: #142b53;
+    box-sizing: border-box;
+    padding: 2rem;
 }
 
 .apropos-bouton {
     cursor: pointer;
-    position: sticky;
-    left: 100%;
-    bottom: 0;
-    right: 0;
-    margin-top: 5% auto;
+    position: static;
+    display: block;
+    margin: 1.5rem 0 0 auto;
     color:#142b53;
-    font-size: 300%;
+    font-size: 2rem;
     background-color: #f0f0f1;
     border-radius: 24px;
-    padding-left: 4%;
-    padding-right: 4%;
+    padding: 0.3rem 1.1rem;
 }
 
 /*#endregion*/
@@ -884,6 +885,8 @@ footer {
 
 /* responsive adjustments */
 @media (max-width: 600px) {
+    h2 { font-size: 2em; }
+    p, li { font-size: 1rem; }
     header .logo-header { width: 25%; }
     .search { font-size: 1em; }
     .offre-card { max-width: 90%; padding: 8px; }
@@ -892,6 +895,9 @@ footer {
     .prev, .next { font-size: 1.5em; }
     .carousel-dots { margin-top: 6px; }
     .dot { width: 8px; height: 8px; }
+    .forme-apropos { padding: 1.25rem; }
+    .apropos-title { margin-left: 0; }
+    .apropos-bouton { font-size: 1.5rem; }
 
     main.offer-detail {
         font-size: 1rem;
