@@ -34,6 +34,48 @@ class OfferModel
         return $stmt->fetch() ?: null;
     }
 
+    public function getOfferWithCompanyById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT o.*, e.nom AS entreprise_nom, e.note AS entreprise_note
+             FROM OFFRES o
+             LEFT JOIN ENTREPRISES e ON e.id_entreprise = o.id_entreprise
+             WHERE o.id_offre = :id'
+        );
+
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch() ?: null;
+    }
+
+    public function searchOffersByTitle(string $query): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT o.*, e.nom AS entreprise_nom, e.note AS entreprise_note
+             FROM OFFRES o
+             LEFT JOIN ENTREPRISES e ON e.id_entreprise = o.id_entreprise
+             WHERE o.titre LIKE :query
+             ORDER BY o.titre ASC'
+        );
+
+        $stmt->execute(['query' => '%' . $query . '%']);
+        return $stmt->fetchAll();
+    }
+
+    public function getAllOffers(int $limit = 50): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT o.*, e.nom AS entreprise_nom, e.note AS entreprise_note
+             FROM OFFRES o
+             LEFT JOIN ENTREPRISES e ON e.id_entreprise = o.id_entreprise
+             ORDER BY o.id_offre DESC
+             LIMIT :limit'
+        );
+
+        $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function getOffersByCompanyId(int $companyId): array
     {
         $stmt = $this->pdo->prepare('SELECT * FROM OFFRES WHERE id_entreprise = :id_entreprise');
