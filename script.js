@@ -1,7 +1,7 @@
 
 // fonction pour la navbar
 let currentSlide = 0;
-const track = document.getElementById('.carouselTrack');
+const track = document.getElementById('carouselTrack');
 const dots = document.querySelectorAll('.dot');
 const totalSlides = 4;
 
@@ -13,7 +13,10 @@ function toggleNav() {
 }
 
 // Close navbar when clicking overlay
-document.getElementById('overlay').addEventListener('click', toggleNav);
+const overlayElement = document.getElementById('overlay');
+if (overlayElement) {
+    overlayElement.addEventListener('click', toggleNav);
+}
 
 function moveCarousel(direction) {
     currentSlide += direction;
@@ -28,6 +31,10 @@ function goToSlide(index) {
 }
 
 function updateCarousel() {
+    if (!track || dots.length === 0) {
+        return;
+    }
+
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
@@ -35,9 +42,11 @@ function updateCarousel() {
 }
 
 // Auto-slide every 5 seconds
-setInterval(() => {
-    moveCarousel(1);
-}, 5000);
+if (track && dots.length > 0) {
+    setInterval(() => {
+        moveCarousel(1);
+    }, 5000);
+}
 
 
 
@@ -51,10 +60,6 @@ function toggleRow(element) {
     }
     if (arrow) {
         arrow.classList.toggle('open');
-    }
-    else {
-        submenu => submenu.classList.remove('open');
-        arrow => arrow.classList.remove('open');
     }
 }
 
