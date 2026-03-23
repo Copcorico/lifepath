@@ -602,14 +602,14 @@ footer {
 }
 
 .offer-title {
-    font-size: 2em;
+    font-size: 4em;
     color: #142b53;
     margin: 10px 0 5px 0;
     font-weight: bold;
 }
 
 .offer-reference {
-    font-size: 1.3em;
+    font-size: 2.6em;
     color: #666;
     margin: 0;
     display: flex;
@@ -624,7 +624,7 @@ footer {
     border-radius: 4px;
     font-weight: bold;
     color: #142b53;
-    font-size: 1.2em;
+    font-size: 2.4em;
 }
 
 .offer-section {
@@ -632,7 +632,7 @@ footer {
 }
 
 .offer-section h3 {
-    font-size: 1.5em;
+    font-size: 3em;
     color: #142b53;
     margin-bottom: 5px;
     font-weight: bold;
@@ -652,7 +652,7 @@ footer {
 
 .label {
     font-weight: bold;
-    font-size: 1.6em;
+    font-size: 3.2em;
     color: #142b53;
     min-width: 100px;
 }
@@ -661,7 +661,7 @@ footer {
     display: inline-block;
     padding: 10px 18px;
     border-radius: 15px;
-    font-size: 1.4em;
+    font-size: 2.8em;
     font-weight: 500;
 }
 
@@ -682,7 +682,7 @@ footer {
 }
 
 .offer-description {
-    font-size: 1.5em;
+    font-size: 3em;
     line-height: 1.5;
     color: #555;
 }
