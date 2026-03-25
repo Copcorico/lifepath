@@ -104,6 +104,8 @@ $routeur->register('/legale', ['App\Controllers\routeurController', 'legalePage'
 
 $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage']);
 
+$routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);    
+
 // Keep legacy links functional while templates are progressively migrated.
 $legacyRoutes = [
     '/index.html' => ['App\Controllers\routeurController', 'welcomePage'],
@@ -121,6 +123,7 @@ $legacyRoutes = [
     '/templates/Entreprises/entreprise.twig' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/templates/Avis/avis.twig' => ['App\Controllers\routeurController', 'avisPage'],
     '/templates/Legale/legale.twig' => ['App\Controllers\routeurController', 'legalePage'],
+    '/templates/MesEtudiants/mes_etudiants.twig' => ['App\Controllers\routeurController', 'mesEtudiantsPage'],
 ];
 
 foreach ($legacyRoutes as $path => $action) {

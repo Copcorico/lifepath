@@ -30,19 +30,18 @@
     <h2 class="offers-header" id="offres">Offres</h2>
 
     <div class="offre-global-container">
-            {% for offre in offres_emploi %}
+            {% for offre in offers %}
 				<article class="offre-container">
                     <img src="images/entreprise.jpg" alt="image de l'offre" class="offre-img">
-                    <h2> {{ offre['titre']|default(offre['intitule']|default('Offre de stage')) }} </h2>
+                    <h2> {{ offre.titre|default(offre.intitule|default('Offre de stage')) }} </h2>
 				    <ul class="offre-ul">
-                        <li class="offres-li"> Poste : {{ offre['poste']|default('Non précisé') }} </li>
-                        <li class="offres-li">Entreprise : {{ offre['entreprise']|default('Non précisée') }} </li>
-                        <li class="offres-li">Lieu : {{ offre['lieu']|default(offre['localisation']|default('Non précisé')) }} </li>
-                        <li class="offres-li">Niveau : {{ offre['niveau']|default('Non précisé') }}</li>
+                        <li class="offres-li"> Poste : {{ offre.poste|default('Non précisé') }} </li>
+                        <li class="offres-li">Entreprise : {{ offre.entreprise|default('Non précisée') }} </li>
+                        <li class="offres-li">Lieu : {{ offre.lieu|default(offre.localisation|default('Non précisé')) }} </li>
+                        <li class="offres-li">Niveau : {{ offre.niveau|default('Non précisé') }}</li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore excepturi corrupti hic, harum perferendis</p>
-                    <a href="/entreprise?id={{ offre['id_entreprise']|default(0) }}" class="btn-postuler">Voir la fiche entreprise</a>
-                    <a href="/entreprise?id={{ offre['id_entreprise']|default(0) }}" class="btn-postuler">Voir la fiche entreprise</a>
+                    <a href="/entreprise?id={{ offre.id_entreprise|default(0) }}" class="btn-postuler">Voir la fiche entreprise</a>
                 </article>
 			{% else %}
 				<p>Aucune offre disponible pour le moment.</p>
@@ -106,13 +105,13 @@
     <h2 class="entreprise-title" >Entreprise</h2>
     <section class="entreprise-carousel">
             <div class="carousel-entreprise">
-                {% for company in entreprises %}
+                {% for company in companies %}
                 <div class="entreprise-item">
                     <div class="offre-card">
                         <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
                         <div class="offre-card-info">
                             <h3 class="offre-card-title">{{ company.nom }}</h3>
-                            <div class="offre-card-meta">{{ company.ville }} • {{ company.niveau_etude }}</div>
+                            <div class="offre-card-meta">{{ company.ville }} • {{ company.note}}</div>
                         </div>
                     </div>
                 </div>

@@ -47,7 +47,8 @@ li {
 
 /*#region Navbar */
 .navbar {
-    width: min(82vw, 360px);
+    width: 70%;
+    min-width: 70%;
     /*100vh*/
     height: 100dvh;
     background-color: #142b53;
