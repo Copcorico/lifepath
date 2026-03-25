@@ -108,7 +108,6 @@ class AuthController extends Controller
             $prenom = $_POST["prenom"];
             $classe = $_POST["classe"];
             $pilot_id = $_POST["pilot_id"] ?? "";
-            // $telephone = $_POST["telephone"];
 
             $email = $_POST["email"];
             $password = $_POST["password"];
@@ -137,7 +136,7 @@ class AuthController extends Controller
             if(empty($errors))
             {
                 try {
-                    $profil_id = $this->profilModel->create("", $email, $password);
+                    $profil_id = $this->profilModel->create("", $email, $password, $statut);
                     
                     $particulier_id = $this->particulierModel->create($profil_id, $nom, $prenom);
 

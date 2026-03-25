@@ -12,7 +12,7 @@ class Profil {
         $this->db = $db;
     }
 
-    public function create($telephone, $email, $password, $type = 'particulier'){
+    public function create($telephone, $email, $password, $type){
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
