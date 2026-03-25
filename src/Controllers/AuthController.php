@@ -7,7 +7,7 @@ use App\Models\Profil;
 use App\Models\Entreprise;
 use App\Models\Particulier;
 use App\Models\Etudiant;
-use App\Models\Pilot;
+use App\Models\PilotModel;
 
 class AuthController extends Controller 
 {
@@ -27,7 +27,7 @@ class AuthController extends Controller
         $this->entrepriseModel = new Entreprise($db);
         $this->particulierModel = new Particulier($db);
         $this->etudiantModel = new Etudiant($db);
-        $this->pilotModel = new Pilot($db);
+        $this->pilotModel = new PilotModel($db);
     }
 
     /* ============ PAGE CONNEXION ============ */

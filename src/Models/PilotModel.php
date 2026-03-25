@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-class Pilot{
+class PilotModel{
 
     private $db;
 
