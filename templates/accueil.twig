@@ -3,9 +3,9 @@
 
 <head>
 <meta charset="UTF-8">
-<title>LifePath</title>
-<link rel="stylesheet" href="/assets/style.css">
-<link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+    <title>LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
 </head>
 
 <body>
@@ -106,114 +106,19 @@
     <h2 class="entreprise-title" >Entreprise</h2>
     <section class="entreprise-carousel">
             <div class="carousel-entreprise">
+                {% for company in entreprises %}
                 <div class="entreprise-item">
                     <div class="offre-card">
                         <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
                         <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
+                            <h3 class="offre-card-title">{{ company.nom }}</h3>
+                            <div class="offre-card-meta">{{ company.ville }} • {{ company.niveau_etude }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
+                {% else %}
+                <p>Aucune entreprise disponible pour le moment.</p>
+                {% endfor %}
                 <div class="entreprise-item">
                     <div class="offre-card">
                         <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
