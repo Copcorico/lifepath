@@ -17,8 +17,8 @@
 			<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
 
 			<div class="offer-header">
-				<h1 class="offer-title">Titre de l'offre de stage</h1>
-				<p class="offer-reference">OSR117 <span class="rating">4.7</span></p>
+				<h1 class="offer-title">{{ offer.titre }}</h1>
+				<p class="offer-reference">{{ offer.entreprise_nom }} <span class="rating">{{ offer.note ?? '0' }}</span></p>
 			</div>
 
 			<section class="offer-section">
@@ -33,7 +33,7 @@
 				</div>
 				<div class="offer-detail-row">
 					<span class="label">Lieu:</span>
-					<span class="badge badge-light">Pornichet, France</span>
+				<span class="badge badge-light">{{ offer.localisation }}</span>
 				</div>
 				<div class="offer-detail-row">
 					<span class="label">Durée:</span>
@@ -76,7 +76,7 @@
 					<p>300 personnes ont postulé à l'offre</p>
 				</div>
 				<div class="stat yellow">
-					<p>5 offres disponibles chez "entreprise"</p>
+					<p>5 offres disponibles chez {{ offer.entreprise_nom }}</p>
 					<span class="arrow">→</span>
 				</div>
 			</div>

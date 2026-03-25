@@ -624,7 +624,7 @@ footer {
     border-radius: 4px;
     font-weight: bold;
     color: #142b53;
-    font-size: 1.8em;
+    font-size: 1.2em;
 }
 
 .offer-section {
@@ -695,10 +695,10 @@ footer {
 .btn-postuler {
     display: block;
     margin: 15px auto;
-    padding: 10px 20px;
+    padding: 16px 20px;
     background-color: #142b53;
     color: #ffffff;
-    font-size: 1em;
+    font-size: 1.55em;
     font-weight: bold;
     text-align: center;
     border: none;
@@ -714,11 +714,11 @@ footer {
 
 .discover-company {
     margin-top: 5px;
-    padding: 5px;
+    padding: 18px;
     background-color: #ffd700;
     border-radius: 10px;
     color: #333;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
     font-weight: bold;
     width: 100%;
     box-sizing: border-box;
@@ -727,12 +727,12 @@ footer {
 
 .discover-company h4 {
     margin: 0 0 10px 0;
-    font-size: 1.3em;
+    font-size: 1.7em;
 }
 
 .discover-company p {
     margin: 0 0 10px 0;
-    font-size: 1em;
+    font-size: 1.35em;
     line-height: 1.5;
 }
 
@@ -751,7 +751,7 @@ footer {
     border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 1.25rem;
     overflow: hidden;
 }
 
@@ -806,7 +806,7 @@ footer {
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
-    font-size: 1rem;
+    font-size: 1.4em;
     color: #142b53;
     flex-wrap: wrap;
     gap: 10px;
@@ -829,9 +829,9 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px 5px;
+    padding: 30px 18px;
     border-radius: 10px;
-    font-size: 0.8em;
+    font-size: 2.33em;
     font-weight: bold;
     color: #ffffff;
     min-width: 0;
@@ -856,12 +856,16 @@ footer {
     width: 100%;
 }
 
+.stat p {
+    font-size: 0.87em;
+}
+
 .stat.yellow .arrow {
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2em;
+    right: 8px;
+    bottom: 8px;
+    transform: none;
+    font-size: 0.8em;
 }
 
 .arrow {
@@ -879,10 +883,10 @@ footer {
 .btn-voir-plus {
     display: block;
     margin: 15px auto;
-    padding: 10px 20px;
+    padding: 16px 20px;
     background-color: #142b53;
     color: #ffffff;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
     text-align: center;
     border: none;
@@ -980,12 +984,12 @@ footer {
         border-radius: 4px;
         font-weight: bold;
         color: #142b53;
-        font-size: 3.6em;
+        font-size: 1.2em;
     }
 
     .label {
         font-weight: bold;
-        font-size: 3.2em;
+        font-size: 2.8em;
         color: #142b53;
         min-width: 100px;
     }
@@ -994,7 +998,7 @@ footer {
         display: inline-block;
         padding: 10px 18px;
         border-radius: 15px;
-        font-size: 2.8em;
+        font-size: 2.4em;
         font-weight: 500;
     }
 
@@ -1004,13 +1008,30 @@ footer {
         color: #555;
     }
 
+    .btn-postuler {
+        display: block;
+        margin: 15px auto;
+        padding: 18px 30px;
+        background-color: #142b53;
+        color: #ffffff;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-sizing: border-box;
+        width: 97%;
+    }
+
     .discover-company {
         margin-top: 20px;
-        padding: 15px;
+        padding: 25px;
         background-color: #ffd700;
         border-radius: 10px;
         color: #333;
-        font-size: 1rem;
+        font-size: 1.4em;
         font-weight: bold;
         width: 100%;
         box-sizing: border-box;
@@ -1060,9 +1081,9 @@ footer {
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 15px;
+        padding: 25px;
         border-radius: 10px;
-        font-size: 0.9em;
+        font-size: 1.2em;
         font-weight: bold;
         color: #ffffff;
     }
