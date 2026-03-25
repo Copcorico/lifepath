@@ -3,22 +3,29 @@ body {
     font-family: 'Dela gothic one', sans-serif;
     color:#142b53;
     margin: 0;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 main {
-    margin: 0 5% 0 5%;
-    font-size: 175%;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 main.offer-detail {
     margin: 0;
-    padding: 0;
+    padding: 5px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 h2 {
-    font-size: 3em;
-    margin-left: 5%;
+    font-size: 2em;
+    margin-left: 0;
 }
 
 a {
@@ -27,11 +34,11 @@ a {
 }
 
 p {
-    font-size: 1.5em;
+    font-size: 1rem;
 }
 
 li {
-    font-size: 1.5em;
+    font-size: 1rem;
 }
 
 .title {
@@ -184,11 +191,16 @@ li {
     margin-bottom: 0%;
     margin-top: 0%;
     padding: 0% 3% 0% 3%;
-    font-size: 200%;
+    font-size: 1.2em;
     z-index: 1001;
     cursor: pointer;
     transition: transform 0.3s ease;
     display: inline-block;
+}
+
+.arrow.large {
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .arrow.open {
@@ -570,8 +582,10 @@ footer {
 .offer-card {
     background-color: white;
     border-radius: 10px;
-    padding: 15px;
+    padding: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .offer-detail-img {
@@ -584,65 +598,70 @@ footer {
 
 .offer-header {
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .offer-title {
-    font-size: 1.5em;
+    font-size: 4em;
     color: #142b53;
     margin: 10px 0 5px 0;
     font-weight: bold;
 }
 
 .offer-reference {
-    font-size: 0.9em;
+    font-size: 1.5em;
     color: #666;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: flex-end;
 }
 
 .rating {
     background-color: #94d4eb;
-    padding: 4px 8px;
+    padding: 6px 12px;
     border-radius: 4px;
     font-weight: bold;
     color: #142b53;
+    font-size: 1.8em;
 }
 
 .offer-section {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .offer-section h3 {
-    font-size: 1.3em;
+    font-size: 3em;
     color: #142b53;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
     border-bottom: 2px solid #142b53;
     padding-bottom: 8px;
+    text-align: center;
 }
 
 .offer-detail-row {
     display: flex;
-    align-items: center;
-    margin-bottom: 12px;
+    align-items: flex-start;
+    margin-bottom: 8px;
     flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .label {
     font-weight: bold;
-    font-size: 1em;
+    font-size: 3.2em;
     color: #142b53;
     min-width: 100px;
 }
 
 .badge {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 10px 18px;
     border-radius: 15px;
-    font-size: 0.95em;
+    font-size: 2.8em;
     font-weight: 500;
 }
 
@@ -663,8 +682,8 @@ footer {
 }
 
 .offer-description {
-    font-size: 1em;
-    line-height: 1.6;
+    font-size: 3em;
+    line-height: 1.5;
     color: #555;
 }
 
@@ -694,15 +713,16 @@ footer {
 }
 
 .discover-company {
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 5px;
+    padding: 5px;
     background-color: #ffd700;
     border-radius: 10px;
     color: #333;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .discover-company h4 {
@@ -725,13 +745,14 @@ footer {
 }
 
 .similar-offers {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f5f5f5;
+    margin-top: 5px;
+    padding: 0;
+    background-color: transparent;
     border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
     font-size: 1rem;
+    overflow: hidden;
 }
 
 .similar-offers h3 {
@@ -745,11 +766,13 @@ footer {
 
 .similar-offers-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 10px;
-    background-color: #ffffff;
-    border-radius: 0 0 10px 10px;
-    padding: 15px;
+    grid-template-columns: 1fr;
+    gap: 0;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .similar-offers-grid.single {
@@ -770,6 +793,7 @@ footer {
     box-sizing: border-box;
     max-width: 100%;
     overflow-x: hidden;
+    margin-top: 5px;
 }
 
 .similar-offers-grid.single .similar-offer-list {
@@ -805,11 +829,15 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 15px;
+    padding: 10px 5px;
     border-radius: 10px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: bold;
     color: #ffffff;
+    min-width: 0;
+    word-break: break-word;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .stat.blue {
@@ -884,177 +912,176 @@ footer {
 /* End Region: Style Offres */
 
 /* responsive adjustments */
-@media (max-width: 600px) {
-    h2 { font-size: 2em; }
-    p, li { font-size: 1rem; }
-    header .logo-header { width: 25%; }
-    .search { font-size: 1em; }
-    .offre-card { max-width: 90%; padding: 8px; }
-    .offre-card-title { font-size: 1.1em; }
-    .offre-card-meta { font-size: 0.8em; }
-    .prev, .next { font-size: 1.5em; }
-    .carousel-dots { margin-top: 6px; }
-    .dot { width: 8px; height: 8px; }
-    .forme-apropos { padding: 1.25rem; }
-    .apropos-title { margin-left: 0; }
-    .apropos-bouton { font-size: 1.5rem; }
+
+
+@media (min-width: 1024px) {
+    /* Restore desktop styles */
+    main {
+        margin: 0 5% 0 5%;
+        font-size: 175%;
+    }
+
+    h2 {
+        font-size: 3em;
+        margin-left: 5%;
+    }
+
+    p {
+        font-size: 1.5em;
+    }
+
+    li {
+        font-size: 1.5em;
+    }
 
     main.offer-detail {
-        font-size: 1rem;
-        padding: 5px;
         margin: 0;
+        padding: 0;
+        font-size: 1rem;
     }
-    
+
     .offer-card {
-        padding: 8px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    
+
     .offer-title {
-        font-size: 1.2em;
+        font-size: 3em;
     }
-    
-    .offer-company {
-        font-size: 0.9em;
-    }
-    
+
     .offer-section h3 {
-        font-size: 1.1em;
+        font-size: 2.6em;
     }
-    
+
     .offer-detail-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .label {
-        min-width: auto;
-    }
-    
-    .similar-offers-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
-        gap: 0;
-    }
-    
-    /* Fix: Stats section constraints */
-    .similar-offer-stats {
-        width: 100%;
-        box-sizing: border-box;
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .stat {
-        min-width: 0;
-        word-break: break-word;
-        padding: 5px;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    
-    .stat p {
-        font-size: 0.9rem;
-        margin: 0;
-        padding: 0;
-    }
-    
-
-    .stat.yellow .arrow {
-        position: static;
-        display: inline;
-        font-size: 1rem;
-        margin-left: 5px;
-    }
-    
-    /* Fix: Similar offers overflow */
-    .similar-offers {
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-        padding: 0;
-        margin: 5px 0;
-    }
-    
-    .similar-offers h3 {
-        font-size: 0.95em;
-        padding: 5px;
-        margin: 0;
-    }
-    
-    .similar-offer-item {
-        padding: 5px 0;
-        gap: 5px;
-    }
-    
-    .similar-offer-item p {
-        font-size: 0.9rem;
-        margin: 0;
-    }
-    
-    /* Fix: Discover company section */
-    .discover-company {
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-        padding: 5px;
-        margin: 5px 0;
-    }
-    
-    .discover-company h4 {
-        font-size: 1em;
-        margin: 0 0 5px 0;
-    }
-    
-    .discover-company p {
-        font-size: 0.9rem;
-        margin: 0 0 5px 0;
-    }
-    
-    .discover-company .arrow {
-        font-size: 1.2em;
-        margin: 0;
-    }
-    
-    .arrow.large {
-        font-size: 1.2em;
-    }
-
-    /* Stats remain side by side on mobile */
-    .stats-section {
-        background-color: transparent;
-        padding: 0 5px;
-        margin: 10px 0;
-    }
-
-    .stats-section .similar-offer-stats {
-        width: 100%;
         display: flex;
-        gap: 5px;
+        align-items: center;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
         flex-direction: row;
+    }
+
+    .offer-reference {
+        font-size: 3em;
+        color: #666;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+
+    .rating {
+        background-color: #94d4eb;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #142b53;
+        font-size: 3.6em;
+    }
+
+    .label {
+        font-weight: bold;
+        font-size: 3.2em;
+        color: #142b53;
+        min-width: 100px;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 15px;
+        font-size: 2.8em;
+        font-weight: 500;
+    }
+
+    .offer-description {
+        font-size: 2em;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    .discover-company {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #ffd700;
+        border-radius: 10px;
+        color: #333;
+        font-size: 1rem;
+        font-weight: bold;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .discover-company .arrow {
+        font-size: 2em;
+        font-weight: bold;
+        color: #333;
+        text-align: right;
+        display: block;
+    }
+
+    .similar-offers {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+
+    .similar-offers-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+        background-color: #ffffff;
+        border-radius: 0 0 10px 10px;
+        padding: 15px;
+    }
+
+    .similar-offer-list {
+        background-color: #e3f2fd;
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     .stat {
         flex: 1;
-        padding: 10px 5px;
-        font-size: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-weight: bold;
+        color: #ffffff;
     }
 
-    .stat p {
-        font-size: 0.9rem;
-        margin: 0;
-        padding: 0;
+    .arrow {
+        margin-left: 10px;
+        font-size: 200%;
     }
 
-    .stat.yellow .arrow {
-        font-size: 1rem;
-        position: static;
-        display: inline;
-        margin-left: 3px;
+    .arrow.large {
+        font-size: 3em;
     }
-}
 
+    .similar-offer-stats {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+    }
 
-@media (min-width: 1024px) {
     /* header  */
     .header-main-content {
         display: flex;
@@ -1213,4 +1240,3 @@ footer {
         height: 120px;
     }
 }
-

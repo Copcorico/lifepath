@@ -2,7 +2,8 @@
 namespace App\Controllers;
 
 use App\Models\routeurModel;
-use App\Models\Pilot;
+use App\Models\PilotModel;
+use App\Models\OfferModel;
 
 class routeurController extends Controller {
     
@@ -63,7 +64,7 @@ class routeurController extends Controller {
         // Charger les pilots si on a une connexion BDD
         $pilots = [];
         if ($this->db) {
-            $pilotModel = new Pilot($this->db);
+            $pilotModel = new PilotModel($this->db);
             $pilots = $pilotModel->getPilots();
         }
         
@@ -97,7 +98,47 @@ class routeurController extends Controller {
     }
 
     public function offresPage() {
-        echo $this->templateEngine->render('offres.twig');
+        $offerModel = new OfferModel();
+        $offerId = (int) ($_GET['id'] ?? 0);
+        $query = trim((string) ($_GET['q'] ?? ''));
+
+        if ($offerId > 0) {
+            $offer = $offerModel->getOfferWithCompanyById($offerId);
+
+            if (!$offer) {
+                http_response_code(404);
+                echo $this->templateEngine->render('offres_search.twig', [
+                    'query' => $query,
+                    'offers' => [],
+                ]);
+                return;
+            }
+
+            $relatedOffers = [];
+            if (!empty($offer['id_entreprise'])) {
+                $relatedOffers = array_values(array_filter(
+                    $offerModel->getOffersByCompanyId((int) $offer['id_entreprise']),
+                    static fn(array $item): bool => (int) ($item['id_offre'] ?? 0) !== $offerId
+                ));
+            }
+
+            echo $this->templateEngine->render('offres.twig', [
+                'offer' => $offer,
+                'relatedOffers' => $relatedOffers,
+            ]);
+            return;
+        }
+
+        if ($query === '') {
+            $offers = $offerModel->getAllOffers();
+        } else {
+            $offers = $offerModel->searchOffersByTitle($query);
+        }
+
+        echo $this->templateEngine->render('offres_search.twig', [
+            'query' => $query,
+            'offers' => $offers,
+        ]);
     }
 
     public function contactPage() {
