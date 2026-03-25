@@ -5,6 +5,9 @@ body {
     margin: 0;
     width: 100vw;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -13,11 +16,12 @@ main {
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+    flex: 1;
 }
 
 main.offer-detail {
     margin: 0;
-    padding: 5px;
+    padding: 5px 5%;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
@@ -225,6 +229,37 @@ li {
 }
 /*#endregion */
 
+/*#region profil*/
+
+.profil-section{
+    padding: 40px 20px;
+    width: 500%
+}
+
+.profil-section h1{
+    font-size: 250%;
+}
+
+.profil-info h2{
+    font-size: 200%;
+}
+
+.profil-info p{
+    font-size: 175%;
+    line-height: 1.5;
+}
+
+.profil-info p strong{
+    font-size: 130%;
+}
+
+.profil-info{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/*#endregion
+
 /*#region header*/
 .header {
     position: sticky;
@@ -408,7 +443,7 @@ footer {
     text-align: center;
     background-color: #142b53;
     color: #f0f0f1;
-    margin-top: 2%;
+    margin-top: auto;
     font-size: 0.8em;
     padding-left: 5%;
     padding-bottom: 2%;
@@ -416,7 +451,7 @@ footer {
     padding-right: 5%;
 }
 
-/*#rgion offres*/
+/*#region offres*/
 .offre-container {
     position: relative;
     border: 2px solid #142b53;
@@ -941,7 +976,7 @@ footer {
 
     main.offer-detail {
         margin: 0;
-        padding: 0;
+        padding: 0 5%;
         font-size: 1rem;
     }
 
