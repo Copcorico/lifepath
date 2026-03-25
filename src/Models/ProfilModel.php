@@ -32,4 +32,20 @@ class Profil {
         $stmt->execute([$email]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function beginTransaction(){
+        return $this->db->beginTransaction();
+    }
+
+    public function commit(){
+        return $this->db->commit();
+    }
+
+    public function rollBack(){
+        return $this->db->rollBack();
+    }
+
+    public function inTransaction(){
+        return $this->db->inTransaction();
+    }
 }

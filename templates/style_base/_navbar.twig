@@ -14,14 +14,16 @@
         <div class="nav-profile-info">
             {% if app.session.has('user_id') %}
                 <h2>
-                    {% if app.session.get('type') == 'particulier' %}
+                    {% if app.session.get('type') == 'etudiant' or app.session.get('type') == 'pilote' %}
                         <a href="/profil">{{ app.session.get('prenom') }} {{ app.session.get('nom') }}</a>
                     {% else %}
                         <a href="/profil">{{ app.session.get('societe') }}</a>
                     {% endif %}
                 </h2>
-                {% if app.session.get('type') == 'particulier' %}
-                    <p class="navbar-pilote">Particulier</p>
+                {% if app.session.get('type') == 'etudiant' %}
+                    <p class="navbar-pilote">Étudiant</p>
+                {% elseif app.session.get('type') == 'pilote' %}
+                    <p class="navbar-pilote">Pilote</p>
                 {% else %}
                     <p class="navbar-pilote">Entreprise</p>
                 {% endif %}
