@@ -53,6 +53,8 @@
         {% if not app.session.has('user_id') %}
         <li class="nav-menu-item"><a href="/inscription">Inscription</a></li>
         <li class="nav-menu-item"><a href="/connexion">Connexion</a></li>
+        <li class="nav-menu-item"><a href="/offres">Nos offres</a></li>
+        <li class="nav-menu-item"><a href="/entreprise">Entreprise</a></li>
         {% endif %}
         {% if app.session.has('user_id') %}
             {% if app.session.get('type') == 'etudiant' %}
