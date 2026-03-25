@@ -54,11 +54,17 @@
         <li class="nav-menu-item"><a href="/inscription">Inscription</a></li>
         <li class="nav-menu-item"><a href="/connexion">Connexion</a></li>
         {% endif %}
-        <li class="nav-menu-item"><a href="/offres">Nos offres</a></li>
-        <li class="nav-menu-item"><a href="/entreprise">Entreprise</a></li>
+        {% if app.session.has('user_id') %}
+            {% if app.session.get('type') == 'etudiant' %}
+            <li class="nav-menu-item"><a href="/offres">Nos offres</a></li>
+            <li class="nav-menu-item"><a href="/entreprise">Entreprise</a></li>
+            {% elseif app.session.get('type') == 'pilote' %}
+            <li class="nav-menu-item"><a href="/mes_etudiants">Mes étudiants</a></li>
+            {% elseif app.session.get('type') == 'entreprise' %}
+            <li class="nav-menu-item"><a href="/offres">Gérer mes offres</a></li>
+            {% endif %}
         <li class="nav-menu-item"><a href="/avis">Avis</a></li>
         <li class="nav-menu-item"><a href="/legale">Mentions légales</a></li>
-        {% if app.session.has('user_id') %}
         <li class="nav-menu-item"><a href="/deconnexion" style="color: #b00020; font-weight: bold;">Déconnexion</a></li>
         {% endif %}
     </ul>
