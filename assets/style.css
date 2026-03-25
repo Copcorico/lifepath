@@ -224,6 +224,37 @@ li {
 }
 /*#endregion */
 
+/*#region profil*/
+
+.profil-section{
+    padding: 40px 20px;
+    width: 500%
+}
+
+.profil-section h1{
+    font-size: 250%;
+}
+
+.profil-info h2{
+    font-size: 200%;
+}
+
+.profil-info p{
+    font-size: 175%;
+    line-height: 1.5;
+}
+
+.profil-info p strong{
+    font-size: 130%;
+}
+
+.profil-info{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/*#endregion
+
 /*#region header*/
 .header {
     position: sticky;
@@ -415,7 +446,7 @@ footer {
     padding-right: 5%;
 }
 
-/*#rgion offres*/
+/*#region offres*/
 .offre-container {
     position: relative;
     border: 2px solid #142b53;

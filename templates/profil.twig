@@ -13,22 +13,24 @@
 {% include 'style_base/_header.twig' %}
 
 <main>
-    <section style="padding: 40px 20px;">
+    <section class="profil-section">
         <h1>Mon Profil</h1>
         
         {% if app.session.has('user_id') %}
-            <div style="margin-top: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-                {% if app.session.get('type') == 'particulier' %}
+            <div class="profil-info">
+                {% if app.session.get('type') == 'etudiant' or app.session.get('type') == 'pilote' %}
                     <h2>Informations Personnelles</h2>
                     <p><strong>Prénom :</strong> {{ app.session.get('prenom') }}</p>
                     <p><strong>Nom :</strong> {{ app.session.get('nom') }}</p>
                     <p><strong>Email :</strong> {{ app.session.get('email') }}</p>
-                    <p><strong>Type :</strong> Particulier</p>
+                    <p><strong>Type :</strong> {{ app.session.get('type') }}</p>
                 {% else %}
                     <h2>Informations Entreprise</h2>
                     <p><strong>Société :</strong> {{ app.session.get('societe') }}</p>
                     <p><strong>Email :</strong> {{ app.session.get('email') }}</p>
-                    <p><strong>Type :</strong> Entreprise</p>
+                    <p><strong>Type :</strong> {{ app.session.get('type') }}</p>
+                    <p><strong>Adresse :</strong> {{ app.session.get('adresse') }}</p>
+                    <p><strong>Description :</strong> {{ app.session.get('description') }}</p>
                 {% endif %}
             </div>
         {% else %}

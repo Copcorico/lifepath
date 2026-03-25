@@ -64,7 +64,7 @@ class AuthController extends Controller
                 $_SESSION["type"] = $user["type"];
 
                 // Charger les infos complètes de l'utilisateur
-                if($user["type"] === "particulier") {
+                if($user["type"] === "etudiant" || $user["type"] === "pilote") {
                     $particulier = $this->particulierModel->getByProfilId($user["id_profil"]);
                     if($particulier) {
                         $_SESSION["nom"] = $particulier["nom"];
