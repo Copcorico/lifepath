@@ -8,14 +8,18 @@
 </head>
 <body>
 <header class="Connect_subscribe">
-    <img class="header_img" src="/images/logos/Logo_bg_arrondi.png" alt="Logo LifePath">
+    <img class="header_img" src="/images/logos/personnagesansfondombre.png" alt="Logo LifePath">
     <h1 class="tittle"><b>LifePath</b></h1>
+    <h2 class="tittle2">Inscription</h2>
+    <div class="toggle-container{% if form.mode == 'entreprise' %} entreprise{% endif %}" id="toggle">
+        <div class="toggle-slider"></div>
+        <div class="toggle-option">Particulier</div>
+        <div class="toggle-option">Entreprise</div>
+    </div>
 </header>
 
 <main>
-    <section>
-        <h2>Inscription</h2>
-
+    <section class="formulaire_inscription">
         {% if errors is not empty %}
             <article>
                 <ul style="color:#b00020;">
@@ -34,14 +38,8 @@
 
         <article>
             <div class="container">
-                <div class="toggle-container{% if form.mode == 'entreprise' %} entreprise{% endif %}" id="toggle">
-                    <div class="toggle-slider"></div>
-                    <div class="toggle-option">Particulier</div>
-                    <div class="toggle-option">Entreprise</div>
-                </div>
 
                 <div id="form-particulier" class="form-section{% if form.mode != 'entreprise' %} active{% endif %}">
-                    <h2>Inscription Particulier</h2>
 
                     <form method="post" action="">
                         <input type="hidden" name="mode" value="particulier">
@@ -51,46 +49,47 @@
                             <input class="btn_color" type="radio" id="statut-etudiant" name="statut" value="etudiant" required {% if form.statut == 'etudiant' %}checked{% endif %}> Etudiant
                             <input class="btn_color" type="radio" id="statut-pilote" name="statut" value="pilote" required {% if form.statut == 'pilote' %}checked{% endif %}> Pilote
                         </div>
+                        <section class="deuxpardeux">
+                            <div class="form-group">
+                                <label>Nom*</label>
+                                <input  type="text" name="nom" size="25" placeholder="Dupont" value="{{ form.nom|e }}" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Nom*</label>
-                            <input type="text" name="nom" size="25" placeholder="Dupont" value="{{ form.nom|e }}" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Prenom*</label>
+                                <input  type="text" name="prenom" size="25" placeholder="Titouan" value="{{ form.prenom|e }}" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Prenom*</label>
-                            <input type="text" name="prenom" size="25" placeholder="Titouan" value="{{ form.prenom|e }}" required>
-                        </div>
+                            <div class="form-group" id="groupe-classe">
+                                <label>Classe*</label>
+                                <input  type="text" id="classe" name="classe" size="25" placeholder="CPI-A2 Informatique" value="{{ form.classe|e }}" required>
+                            </div>
 
-                        <div class="form-group" id="groupe-classe">
-                            <label>Classe*</label>
-                            <input type="text" id="classe" name="classe" size="25" placeholder="CPI-A2 Informatique" value="{{ form.classe|e }}" required>
-                        </div>
+                            <div class="form-group" id="groupe-pilote" {% if form.statut != 'etudiant' %}hidden{% endif %}>
+                                <label for="pilote">Pilote</label>
+                                <select id="pilote" name="pilot_id">
+                                    <option value="">Selectionnez un pilote</option>
+                                    {% for pilot in pilots %}
+                                        <option value="{{ pilot.id_pilot }}" {% if form.pilot_id == (pilot.id_pilot ~ '') %}selected{% endif %}>{{ pilot.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
-                        <div class="form-group" id="groupe-pilote" {% if form.statut != 'etudiant' %}hidden{% endif %}>
-                            <label for="pilote">Pilote</label>
-                            <select id="pilote" name="pilot_id">
-                                <option value="">Selectionnez un pilote</option>
-                                {% for pilot in pilots %}
-                                    <option value="{{ pilot.id_pilot }}" {% if form.pilot_id == (pilot.id_pilot ~ '') %}selected{% endif %}>{{ pilot.label }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                            <div class="form-group">
+                                <label for="email">Email*</label>
+                                <input  type="email" id="email" name="email" size="25" placeholder="turlututu@viacesi.fr" value="{{ form.email|e }}" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="email">Email*</label>
-                            <input type="email" id="email" name="email" size="25" placeholder="turlututu@viacesi.fr" value="{{ form.email|e }}" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Mot de passe*</label>
+                                <input  type="password" name="password" size="25" placeholder="********" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label>Mot de passe*</label>
-                            <input type="password" name="password" size="25" placeholder="********" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Confirmation</label>
-                            <input type="password" name="password_confirm" size="25" placeholder="********" required>
-                        </div>
+                            <div class="form-group">
+                                <label>Confirmation</label>
+                                <input  type="password" name="password_confirm" size="25" placeholder="********" required>
+                            </div>
+                        </section>
 
                         <div class="checkbox-container" style="width:100%">
                             <input class="btn_color" type="checkbox" name="accept_terms" required>
@@ -99,12 +98,12 @@
 
                         <button class="submit" name="submit" type="submit">Inscription</button>
                     </form>
+                    <p class="dejacompte">Deja un compte ? <a href="connexion" class="bouton_con">Connectez-vous</a></p>
 
-                    <p>Deja un compte ? <a href="connexion">Connectez-vous</a></p>
+                    
                 </div>
 
                 <div id="form-entreprise" class="form-section{% if form.mode == 'entreprise' %} active{% endif %}">
-                    <h2>Inscription Entreprise</h2>
 
                     <form method="post" action="">
                         <input type="hidden" name="mode" value="entreprise">
