@@ -106,6 +106,8 @@ $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage'
 
 $routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);    
 
+$routeur->register('/mes-etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);
+
 // Keep legacy links functional while templates are progressively migrated.
 $legacyRoutes = [
     '/index.html' => ['App\Controllers\routeurController', 'welcomePage'],

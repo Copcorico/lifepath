@@ -10,13 +10,13 @@
 
 <body>
 	<header class="Connect_subscribe">
-		<img class="header_img" src="/images/logos/Logo_bg_arrondi.png" alt="Logo LifePath">
+		<img class="header_img" src="/images/logos/personnagesansfondombre.png" alt="Logo LifePath">
 		<h1 class="tittle"><b>LifePath</b></h1>
     </header>
 
 	<main>
 		<section>
-			<h2>Connexion</h2>
+			<h2 class="tittle2conn">Connexion</h2>
 
 			{% if errors is not empty %}
 				<article>
@@ -36,15 +36,19 @@
 
 			<article>
 				<form class="formulaire" method="post" action="">
-					<label>Email*</label><br>
-					<input name="email" type="email" value="{{ form.email|e }}" required>
+					<div class="form-group-conn">
+						<label>Email*</label><br>
+						<input name="email" type="email" value="{{ form.email|e }}" required>
+					</div>
+					
+					<div class="form-group-conn">
+						<label>Mot de passe*</label><br>
+						<input name="password" type="password" required>
+					</div>
 
-					<label>Mot de passe*</label><br>
-					<input name="password" type="password" required>
+					<button class="submit" name="connect" type="submit">Connexion</button>
 
-					<button class="submit"name="connect" type="submit">Connexion</button>
-
-					<p>Pas de compte ? <a href="inscription">Inscrivez-vous ici</a></p>
+					<p class="dejacompte">Pas de compte ? <a href="inscription">Inscrivez-vous ici</a></p>
 				</form>
 			</article>
 

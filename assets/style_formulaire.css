@@ -44,7 +44,11 @@ h1.tittle {
   margin: 0;
   color: #142b53;
 }
-
+.tittle2{
+  font-size: 1.25em;
+  margin: 0;
+  color: #142b53;
+}
 /* ============================================
    MAIN & LAYOUT
    ============================================ */
@@ -60,6 +64,7 @@ article {
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
+  justify-content: center;
 }
 
 /* ============================================
@@ -257,6 +262,11 @@ input[type="submit"] {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+.submit{
+  border-radius: 100px;
+  width: 70%;
+
+}
 
 button:hover,
 .submit:hover,
@@ -328,7 +338,8 @@ input[type="submit"]:active {
   }
 
   img.header_img {
-   display:none;
+   display:flex;
+   width: 50%;
   }
   /* ============================================
    MAIN & LAYOUT
@@ -349,6 +360,26 @@ input[type="submit"]:active {
     margin: 0;
   }
 
+  section.formulaire_inscription, 
+  article {
+    padding: 1% !important; /* Réduit l'espacement entre les blocs */
+    justify-content: center;
+  }
+  .formulaire {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group-conn {
+    margin: 0.5% 1%;
+    padding: 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
   /* ============================================
    GROUPES DE FORMULAIRES
    ============================================ */
@@ -366,15 +397,17 @@ input[type="submit"]:active {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-content: start;
     gap: 2%;
     width: 100%;
+    padding: 0;
+    margin: 0;
   }
 
   .form-group {
-    margin: 1%;
-    width: 48%;
+    margin: 0.5% 1%;
+    width: 90%;
   }
 
   .form-section.active {
@@ -384,6 +417,13 @@ input[type="submit"]:active {
     justify-content: space-between;
     align-content: start;
     gap: 2%;
+  }
+  
+  .deuxpardeux {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2%;
+
   }
 
   /*.form-section.active h2,
@@ -408,6 +448,11 @@ input[type="submit"]:active {
     width: 100%;
   }
 
+  .checkbox-container, .checkbox-container[input], .checkbox-container[a]{
+    padding: none;
+    margin: none;
+  }
+
   /* ============================================
    TITRE & TYPOGRAPHIE
    ============================================ */
@@ -425,6 +470,14 @@ input[type="submit"]:active {
     font-size: 0.7em;
     text-align: left;
   }
+
+  .tittle2conn {
+    font-size: 1.5em;
+    margin: 0;
+    color: #142b53;
+    text-align: center;
+    padding: 5%;
+  }
   
   /* ============================================
     INPUTS & SÉLECTEURS
@@ -439,6 +492,13 @@ input[type="submit"]:active {
     padding: 1.5% 2%;
     text-align: left;
     min-height: 30px;
+    background-color: transparent;
   }
+
+  .dejacompte{
+    padding: none;
+    margin-top: 5%;
+  }
+
 
 }

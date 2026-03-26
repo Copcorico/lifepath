@@ -14,7 +14,7 @@
 {# Header #}
 {% include 'style_base/_header.twig' %}
 
-<section>
+<section class="mes-etudiants-section">
     <h2 class="mes-etudiants-title">Mes étudiants</h2>
     <div class="mes-etudiants-container">
         {% for etudiant in etudiants %}
@@ -22,7 +22,7 @@
             <img src="/images/profils/profile.png" alt="Photo de {{ etudiant.prenom }} {{ etudiant.nom }}" class="etudiant-photo">
             <h3>{{ etudiant.prenom }} {{ etudiant.nom }}</h3>
             <p>{{ etudiant.email }}</p>
-            <a href="/profil?id={{ etudiant.id }}" class="btn-consulter">Consulter le profil</a>
+            <a href="/profil?id={{ etudiant.id }}" class="btn-consulter">Consulter les offres</a>
         </div>
         {% else %}
         <p>Aucun étudiant associé pour le moment.</p>
@@ -30,5 +30,6 @@
     </div>
 
 </section>
+<script src="/script.js"></script>
 </body>
 </html>

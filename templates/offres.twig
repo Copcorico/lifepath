@@ -13,95 +13,102 @@
 	{% include 'style_base/_header.twig' %}
 
 	<main class="offer-detail">
-		<div class="offer-card">
-			<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
+		<div class="offer-main-container">
+			<div class="offer-left-panel">
+				<div class="offer-card">
+					<img src="images/entreprise/entreprise.jpg" alt="Offre de stage" class="offer-detail-img">
 
-			<div class="offer-header">
-				<h1 class="offer-title">{{ offer.titre }}</h1>
-				<p class="offer-reference">{{ offer.entreprise_nom }} <span class="rating">{{ offer.note ?? '0' }}</span></p>
+					<div class="offer-header">
+						<h1 class="offer-title">{{ offer.titre }}</h1>
+						<p class="offer-reference">{{ offer.entreprise_nom }} <span class="rating">{{ offer.note ?? '0' }}</span></p>
+					</div>
+
+					<section class="offer-section">
+						<h3>Détail de l'offre</h3>
+						<div class="offer-detail-row">
+							<span class="label">Domaine:</span>
+							<span class="badge badge-blue">Stage 3D/2D (28 heures)</span>
+						</div>
+						<div class="offer-detail-row">
+							<span class="label">Type de poste:</span>
+							<span class="badge badge-yellow">CDI, long-terme</span>
+						</div>
+						<div class="offer-detail-row">
+							<span class="label">Lieu:</span>
+							<span class="badge badge-light">{{ offer.localisation }}</span>
+						</div>
+						<div class="offer-detail-row">
+							<span class="label">Durée:</span>
+							<span class="badge badge-light">3 mois</span>
+						</div>
+						<div class="offer-detail-row">
+							<span class="label">Salaire:</span>
+							<span class="badge badge-yellow">5k€</span>
+						</div>
+						<div class="offer-detail-row">
+							<span class="label">Poste:</span>
+							<span class="badge badge-yellow">Ingénieur informatique</span>
+						</div>
+					</section>
+
+					<section class="offer-section">
+						<h3>Profil recherché</h3>
+						<p class="offer-description">Nous recherchons un candidat passionné par l'informatique avec une bonne maîtrise des technologies web et une capacité d'apprentissage rapide.</p>
+					</section>
+
+					<section class="offer-section">
+						<h3>Description</h3>
+						<p class="offer-description">Rejoignez notre équipe dynamique pour un stage enrichissant dans le domaine de l'informatique. Vous travaillerez sur des projets concrets et acquerrez une expérience précieuse dans un environnement professionnel.</p>
+					</section>
+
+					<div class="offer-action">
+						<a href="offres-stage-postuler.html" class="btn-postuler">Postuler</a>
+					</div>
+				</div>
 			</div>
 
-			<section class="offer-section">
-				<h3>Détail de l'offre</h3>
-				<div class="offer-detail-row">
-					<span class="label">Domaine:</span>
-					<span class="badge badge-blue">Stage 3D/2D (28 heures)</span>
-				</div>
-				<div class="offer-detail-row">
-					<span class="label">Type de poste:</span>
-					<span class="badge badge-yellow">CDI, long-terme</span>
-				</div>
-				<div class="offer-detail-row">
-					<span class="label">Lieu:</span>
-				<span class="badge badge-light">{{ offer.localisation }}</span>
-				</div>
-				<div class="offer-detail-row">
-					<span class="label">Durée:</span>
-					<span class="badge badge-light">3 mois</span>
-				</div>
-				<div class="offer-detail-row">
-					<span class="label">Salaire:</span>
-					<span class="badge badge-yellow">5k€</span>
-				</div>
-				<div class="offer-detail-row">
-					<span class="label">Poste:</span>
-					<span class="badge badge-yellow">Ingénieur informatique</span>
-				</div>
-			</section>
+			<!-- Colonne droite: Découvrez l'entreprise jusqu'au bouton voir plus -->
+			<div class="offer-right-panel">
+				<section class="discover-company">
+					<h4>Découvrez l'entreprise :</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis voluptatum laboriosam nulla accusamus.</p>
+					<span class="arrow">→</span>
+				</section>
 
-			<section class="offer-section">
-				<h3>Profil recherché</h3>
-				<p class="offer-description">Nous recherchons un candidat passionné par l'informatique avec une bonne maîtrise des technologies web et une capacité d'apprentissage rapide.</p>
-			</section>
+				<section class="similar-offers stats-section">
+					<div class="similar-offer-stats">
+						<div class="stat blue">
+							<p>300 personnes ont postulé à l'offre</p>
+						</div>
+						<div class="stat yellow">
+							<p>5 offres disponibles chez {{ offer.entreprise_nom }}</p>
+							<span class="arrow">→</span>
+						</div>
+					</div>
+				</section>
 
-			<section class="offer-section">
-				<h3>Description</h3>
-				<p class="offer-description">Rejoignez notre équipe dynamique pour un stage enrichissant dans le domaine de l'informatique. Vous travaillerez sur des projets concrets et acquerrez une expérience précieuse dans un environnement professionnel.</p>
-			</section>
-
-			<div class="offer-action">
-				<a href="offres-stage-postuler.html" class="btn-postuler">Postuler</a>
+				<section class="similar-offers">
+					<h3>Offres similaires</h3>
+					<div class="similar-offers-grid single">
+						<div class="similar-offer-list">
+							<div class="similar-offer-item">
+								<p>Stage dev web</p>
+								<span class="arrow large">→</span>
+							</div>
+							<div class="similar-offer-item">
+								<p>Stage dev logiciel</p>
+								<span class="arrow large">→</span>
+							</div>
+							<div class="similar-offer-item">
+								<p>Stage analyse de données</p>
+								<span class="arrow large">→</span>
+							</div>
+						</div>
+					</div>
+					<button class="btn-voir-plus">Voir plus</button>
+				</section>
 			</div>
 		</div>
-
-		<section class="discover-company">
-			<h4>Découvrez l'entreprise :</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis voluptatum laboriosam nulla accusamus.</p>
-			<span class="arrow">→</span>
-		</section>
-
-		<section class="similar-offers stats-section">
-			<div class="similar-offer-stats">
-				<div class="stat blue">
-					<p>300 personnes ont postulé à l'offre</p>
-				</div>
-				<div class="stat yellow">
-					<p>5 offres disponibles chez {{ offer.entreprise_nom }}</p>
-					<span class="arrow">→</span>
-				</div>
-			</div>
-		</section>
-
-		<section class="similar-offers">
-			<h3>Offres similaires</h3>
-			<div class="similar-offers-grid single">
-				<div class="similar-offer-list">
-					<div class="similar-offer-item">
-						<p>Stage dev web</p>
-						<span class="arrow large">→</span>
-					</div>
-					<div class="similar-offer-item">
-						<p>Stage dev logiciel</p>
-						<span class="arrow large">→</span>
-					</div>
-					<div class="similar-offer-item">
-						<p>Stage analyse de données</p>
-						<span class="arrow large">→</span>
-					</div>
-				</div>
-			</div>
-			<button class="btn-voir-plus">Voir plus</button>
-		</section>
 	</main>
 
 	<footer>
