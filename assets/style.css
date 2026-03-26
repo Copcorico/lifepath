@@ -228,7 +228,9 @@ header {
     padding-left: 3%;
     padding-right: 3%;
 }
-
+.slogan{
+    display: none;
+}
 .header-hamburger {
     width: 50px;
     height: 35px;
@@ -1068,10 +1070,14 @@ footer {
         box-sizing: border-box;
         gap: 15px;
     }
-    
+    .title{
+        font-size: 400%;
+    }
+
     .slogan{
-        font-size: 150%;
-        color: #f0f0f1;
+        display: flex;
+        font-size: 200%;
+        color: #142b53;
     }
     
     .header-hamburger {
@@ -1205,5 +1211,6 @@ footer {
         width: 120px;
         height: 120px;
     }
+
 }
 

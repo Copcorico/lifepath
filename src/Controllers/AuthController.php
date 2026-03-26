@@ -106,7 +106,7 @@ class AuthController extends Controller
 
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
-            $classe = $_POST["classe"];
+            $classe = trim($_POST["classe"] ?? "");
             $pilot_id = $_POST["pilot_id"] ?? "";
             // $telephone = $_POST["telephone"];
 
@@ -128,6 +128,11 @@ class AuthController extends Controller
 
             if($statut == "etudiant")
             {
+                if($classe === "")
+                {
+                    $errors[] = "La classe est obligatoire pour un etudiant";
+                }
+
                 if(empty($pilot_id) || !ctype_digit((string) $pilot_id) || !$this->pilotModel->exists((int) $pilot_id))
                 {
                     $errors[] = "Le pilote selectionne est invalide";
