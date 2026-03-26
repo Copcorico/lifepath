@@ -44,6 +44,18 @@ class CompanyController extends Controller
         $companyId = (int) ($_GET['id'] ?? 0);
         $page = max(1, (int) ($_GET['page'] ?? 1));
         $query = trim((string) ($_GET['q'] ?? ''));
+        $noteMin = isset($_GET['note_min']) && $_GET['note_min'] !== '' ? (float) $_GET['note_min'] : null;
+        $noteMax = isset($_GET['note_max']) && $_GET['note_max'] !== '' ? (float) $_GET['note_max'] : null;
+
+        if ($noteMin !== null) {
+            $noteMin = max(0.0, min(5.0, $noteMin));
+        }
+        if ($noteMax !== null) {
+            $noteMax = max(0.0, min(5.0, $noteMax));
+        }
+        if ($noteMin !== null && $noteMax !== null && $noteMin > $noteMax) {
+            [$noteMin, $noteMax] = [$noteMax, $noteMin];
+        }
 
         // If company id is provided, show company profile
         if ($companyId > 0) {
@@ -85,14 +97,24 @@ class CompanyController extends Controller
 
         // Otherwise show search page
         if ($query === '') {
-            $companies = $this->companyModel->getAllCompanies();
+            if ($noteMin !== null || $noteMax !== null) {
+                $companies = $this->companyModel->getAllCompaniesByRating($noteMin, $noteMax);
+            } else {
+                $companies = $this->companyModel->getAllCompanies();
+            }
         } else {
-            $companies = $this->companyModel->searchCompaniesByName($query);
+            if ($noteMin !== null || $noteMax !== null) {
+                $companies = $this->companyModel->searchCompaniesByNameAndRating($query, $noteMin, $noteMax);
+            } else {
+                $companies = $this->companyModel->searchCompaniesByName($query);
+            }
         }
 
         echo $this->twig->render('entreprise_search.twig', [
             'query' => $query,
             'companies' => $companies,
+            'note_min' => $noteMin,
+            'note_max' => $noteMax,
         ]);
     }
 }
