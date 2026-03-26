@@ -153,9 +153,6 @@
                                     {{ company.description|default('Aucune description disponible.') }}
                                 </p>
                                 <div class="company-meta">
-                                    <span><strong>Employes:</strong> {{ company.nombre_employes|default('Non renseigne') }}</span>
-                                </div>
-                                <div class="company-meta">
                                     <span><strong>Lieu:</strong> {{ company.adresse|default('Non renseigne') }}</span>
                                 </div>
                                 </section>
@@ -165,15 +162,6 @@
                 {% else %}
                     <p>Aucune entreprise disponible pour le moment.</p>
                 {% endfor %}
-                <div class="entreprise-item">
-                    <div class="offre-card">
-                        <img src="images/entreprise.jpg" alt="Titre de l'offre" class="offre-card-img">
-                        <div class="offre-card-info">
-                            <h3 class="offre-card-title">Titre de l'offre de stage</h3>
-                            <div class="offre-card-meta">3.5 ★ • St Nazaire • Bac +5</div>
-                        </div>
-                    </div>
-                </div>
             </div>
     </section>
 </section>

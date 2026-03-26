@@ -488,12 +488,14 @@ li {
 .entreprise-item {
     align-items: center;
     text-align: center;
+    background-color: #f0e278;
     margin: 10%;
     scroll-snap-align: center;
     color: #142b53;
     margin: 3% auto;
     margin-left: 2%;
     margin-right: 2%;
+    border-radius: 12px;
 }
 /*#endregion*/
 
