@@ -7,7 +7,7 @@ use App\Models\Profil;
 use App\Models\Entreprise;
 use App\Models\Particulier;
 use App\Models\Etudiant;
-use App\Models\Pilot;
+use App\Models\PilotModel;
 
 class AuthController extends Controller 
 {
@@ -27,7 +27,7 @@ class AuthController extends Controller
         $this->entrepriseModel = new Entreprise($db);
         $this->particulierModel = new Particulier($db);
         $this->etudiantModel = new Etudiant($db);
-        $this->pilotModel = new Pilot($db);
+        $this->pilotModel = new PilotModel($db);
     }
 
     /* ============ PAGE CONNEXION ============ */
@@ -64,7 +64,7 @@ class AuthController extends Controller
                 $_SESSION["type"] = $user["type"];
 
                 // Charger les infos complètes de l'utilisateur
-                if($user["type"] === "particulier") {
+                if($user["type"] === "etudiant" || $user["type"] === "pilote") {
                     $particulier = $this->particulierModel->getByProfilId($user["id_profil"]);
                     if($particulier) {
                         $_SESSION["nom"] = $particulier["nom"];
@@ -108,7 +108,6 @@ class AuthController extends Controller
             $prenom = $_POST["prenom"];
             $classe = trim($_POST["classe"] ?? "");
             $pilot_id = $_POST["pilot_id"] ?? "";
-            // $telephone = $_POST["telephone"];
 
             $email = $_POST["email"];
             $password = $_POST["password"];
@@ -142,7 +141,7 @@ class AuthController extends Controller
             if(empty($errors))
             {
                 try {
-                    $profil_id = $this->profilModel->create("", $email, $password);
+                    $profil_id = $this->profilModel->create("", $email, $password, $statut);
                     
                     $particulier_id = $this->particulierModel->create($profil_id, $nom, $prenom);
 
@@ -153,7 +152,7 @@ class AuthController extends Controller
 
                     if($statut == "etudiant")
                     {
-                        $this->etudiantModel->create($particulier_id, $classe, (int) $pilot_id);
+                        $this->etudiantModel->create($particulier_id, $classe, $pilot_id);
                     }
 
                     header("Location: connexion");
@@ -178,6 +177,7 @@ class AuthController extends Controller
             $telephone = $_POST["telephone-pro"];
             $password = $_POST["password-pro"];
             $confirm = $_POST["password-pro-confirm"];
+            $description = '';
 
             $entreprise_form = $_POST;
 
@@ -194,9 +194,10 @@ class AuthController extends Controller
             if(empty($errors))
             {
                 try {
+
                     $profil_id = $this->profilModel->create($telephone, $email, $password, 'entreprise');
 
-                    $this->entrepriseModel->create($profil_id, $societe, $adresse);
+                    $this->entrepriseModel->create($profil_id, $societe, $adresse, $description);
 
                     header("Location: connexion");
                     exit;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+    <title>LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+</head>
+
+<body>
+{# Navbar #}
+{% include 'style_base/_navbar.twig' %}
+{# Header #}
+{% include 'style_base/_header.twig' %}
+
+<section class="mes-etudiants-section">
+    <h2 class="mes-etudiants-title">Mes étudiants</h2>
+    <div class="mes-etudiants-container">
+        {% for etudiant in etudiants %}
+        <div class="etudiant-card">
+            <img src="/images/profils/profile.png" alt="Photo de {{ etudiant.prenom }} {{ etudiant.nom }}" class="etudiant-photo">
+            <h3>{{ etudiant.prenom }} {{ etudiant.nom }}</h3>
+            <p>{{ etudiant.email }}</p>
+            <a href="/profil?id={{ etudiant.id }}" class="btn-consulter">Consulter les offres</a>
+        </div>
+        {% else %}
+        <p>Aucun étudiant associé pour le moment.</p>
+        {% endfor %}
+    </div>
+
+</section>
+<script src="/script.js"></script>
+</body>
+</html>

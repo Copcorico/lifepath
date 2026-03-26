@@ -4,69 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>Entreprise - LifePath</title>
+    <title>Offres - LifePath</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" type="image/png" href="images/logos/personnagesansfondombre.png">
 </head>
 
 <body>
 
-{% include 'style_base/_navbar.twig' %}
-{% include 'style_base/_header.twig' %}
-
+    {% include 'style_base/_navbar.twig' %}
+    {% include 'style_base/_header.twig' %}
     <main class="offer-detail">
         <article class="entreprise-container">
             <section class="entreprise-section">
-                <h1>Recherche d'entreprises</h1>
-                <p>Trouvez une entreprise par son nom.</p>
+                <h1>Recherche d'offres</h1>
+                <p>Trouvez une offre et ouvrez sa page detail.</p>
             </section>
 
             <section id="entreprises">
-                <form method="get" action="/entreprise" class="search-form" style="display:flex; gap:12px; margin: 20px 0; flex-wrap: wrap;">
+                <form method="get" action="/offres" class="search-form" style="display:flex; gap:12px; margin: 20px 0; flex-wrap: wrap;">
                     <input
                         type="text"
                         name="q"
                         value="{{ query|default('') }}"
-                        placeholder="Ex: Tech, Digital, CESI..."
-                        aria-label="Rechercher une entreprise par nom"
+                        placeholder="Ex: Développement, Marketing, Communication..."
+                        aria-label="Rechercher une offre par nom"
                         style="flex:1; min-width: 240px; padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
                     >
                     <button type="submit" style="padding: 10px 18px; border: 0; border-radius: 10px; background: #1e3a5f; color: #fff; cursor: pointer;">Rechercher</button>
                 </form>
 
                 {% if query is not empty %}
-                    <p><strong>{{ companies|length }}</strong> resultat(s) pour "{{ query }}".</p>
+                    <p><strong>{{ offers|length }}</strong> resultat(s) pour "{{ query }}".</p>
                 {% endif %}
 
                 <div class="companies-results" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px;">
-                    {% for company in companies %}
+                    {% for offer in offers %}
                         <a
-                            href="/entreprise?id={{ company.id_entreprise }}"
+                            href="/offres?id={{ offer.id_offre }}"
                             style="display:block; text-decoration:none; color:inherit;"
-                            aria-label="Voir l'annonce de {{ company.nom|default('cette entreprise') }}"
+                            aria-label="Voir le detail de l'offre {{ offer.titre|default('sans titre') }}"
                         >
                             <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; box-shadow:0 4px 14px rgba(0, 0, 0, 0.06); transition: transform .15s ease, box-shadow .15s ease;">
-                                <h3 style="margin:0 0 8px 0;">{{ company.nom|default('Entreprise') }}</h3>
+                                <h3 style="margin:0 0 8px 0;">{{ offer.titre|default('Offre sans titre') }}</h3>
                                 <section class="entreprise-section">
                                     <div class="star-rating">
                                         {% for i in 1..5 %}
-                                        {% if i <= company.note %}★{% else %}☆{% endif %}
+                                        {% if i <= offer.entreprise_note|default(0) %}★{% else %}☆{% endif %}
                                         {% endfor %}
-                                    <span>({{ company.note }}/5)</span>
+                                    <span>({{ offer.entreprise_note|default(0) }}/5)</span>
                                     </div>
             </section>
                                 <p style="margin:0 0 10px 0; color:#4b5563;">
-                                    {{ company.description|default('Aucune description disponible.') }}
+                                    {{ offer.detail|default(offer['détail']|default('Aucune description disponible.')) }}
                                 </p>
                                 <div style="font-size: 14px; color:#374151;">
-                                    <span><strong>Employes:</strong> {{ company.nombre_employes|default('Non renseigne') }}</span>
+                                    <span><strong>Entreprise:</strong> {{ offer.entreprise_nom|default('Non renseignee') }}</span><br>
+                                    <span><strong>Lieu:</strong> {{ offer.localisation|default('Non renseigne') }}</span><br>
+                                    <span><strong>Niveau:</strong> {{ offer.niveau|default('Non renseigne') }}</span>
                                 </div>
                             </article>
                         </a>
                     {% else %}
                         <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px;">
-                            <h3 style="margin:0 0 8px 0;">Aucune entreprise trouvee</h3>
-                            <p style="margin:0; color:#4b5563;">Essayez un autre nom ou une recherche plus courte.</p>
+                            <h3 style="margin:0 0 8px 0;">Aucune offre trouvee</h3>
+                            <p style="margin:0; color:#4b5563;">Essayez un autre titre ou une recherche plus courte.</p>
                         </article>
                     {% endfor %}
                 </div>
