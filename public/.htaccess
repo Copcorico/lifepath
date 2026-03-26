@@ -1,3 +1,6 @@
+# Upload limits for profile pictures (Apache mod_php)
+php_value upload_max_filesize 8M
+php_value post_max_size 10M
 RewriteEngine On
 DirectoryIndex index.php
 
