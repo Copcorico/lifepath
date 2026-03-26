@@ -137,6 +137,7 @@
                 {% for company in companies|slice(0, 10) %}
                     {% if company.id_entreprise is not empty %}
                         <a
+                            class="entreprise-link"
                             href="/entreprise?id={{ company.id_entreprise }}"
                             aria-label="Voir l'annonce de {{ company.nom|default('cette entreprise') }}"
                         >

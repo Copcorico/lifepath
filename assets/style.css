@@ -485,6 +485,13 @@ li {
     scroll-snap-type: x proximity;
 }
 
+.entreprise-link {
+    background-color: #f0e278;
+    border-radius: 12px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
 .entreprise-item {
     align-items: center;
     text-align: center;
