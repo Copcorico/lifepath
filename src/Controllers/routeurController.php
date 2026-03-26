@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\routeurModel;
 use App\Models\PilotModel;
 use App\Models\OfferModel;
+use App\Models\CompanyModel;
 use App\Models\Particulier;
 use App\Models\Etudiant;
 use App\Models\Profil;
@@ -24,35 +25,27 @@ class routeurController extends Controller {
     }
 
     public function welcomePage() {
-        $offresEmploi = [
-            [
-                'id_entreprise' => 1,
-                'titre' => 'Développement d\'une application web interne',
-                'poste' => 'Développeur Web',
-                'entreprise' => 'TechSolutions',
-                'lieu' => 'Paris',
-                'niveau' => 'Bac +5'
-            ],
-            [
-                'id_entreprise' => 2,
-                'titre' => 'Création d\'une plateforme e-commerce',
-                'poste' => 'Développeur Full Stack',
-                'entreprise' => 'DigitalMarket',
-                'lieu' => 'Lyon',
-                'niveau' => 'Bac +4'
-            ],
-            [
-                'id_entreprise' => 3,
-                'titre' => 'Conception d\'une API pour application mobile',
-                'poste' => 'Développeur Backend',
-                'entreprise' => 'CodeFactory',
-                'lieu' => 'Toulouse',
-                'niveau' => 'Bac +5'
-            ]
-        ];
+        $offers = [];
+        $companies = [];
+
+        try {
+            $offerModel = new OfferModel();
+            $offers = $offerModel->getAllOffers(10);
+        } catch (\Throwable $e) {
+            $offers = [];
+        }
+
+        try {
+            $companyModel = new CompanyModel();
+            $companies = $companyModel->getAllCompanies(10);
+        } catch (\Throwable $e) {
+            $companies = [];
+        }
 
         echo $this->templateEngine->render('accueil.twig', [
-            'offres_emploi' => $offresEmploi
+            'offers' => $offers,
+            'companies' => $companies,
+            'profiles' => [],
         ]);
     }
 

@@ -23,6 +23,12 @@
 
             <section id="entreprises">
                 <form method="get" action="/entreprise" class="search-form" style="display:flex; gap:12px; margin: 20px 0; flex-wrap: wrap;">
+                    {% if note_min is not null %}
+                        <input type="hidden" name="note_min" value="{{ note_min }}">
+                    {% endif %}
+                    {% if note_max is not null %}
+                        <input type="hidden" name="note_max" value="{{ note_max }}">
+                    {% endif %}
                     <input
                         type="text"
                         name="q"
@@ -31,11 +37,76 @@
                         aria-label="Rechercher une entreprise par nom"
                         style="flex:1; min-width: 240px; padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
                     >
-                    <button type="submit" style="padding: 10px 18px; border: 0; border-radius: 10px; background: #1e3a5f; color: #fff; cursor: pointer;">Rechercher</button>
+                    <button type="submit" class="search-button">Rechercher</button>
                 </form>
+                <button
+                    type="button"
+                    class="search-button"
+                    style="display:inline-flex; align-items:center; gap:8px;"
+                    aria-expanded="false"
+                    aria-controls="filters-panel"
+                    onclick="(function(){const p=document.getElementById('filters-panel');const open=p.style.display==='block';p.style.display=open?'none':'block';this.setAttribute('aria-expanded', open ? 'false' : 'true');}).call(this)();"
+                >
+                    Filtres
+                    <img src="/images/logos/filter.png" alt="logo filtres">
+                </button>
 
+                <section
+                    id="filters-panel"
+                    style="display:{% if note_min is not null or note_max is not null %}block{% else %}none{% endif %}; margin-top:12px; background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; max-width:500px;"
+                >
+                    <form method="get" action="/entreprise" style="display:grid; gap:10px;">
+                        {% if query is not empty %}
+                            <input type="hidden" name="q" value="{{ query }}">
+                        {% endif %}
+
+                        <label for="note_min">Note minimale</label>
+                        <input
+                            id="note_min"
+                            type="number"
+                            name="note_min"
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            value="{{ note_min is not null ? note_min : '' }}"
+                            placeholder="Ex: 2.5"
+                            style="padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
+                        >
+
+                        <label for="note_max">Note maximale</label>
+                        <input
+                            id="note_max"
+                            type="number"
+                            name="note_max"
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            value="{{ note_max is not null ? note_max : '' }}"
+                            placeholder="Ex: 4.5"
+                            style="padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
+                        >
+
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+                            <button type="submit" class="search-button">Appliquer</button>
+                            <a href="/entreprise{% if query is not empty %}?q={{ query|url_encode }}{% endif %}" class="search-button" style="text-decoration:none; display:inline-flex; align-items:center;">Reinitialiser</a>
+                        </div>
+                    </form>
+                </section>
                 {% if query is not empty %}
                     <p><strong>{{ companies|length }}</strong> resultat(s) pour "{{ query }}".</p>
+                {% endif %}
+
+                {% if note_min is not null or note_max is not null %}
+                    <p>
+                        Filtres actifs:
+                        note
+                        {% if note_min is not null %}
+                            min {{ note_min }}
+                        {% endif %}
+                        {% if note_max is not null %}
+                            max {{ note_max }}
+                        {% endif %}
+                    </p>
                 {% endif %}
 
                 <div class="companies-results" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px;">

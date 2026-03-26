@@ -53,6 +53,31 @@ class CompanyModel
         return $stmt->fetchAll();
     }
 
+    public function searchCompaniesByNameAndRating(string $name, ?float $noteMin, ?float $noteMax): array
+    {
+        $conditions = ['nom LIKE :name'];
+        $params = ['name' => '%' . $name . '%'];
+
+        if ($noteMin !== null) {
+            $conditions[] = 'note >= :noteMin';
+            $params['noteMin'] = $noteMin;
+        }
+
+        if ($noteMax !== null) {
+            $conditions[] = 'note <= :noteMax';
+            $params['noteMax'] = $noteMax;
+        }
+
+        $sql = 'SELECT *
+                FROM ENTREPRISES
+                WHERE ' . implode(' AND ', $conditions) . '
+                ORDER BY nom ASC';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
     public function getAllCompanies(int $limit = 50): array
     {
         $stmt = $this->pdo->prepare(
@@ -61,6 +86,39 @@ class CompanyModel
              ORDER BY nom ASC
              LIMIT :limit'
         );
+        $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getAllCompaniesByRating(?float $noteMin, ?float $noteMax, int $limit = 50): array
+    {
+        $conditions = [];
+        $params = [];
+
+        if ($noteMin !== null) {
+            $conditions[] = 'note >= :noteMin';
+            $params['noteMin'] = $noteMin;
+        }
+
+        if ($noteMax !== null) {
+            $conditions[] = 'note <= :noteMax';
+            $params['noteMax'] = $noteMax;
+        }
+
+        $sql = 'SELECT *
+                FROM ENTREPRISES';
+
+        if (!empty($conditions)) {
+            $sql .= ' WHERE ' . implode(' AND ', $conditions);
+        }
+
+        $sql .= ' ORDER BY nom ASC LIMIT :limit';
+
+        $stmt = $this->pdo->prepare($sql);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
         $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
