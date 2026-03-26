@@ -38,4 +38,16 @@ class PilotModel{
         return (bool) $stmt->fetchColumn();
     }
 
+    public function getPilotIdByParticulierId($id_particulier)
+    {
+        $sql = "SELECT id_pilot FROM PILOTS WHERE id_particulier = ? LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id_particulier]);
+
+        $pilotId = $stmt->fetchColumn();
+
+        return $pilotId !== false ? (int) $pilotId : null;
+    }
+
 }

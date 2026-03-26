@@ -4,6 +4,8 @@ namespace App\Controllers;
 use App\Models\routeurModel;
 use App\Models\PilotModel;
 use App\Models\OfferModel;
+use App\Models\Particulier;
+use App\Models\Etudiant;
 
 class routeurController extends Controller {
     
@@ -155,6 +157,42 @@ class routeurController extends Controller {
 
     public function profilPage() {
         echo $this->templateEngine->render('profil.twig');
+    }
+
+    public function mesEtudiantsPage() {
+        $etudiants = [];
+
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /connexion');
+            exit;
+        }
+
+        if (($_SESSION['type'] ?? null) !== 'pilote') {
+            echo $this->templateEngine->render('mes_etudiants.twig', [
+                'etudiants' => $etudiants,
+            ]);
+            return;
+        }
+
+        if ($this->db) {
+            $particulierModel = new Particulier($this->db);
+            $pilotModel = new PilotModel($this->db);
+            $etudiantModel = new Etudiant($this->db);
+
+            $particulier = $particulierModel->getByProfilId((int) $_SESSION['user_id']);
+
+            if ($particulier && isset($particulier['id_particulier'])) {
+                $pilotId = $pilotModel->getPilotIdByParticulierId((int) $particulier['id_particulier']);
+
+                if ($pilotId !== null) {
+                    $etudiants = $etudiantModel->getByPilotId($pilotId);
+                }
+            }
+        }
+
+        echo $this->templateEngine->render('mes_etudiants.twig', [
+            'etudiants' => $etudiants,
+        ]);
     }
 
     public function deconnexion() {

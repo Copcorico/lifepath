@@ -24,4 +24,12 @@ class Entreprise{
         $stmt->execute([$profil_id]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function updateByProfilId($profil_id, $nom, $adresse, $description)
+    {
+        $sql = "UPDATE ENTREPRISES SET nom = ?, adresse = ?, description = ? WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$nom, $adresse, $description, $profil_id]);
+    }
 }
