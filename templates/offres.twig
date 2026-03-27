@@ -20,45 +20,36 @@
 
 					<div class="offer-header">
 						<h1 class="offer-title">{{ offer.titre }}</h1>
-						<p class="offer-reference">{{ offer.entreprise_nom }} <span class="rating">{{ offer.note ?? '0' }}</span></p>
+						<p class="offer-reference">{{ offer.entreprise_nom }} <span class="rating">{{ offer.entreprise_note ?? '0' }}/5 {{ (offer.entreprise_note ?? 0) | stars | raw }}</span></p>
 					</div>
 
 					<section class="offer-section">
 						<h3>Détail de l'offre</h3>
 						<div class="offer-detail-row">
-							<span class="label">Domaine:</span>
-							<span class="badge badge-blue">Stage 3D/2D (28 heures)</span>
-						</div>
-						<div class="offer-detail-row">
 							<span class="label">Type de poste:</span>
-							<span class="badge badge-yellow">CDI, long-terme</span>
+							<span class="badge badge-blue">Stage</span>
 						</div>
 						<div class="offer-detail-row">
 							<span class="label">Lieu:</span>
-							<span class="badge badge-light">{{ offer.localisation }}</span>
+							<span class="badge badge-yellow">{{ offer.localisation }}</span>
 						</div>
 						<div class="offer-detail-row">
 							<span class="label">Durée:</span>
-							<span class="badge badge-light">3 mois</span>
+							<span class="badge badge-blue">{{ offer.duree }}</span>
 						</div>
 						<div class="offer-detail-row">
-							<span class="label">Salaire:</span>
-							<span class="badge badge-yellow">5k€</span>
+							<span class="label">Salaire mensuel:</span>
+							<span class="badge badge-yellow">{{ offer.salaire }}€</span>
 						</div>
-						<div class="offer-detail-row">
-							<span class="label">Poste:</span>
-							<span class="badge badge-yellow">Ingénieur informatique</span>
-						</div>
-					</section>
-
-					<section class="offer-section">
-						<h3>Profil recherché</h3>
-						<p class="offer-description">Nous recherchons un candidat passionné par l'informatique avec une bonne maîtrise des technologies web et une capacité d'apprentissage rapide.</p>
 					</section>
 
 					<section class="offer-section">
 						<h3>Description</h3>
-						<p class="offer-description">Rejoignez notre équipe dynamique pour un stage enrichissant dans le domaine de l'informatique. Vous travaillerez sur des projets concrets et acquerrez une expérience précieuse dans un environnement professionnel.</p>
+						<p class="offer-description">{{ offer.detail | nl2br }}</p>
+						<div class="offer-requirements">
+							<p>Expérience requise: <span class="highlight">{{ offer.niveau }}</span></p>
+							<p>Poste à pourvoir entre le <span class="highlight">{{ offer.date_debut_formatted }}</span> et le <span class="highlight">{{ offer.date_fin_formatted }}</span></p>
+						</div>
 					</section>
 
 					<div class="offer-action">

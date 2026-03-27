@@ -8,6 +8,8 @@ use App\Models\CompanyModel;
 use App\Models\Particulier;
 use App\Models\Etudiant;
 use App\Models\Profil;
+use App\Helpers\DateHelper;
+use App\Helpers\RatingHelper;
 
 /*
     routeurController est responsable de la gestion des différentes pages du site, 
@@ -37,6 +39,11 @@ class routeurController extends Controller {
         } else {
             $this->templateEngine = $templateEngine;
         }
+
+        // Ajouter le filtre personnalisé pour les étoiles
+        $this->templateEngine->addFilter(new \Twig\TwigFilter('stars', function($rating) {
+            return RatingHelper::convertRatingToStars($rating);
+        }));
     }
 
     public function welcomePage() {
@@ -122,6 +129,20 @@ class routeurController extends Controller {
         $offerModel = new OfferModel();
         $offerId = (int) ($_GET['id'] ?? 0);
         $query = trim((string) ($_GET['q'] ?? ''));
+        $localisation = trim((string) ($_GET['localisation'] ?? ''));
+        $niveauRaw = trim((string) ($_GET['niveau'] ?? ''));
+        $salaireMinRaw = trim((string) ($_GET['salaire_min'] ?? ''));
+        $salaireMaxRaw = trim((string) ($_GET['salaire_max'] ?? ''));
+        $dureeRaw = trim((string) ($_GET['duree'] ?? ''));
+
+        $niveau = $niveauRaw === '' ? null : $niveauRaw;
+        $salaireMin = $salaireMinRaw !== '' && is_numeric($salaireMinRaw) ? (int) $salaireMinRaw : null;
+        $salaireMax = $salaireMaxRaw !== '' && is_numeric($salaireMaxRaw) ? (int) $salaireMaxRaw : null;
+        $duree = $dureeRaw !== '' && is_numeric($dureeRaw) ? (int) $dureeRaw : null;
+
+        if ($salaireMin !== null && $salaireMax !== null && $salaireMin > $salaireMax) {
+            [$salaireMin, $salaireMax] = [$salaireMax, $salaireMin];
+        }
 
         if ($offerId > 0) {
             $offer = $offerModel->getOfferWithCompanyById($offerId);
@@ -131,9 +152,19 @@ class routeurController extends Controller {
                 echo $this->templateEngine->render('offres_search.twig', [
                     'query' => $query,
                     'offers' => [],
+                    'localisation' => $localisation,
+                    'niveau' => $niveau,
+                    'salaire_min' => $salaireMin,
+                    'salaire_max' => $salaireMax,
+                    'duree' => $duree,
                 ]);
                 return;
             }
+
+            // Formater les dates et calculer la durée
+            $offer['date_debut_formatted'] = DateHelper::formatDateFR($offer['date_debut'] ?? '');
+            $offer['date_fin_formatted'] = DateHelper::formatDateFR($offer['date_fin'] ?? '');
+            $offer['duree'] = DateHelper::calculateDuration($offer['date_debut'] ?? '', $offer['date_fin'] ?? '');
 
             $relatedOffers = [];
             if (!empty($offer['id_entreprise'])) {
@@ -150,15 +181,33 @@ class routeurController extends Controller {
             return;
         }
 
-        if ($query === '') {
+        $hasFilters = $query !== ''
+            || $localisation !== ''
+            || $niveau !== null
+            || $salaireMin !== null
+            || $salaireMax !== null
+            || $duree !== null;
+
+        if (!$hasFilters) {
             $offers = $offerModel->getAllOffers();
         } else {
-            $offers = $offerModel->searchOffersByTitle($query);
+            $offers = $offerModel->searchOffers($query, [
+                'localisation' => $localisation,
+                'niveau' => $niveau,
+                'salaire_min' => $salaireMin,
+                'salaire_max' => $salaireMax,
+                'duree' => $duree,
+            ]);
         }
 
         echo $this->templateEngine->render('offres_search.twig', [
             'query' => $query,
             'offers' => $offers,
+            'localisation' => $localisation,
+            'niveau' => $niveau,
+            'salaire_min' => $salaireMin,
+            'salaire_max' => $salaireMax,
+            'duree' => $duree,
         ]);
     }
 
@@ -172,6 +221,10 @@ class routeurController extends Controller {
 
     public function legalePage() {
         echo $this->templateEngine->render('legale.twig');
+    }
+
+    public function aProposPage() {
+        echo $this->templateEngine->render('a_propos.twig');
     }
 
     public function profilPage() {
