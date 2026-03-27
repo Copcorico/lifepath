@@ -251,7 +251,7 @@ button,
 input[type="submit"] {
   width: 100%;
   min-height: 46px;
-  font-size: 1.125em;
+  font-size: 0.85em;
   padding: 2.5% 3%;
   margin-top: 2%;
   border: none;
@@ -264,8 +264,10 @@ input[type="submit"] {
 }
 .submit{
   border-radius: 100px;
-  width: 70%;
-
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button:hover,
@@ -281,6 +283,12 @@ input[type="submit"]:active {
 }
 
 .login-link {
+  text-align: center;
+  margin-top: 4%;
+  font-size: 1em;
+}
+
+.dejacompte {
   text-align: center;
   margin-top: 4%;
   font-size: 1em;
@@ -358,13 +366,22 @@ input[type="submit"]:active {
   .container {
     padding: 0%;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
-  section.formulaire_inscription, 
+  section.formulaire_inscription,
   article {
-    padding: 1% !important; /* Réduit l'espacement entre les blocs */
+    padding: 1% !important;
     justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
   .formulaire {
     width: 100%;
     display: flex;
@@ -398,11 +415,10 @@ input[type="submit"]:active {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: start;
+    align-items: center;
+    align-content: center;
     gap: 2%;
-    width: 100%;
     padding: 0;
-    margin: 0;
   }
 
   .form-group {
@@ -410,47 +426,74 @@ input[type="submit"]:active {
     width: 90%;
   }
 
+  #form-entreprise .form-group {
+    width: 80%;
+  }
+
+  #form-particulier .form-group {
+    width: 100%;
+  }
+
+  #form-particulier .form-group label {
+    font-size: 0.8em;
+  }
+
+  #form-particulier input[type="text"],
+  #form-particulier input[type="email"],
+  #form-particulier input[type="password"],
+  #form-particulier select {
+    font-size: 1em;
+    min-height: 48px;
+  }
+
   .form-section.active {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: start;
+    justify-content: center;
+    align-items: center;
     gap: 2%;
+    width: 100%;
   }
   
   .deuxpardeux {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0 2%;
-
   }
 
-  /*.form-section.active h2,
-  .form-section.active button,
-  .form-section.active .checkbox-container,
-  .form-section.active .login-link {
-    width: 100%;
+  /* ============================================
+   FORM GROUPS (PARTICULIER & ENTREPRISE)
+   ============================================ */
+  #form-particulier,
+  #form-entreprise {
+    padding: 4%;
+    width: 85%;
+    max-width: 90%;
   }
-  
-  form h2,
-  form button,
-  form input[type="hidden"],
-  .form-section.active .checkbox-container,
-  .form-section.active .login-link {
-    width: 100%;
-  }*/
 
   form h2,
-  form button,
   form .checkbox-container,
   form > input[type="hidden"] {
     width: 100%;
   }
 
+  form button,
+  form .submit,
+  form input[type="submit"] {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .checkbox-container, .checkbox-container[input], .checkbox-container[a]{
     padding: none;
     margin: none;
+  }
+
+  .checkbox-container label {
+    font-size: 0.65em;
   }
 
   /* ============================================
@@ -496,9 +539,9 @@ input[type="submit"]:active {
   }
 
   .dejacompte{
-    padding: none;
-    margin-top: 5%;
+    padding: 0;
+    margin-top: 1.5%;
+    text-align: center;
+    font-size: 0.6em;
   }
-
-
 }
