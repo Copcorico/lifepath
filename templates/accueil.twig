@@ -80,9 +80,15 @@
     <h2 class="compte-title" id="compte">Comptes</h2>
     <section class="comptes-carousel">
             <div class="carousel-compte">
-                <div class="comtes-item">
-                    <div class="compte-label"><img  class="nav-profile-icon" src="images/profils/Ehouarn.jpg" alt="logo lifePath"> jean jeans</div>
-                </div>
+            {% for profile in profiles|slice(0, 16) %}
+                {% for particulier in particuliers %}
+                    {% if profile.id_profile == particulier.id_profil %}
+                    <div class="comtes-item">
+                        <div class="compte-label"><img  class="nav-profile-icon" src={{ profile.getPhoto()|default('/images/profils/profile.png') }} alt="logo lifePath"> {{ particulier.prenom|default('l\'utilisateur') }}</div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
                 <div class="compte-item">
                     <div class="compte-label"><img  class="nav-profile-icon" src="images/profils/Davy.jpg" alt="logo lifePath"> jean jeans</div>
                 </div>
