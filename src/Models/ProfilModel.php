@@ -67,6 +67,18 @@ class Profil {
         return $stmt->fetchColumn();
     }
 
+    public function getAllProfiles($limit = 50)
+    {
+        $limit = (int) $limit;
+        if ($limit <= 0) {
+            $limit = 50;
+        }
+
+        $sql = "SELECT id_profil, photo FROM PROFIL ORDER BY id_profil DESC LIMIT " . $limit;
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function updatePhoto($idProfil, $filename)
     {
         $sql = "UPDATE PROFIL SET photo = ? WHERE id_profil = ?";

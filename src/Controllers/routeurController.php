@@ -9,6 +9,21 @@ use App\Models\Particulier;
 use App\Models\Etudiant;
 use App\Models\Profil;
 
+/*
+    routeurController est responsable de la gestion des différentes pages du site, 
+    telles que l'accueil, l'inscription, la connexion, les entreprises, les offres, 
+    le profil utilisateur, etc. 
+    Il utilise Twig pour rendre les vues et interagit avec les modèles 
+    pour récupérer les données nécessaires à l'affichage.
+    Les méthodes principales incluent :
+    - welcomePage() : Affiche la page d'accueil avec les offres, entreprises et profils récents.
+    - inscriptionPage() : Affiche la page d'inscription et gère le formulaire d'inscription.
+    - connexionPage() : Affiche la page de connexion et gère le formulaire de connexion.
+    - deconnexion() : Gère la déconnexion de l'utilisateur en détruisant la
+    
+    session et redirigeant vers la page d'accueil.
+
+*/
 class routeurController extends Controller {
     
     private $db;
@@ -27,6 +42,7 @@ class routeurController extends Controller {
     public function welcomePage() {
         $offers = [];
         $companies = [];
+        $profiles = [];
 
         try {
             $offerModel = new OfferModel();
@@ -42,10 +58,19 @@ class routeurController extends Controller {
             $companies = [];
         }
 
+        try {
+            if ($this->db) {
+                $profilModel = new Profil($this->db);
+                $profiles = $profilModel->getAllProfiles(10);
+            }
+        } catch (\Throwable $e) {
+            $profiles = [];
+        }
+
         echo $this->templateEngine->render('accueil.twig', [
             'offers' => $offers,
             'companies' => $companies,
-            'profiles' => [],
+            'profiles' => $profiles,
         ]);
     }
 
@@ -204,4 +229,7 @@ class routeurController extends Controller {
         exit();
     }
 
+    
+
 }
+
