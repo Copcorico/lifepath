@@ -344,7 +344,6 @@ class routeurController extends Controller {
 
     public function deconnexion() {
         session_destroy();
-        header('Location: /');
-        exit();
+        echo $this->templateEngine->render('deconnexion.twig', []);
     }
 }

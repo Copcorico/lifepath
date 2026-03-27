@@ -144,10 +144,8 @@ class Routeur
             header('Location: /');
             exit;
         }
-        
             // Traiter les autres routes via le routeur
         $this->run($path);
 
     }
-
 }

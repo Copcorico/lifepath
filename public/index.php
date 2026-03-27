@@ -117,8 +117,8 @@ if (preg_match('#^/deleteoffre/(\d+)$#', $path, $matches) && $_SERVER['REQUEST_M
 
 // Traiter /déconnexion
 if ($path === '/deconnexion') {
-    session_destroy();
-    header('Location: /');
+    $routeurController = new \App\Controllers\routeurController($twig, $db);
+    $routeurController->deconnexion();
     exit;
 }
 
