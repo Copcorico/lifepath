@@ -7,6 +7,7 @@ use App\Models\OfferModel;
 use App\Models\CompanyModel;
 use App\Models\Particulier;
 use App\Models\Etudiant;
+use App\Models\Profil;
 
 class routeurController extends Controller {
     
@@ -149,6 +150,15 @@ class routeurController extends Controller {
     }
 
     public function profilPage() {
+        if ($this->db && isset($_SESSION['user_id'])) {
+            $profilModel = new Profil($this->db);
+            $photo = $profilModel->getPhoto((int) $_SESSION['user_id']);
+
+            if (!empty($photo)) {
+                $_SESSION['photo'] = $photo;
+            }
+        }
+
         echo $this->templateEngine->render('profil.twig');
     }
 

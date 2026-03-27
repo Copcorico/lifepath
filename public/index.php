@@ -104,6 +104,10 @@ $routeur->register('/legale', ['App\Controllers\routeurController', 'legalePage'
 
 $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage']);
 
+$routeur->register('/profil/update', ['App\Controllers\ProfilController', 'updateProfil']);
+
+$routeur->register('/profil/photo', ['App\Controllers\ProfilController', 'uploadPhoto']);
+
 $routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);    
 
 $routeur->register('/mes-etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);

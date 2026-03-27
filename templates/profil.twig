@@ -18,19 +18,57 @@
         
         {% if app.session.has('user_id') %}
             <div class="profil-info">
+                {% if app.session.has('profil_error') %}
+                    <p class="profil-error">{{ app.session.get('profil_error') }}</p>
+                {% endif %}
+
+                <div class="profil-photo-block">
+                    <img
+                        src="/images/profils/{{ app.session.get('photo', 'profile.png') }}"
+                        alt="Photo de profil"
+                        class="profil-photo"
+                    >
+
+                    <form method="POST" action="/profil/photo" enctype="multipart/form-data" class="profil-photo-form">
+                        <input type="file" id="photo" name="photo" accept="image/png,image/jpeg,image/webp" hidden>
+                        <label for="photo" class="profil-photo-btn">Choisir une image</label>
+                        <button type="submit" class="profil-photo-submit">Modifier l'image</button>
+                    </form>
+                </div>
+
                 {% if app.session.get('type') == 'etudiant' or app.session.get('type') == 'pilote' %}
-                    <h2>Informations Personnelles</h2>
-                    <p><strong>Prénom :</strong> {{ app.session.get('prenom') }}</p>
-                    <p><strong>Nom :</strong> {{ app.session.get('nom') }}</p>
-                    <p><strong>Email :</strong> {{ app.session.get('email') }}</p>
-                    <p><strong>Type :</strong> {{ app.session.get('type') }}</p>
+                    <form method="POST" action="/profil/update">
+                        <h2>Informations Personnelles</h2>
+
+                        <label>Prénom :</label>
+                        <input type="text" name="prenom" value="{{ app.session.get('prenom') }}">
+
+                        <label>Nom :</label>
+                        <input type="text" name="nom" value="{{ app.session.get('nom') }}">
+
+                        <label>Email :</label>
+                        <input type="email" name="email" value="{{ app.session.get('email') }}">
+
+                        <button type="submit">Enregistrer</button>
+                    </form>
                 {% else %}
-                    <h2>Informations Entreprise</h2>
-                    <p><strong>Société :</strong> {{ app.session.get('societe') }}</p>
-                    <p><strong>Email :</strong> {{ app.session.get('email') }}</p>
-                    <p><strong>Type :</strong> {{ app.session.get('type') }}</p>
-                    <p><strong>Adresse :</strong> {{ app.session.get('adresse') }}</p>
-                    <p><strong>Description :</strong> {{ app.session.get('description') }}</p>
+                    <form method="POST" action="/profil/update">
+                        <h2>Informations Entreprise</h2>
+
+                        <label>Société :</label>
+                        <input type="text" name="societe" value="{{ app.session.get('societe') }}">
+
+                        <label>Email :</label>
+                        <input type="email" name="email" value="{{ app.session.get('email') }}">
+
+                        <label>Adresse :</label>
+                        <input type="text" name="adresse" value="{{ app.session.get('adresse') }}">
+
+                        <label>Description :</label>
+                        <textarea name="description">{{ app.session.get('description') }}</textarea>
+
+                        <button type="submit">Enregistrer</button>
+                    </form>
                 {% endif %}
             </div>
         {% else %}
