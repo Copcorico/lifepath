@@ -8,6 +8,8 @@ use App\Models\CompanyModel;
 use App\Models\Particulier;
 use App\Models\Etudiant;
 use App\Models\Profil;
+use App\Helpers\DateHelper;
+use App\Helpers\RatingHelper;
 
 class routeurController extends Controller {
     
@@ -22,6 +24,11 @@ class routeurController extends Controller {
         } else {
             $this->templateEngine = $templateEngine;
         }
+
+        // Ajouter le filtre personnalisé pour les étoiles
+        $this->templateEngine->addFilter(new \Twig\TwigFilter('stars', function($rating) {
+            return RatingHelper::convertRatingToStars($rating);
+        }));
     }
 
     public function welcomePage() {
@@ -129,6 +136,11 @@ class routeurController extends Controller {
                 return;
             }
 
+            // Formater les dates et calculer la durée
+            $offer['date_debut_formatted'] = DateHelper::formatDateFR($offer['date_debut'] ?? '');
+            $offer['date_fin_formatted'] = DateHelper::formatDateFR($offer['date_fin'] ?? '');
+            $offer['duree'] = DateHelper::calculateDuration($offer['date_debut'] ?? '', $offer['date_fin'] ?? '');
+
             $relatedOffers = [];
             if (!empty($offer['id_entreprise'])) {
                 $relatedOffers = array_values(array_filter(
@@ -186,6 +198,10 @@ class routeurController extends Controller {
         echo $this->templateEngine->render('legale.twig');
     }
 
+    public function aProposPage() {
+        echo $this->templateEngine->render('a_propos.twig');
+    }
+
     public function profilPage() {
         if ($this->db && isset($_SESSION['user_id'])) {
             $profilModel = new Profil($this->db);
@@ -197,10 +213,6 @@ class routeurController extends Controller {
         }
 
         echo $this->templateEngine->render('profil.twig');
-    }
-
-    public function aProposPage() {
-        echo $this->templateEngine->render('a_propos.twig');
     }
 
     public function mesEtudiantsPage() {

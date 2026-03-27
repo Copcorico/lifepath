@@ -892,7 +892,7 @@ footer {
 }
 
 .offer-reference {
-    font-size: 1.3em;
+    font-size: 1.6em;
     color: #666;
     margin: 5px 0 0 0;
     display: flex;
@@ -907,7 +907,49 @@ footer {
     border-radius: 4px;
     font-weight: bold;
     color: #142b53;
-    font-size: 1.2em;
+    font-size: 1.4em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rating .stars {
+    letter-spacing: 2px;
+    font-size: 1.1em;
+    display: inline-block;
+    position: relative;
+    color: #f0f0f1;
+    font-weight: normal;
+    text-shadow: 
+        -0.03em 0 #142b53,
+        0 -0.03em #142b53,
+        0.03em 0 #142b53,
+        0 0.03em #142b53,
+        -0.03em -0.03em #142b53,
+        -0.03em 0.03em #142b53,
+        0.03em -0.03em #142b53,
+        0.03em 0.03em #142b53;
+}
+
+.rating .stars::before {
+    content: "★★★★★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f0e278;
+    font-weight: bold;
+    overflow: hidden;
+    width: var(--rating-percent, 86%);
+    display: inline-block;
+    text-shadow: 
+        -0.03em 0 #142b53,
+        0 -0.03em #142b53,
+        0.03em 0 #142b53,
+        0 0.03em #142b53,
+        -0.03em -0.03em #142b53,
+        -0.03em 0.03em #142b53,
+        0.03em -0.03em #142b53,
+        0.03em 0.03em #142b53;
 }
 
 .offer-section {
@@ -968,6 +1010,31 @@ footer {
     font-size: 3em;
     line-height: 1.5;
     color: #555;
+}
+
+.offer-requirements {
+    text-align: center;
+    margin: 15px auto;
+    padding: 0 20px;
+    font-size: 1.6em;
+    color: #142b53;
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+}
+
+.offer-requirements p {
+    margin: 8px 0;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+.highlight {
+    color: #142b53;
+    font-weight: bold;
+    background-color: #94d4eb;
+    padding: 2px 6px;
+    border-radius: 3px;
 }
 
 .offer-action {
@@ -1299,23 +1366,6 @@ footer {
     margin: 0;
     color: #4b5563;
 }
-
-.search-button {
-    padding: 10px 18px;
-    border: 0;
-    border-radius: 10px;
-    background: #1e3a5f;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2em;
-}
-    
-.search-button img {
-    width: 20px;
-     height: 20px;
-    margin-left: 10px;
-}
-/* End Region: Search pages */
 
 /* End Region: Style Offres */
 
@@ -1795,7 +1845,7 @@ footer {
         align-items: center;
         margin: 0 auto;
         width: 100%;
-        padding-bottom: 20px;        
+        padding-bottom: 20px;
         background-image: linear-gradient(8deg, #7eb3e7, #e9eecf, #faf79d);
     }
     .intro-apropos p {
