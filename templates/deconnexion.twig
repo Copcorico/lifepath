@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Déconnexion - LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+</head>
+
+<body>
+    <main>
+        <div class="deconnexion-page">
+            <div class="deconnexion-content">
+                <img src="/images/logos/personnagesansfondombre.png" alt="Logo" class="deconnexion-logo">
+                <h1 class="deconnexion-text">À bientôt sur LifePath</h1>
+                <p class="deconnexion-subtitle">Toute l'équipe vous remercie</p>
+                <div class="deconnexion-team">
+                    <img src="/images/profils/.chut/Davy.jpg" alt="Davy" class="deconnexion-team-img">
+                    <img src="/images/profils/.chut/Ehouarn.jpg" alt="Ehouarn" class="deconnexion-team-img">
+                    <img src="/images/profils/.chut/Mae.jpg" alt="Mae" class="deconnexion-team-img">
+                    <img src="/images/profils/.chut/Noah.jpg" alt="Noah" class="deconnexion-team-img">
+                    <img src="/images/profils/.chut/Titouan.jpg" alt="Titouan" class="deconnexion-team-img">
+                </div>
+                <div class="deconnexion-spinner-container">
+                    <div class="deconnexion-spinner"></div>
+                    <p class="deconnexion-timer">Retour à l'accueil dans <span id="timer">5</span>s</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let secondsLeft = 5;
+        const timerElement = document.getElementById('timer');
+
+        // Met à jour le compteur toutes les secondes
+        const interval = setInterval(() => {
+            secondsLeft--;
+            timerElement.textContent = secondsLeft;
+
+            if (secondsLeft <= 0) {
+                clearInterval(interval);
+                // Redirection vers la page d'accueil
+                window.location.href = '/';
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

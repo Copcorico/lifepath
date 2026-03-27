@@ -2408,3 +2408,140 @@ main.offer-detail.offer-create-bg {
         padding: 30px;
     }
 }
+
+/* ===== DÉCONNEXION ===== */
+.deconnexion-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url('/images/backgrounds/wmremove-transformed.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 40px;
+}
+
+.deconnexion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.deconnexion-logo {
+    width: 180px;
+    height: auto;
+}
+
+.deconnexion-text {
+    font-size: 3.1em;
+    color: #142b53;
+    text-align: center;
+    margin: 0;
+    font-weight: 700;
+}
+
+.deconnexion-subtitle {
+    font-size: 1.9em;
+    color: #142b53;
+    text-align: center;
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+}
+
+.deconnexion-team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.deconnexion-team-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #142b53;
+}
+
+.deconnexion-team-img:nth-child(1) {
+    align-self: flex-start;
+}
+
+.deconnexion-team-img:nth-child(2) {
+    align-self: flex-end;
+}
+
+.deconnexion-spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.deconnexion-spinner {
+    width: 120px;
+    height: 120px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid #142b53;
+    border-right: 4px solid #f0e278;
+    border-radius: 50%;
+    animation: deconnexion-spin 1s linear infinite;
+}
+
+@keyframes deconnexion-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.deconnexion-timer {
+    font-size: 1.7em;
+    color: #142b53;
+    margin: 0;
+    font-weight: 600;
+}
+
+#timer {
+    color: #f0e278;
+    font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+    .deconnexion-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        background-attachment: fixed;
+        padding-top: 60px;
+    }
+
+    .deconnexion-logo {
+        width: 175px;
+    }
+
+    .deconnexion-text {
+        font-size: 2.5em;
+    }
+
+    .deconnexion-team-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .deconnexion-spinner {
+        width: 80px;
+        height: 80px;
+    }
+
+    .deconnexion-timer {
+        font-size: 1.2em;
+    }
+}
