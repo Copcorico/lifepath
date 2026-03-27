@@ -37,7 +37,7 @@
                     class="search-button btn-filters"
                     aria-expanded="false"
                     aria-controls="filters-panel"
-                    onclick="(function(){const p=document.getElementById('filters-panel');const open=p.style.display==='block';p.style.display=open?'none':'block';this.setAttribute('aria-expanded', open ? 'false' : 'true');}).call(this)();"
+                                    onclick="(function(){const p=document.getElementById('filters-panel');const open=p.classList.toggle('is-open');this.setAttribute('aria-expanded', open ? 'true' : 'false');}).call(this)();"
                 >
                     Filtres
                     <img src="/images/logos/filter.png" alt="logo filtres">
@@ -45,8 +45,7 @@
 
                 <section
                     id="filters-panel"
-                    class="filters-panel"
-                    style="display:{% if localisation is not empty or niveau is not null or salaire_min is not null or salaire_max is not null or duree is not null %}block{% else %}none{% endif %};"
+                                    class="filters-panel{% if localisation is not empty or niveau is not null or salaire_min is not null or salaire_max is not null or duree is not null %} is-open{% endif %}"
                 >
                     <form method="get" action="/offres" class="filter-form">
                         {% if query is not empty %}
@@ -123,15 +122,15 @@
                     <p><strong>{{ offers|length }}</strong> resultat(s) pour "{{ query }}".</p>
                 {% endif %}
 
-                <div class="companies-results" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px;">
+                <div class="companies-results">
                     {% for offer in offers %}
                         <a
                             href="/offres?id={{ offer.id_offre }}"
-                            style="display:block; text-decoration:none; color:inherit;"
+                            class="company-link"
                             aria-label="Voir le detail de l'offre {{ offer.titre|default('sans titre') }}"
                         >
-                            <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; box-shadow:0 4px 14px rgba(0, 0, 0, 0.06); transition: transform .15s ease, box-shadow .15s ease;">
-                                <h3 style="margin:0 0 8px 0;">{{ offer.titre|default('Offre sans titre') }}</h3>
+                            <article class="company-card">
+                                <h3 class="company-card-title">{{ offer.titre|default('Offre sans titre') }}</h3>
                                 <section class="entreprise-section">
                                     <div class="star-rating">
                                         {% for i in 1..5 %}
@@ -140,10 +139,10 @@
                                     <span>({{ offer.entreprise_note|default(0) }}/5)</span>
                                     </div>
             </section>
-                                <p style="margin:0 0 10px 0; color:#4b5563;">
+                                <p class="company-card-desc">
                                     {{ offer.detail|default(offer['détail']|default('Aucune description disponible.')) }}
                                 </p>
-                                <div style="font-size: 14px; color:#374151;">
+                                <div class="company-card-footer">
                                     <span><strong>Entreprise:</strong> {{ offer.entreprise_nom|default('Non renseignee') }}</span><br>
                                     <span><strong>Lieu:</strong> {{ offer.localisation|default('Non renseigne') }}</span><br>
                                     <span><strong>Niveau:</strong> {{ offer.niveau|default('Non renseigne') }}</span>
@@ -151,9 +150,9 @@
                             </article>
                         </a>
                     {% else %}
-                        <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px;">
-                            <h3 style="margin:0 0 8px 0;">Aucune offre trouvee</h3>
-                            <p style="margin:0; color:#4b5563;">Essayez un autre titre ou une recherche plus courte.</p>
+                        <article class="company-card">
+                            <h3 class="company-card-title">Aucune offre trouvee</h3>
+                            <p class="company-card-empty-desc">Essayez un autre titre ou une recherche plus courte.</p>
                         </article>
                     {% endfor %}
                 </div>
