@@ -10,7 +10,7 @@
     </div>
 
     <div class="nav-profile-section">
-        <img  class="nav-profile-icon" src="/images/profils/profile.png" alt="logo lifePath">
+        <img src="{{ profile.getPhoto()|default('/images/profils/profile.png') }}" alt="Photo de profil de {{ profile.prenom|default('l\'utilisateur') }}" class="offre-profile-img">
         <div class="nav-profile-info">
             {% if app.session.has('user_id') %}
                 <h2>

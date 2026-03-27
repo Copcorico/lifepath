@@ -605,7 +605,6 @@ li {
     color: #142b53;
     margin: 3% auto;
 }
-
 /*#endregion*/
 
 /*.profile-icon {
@@ -1497,6 +1496,10 @@ footer {
     }
 
     .offre-card { max-width: 400px; }
+    /* a propos */
+    .apropos-container {
+        width: 80%;
+    }
 
     /* page principale offre */
 
