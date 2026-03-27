@@ -21,31 +21,116 @@
             </section>
 
             <section id="entreprises">
-                <form method="get" action="/offres" class="search-form" style="display:flex; gap:12px; margin: 20px 0; flex-wrap: wrap;">
+                <form method="get" action="/offres" class="search-form">
                     <input
                         type="text"
                         name="q"
                         value="{{ query|default('') }}"
                         placeholder="Ex: Développement, Marketing, Communication..."
                         aria-label="Rechercher une offre par nom"
-                        style="flex:1; min-width: 240px; padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
+                        class="search-input"
                     >
-                    <button type="submit" style="padding: 10px 18px; border: 0; border-radius: 10px; background: #1e3a5f; color: #fff; cursor: pointer;">Rechercher</button>
+                    <button type="submit" class="search-button">Rechercher</button>
                 </form>
+                                <button
+                    type="button"
+                    class="search-button btn-filters"
+                    aria-expanded="false"
+                    aria-controls="filters-panel"
+                                    onclick="(function(){const p=document.getElementById('filters-panel');const open=p.classList.toggle('is-open');this.setAttribute('aria-expanded', open ? 'true' : 'false');}).call(this)();"
+                >
+                    Filtres
+                    <img src="/images/logos/filter.png" alt="logo filtres">
+                </button>
+
+                <section
+                    id="filters-panel"
+                                    class="filters-panel{% if localisation is not empty or niveau is not null or salaire_min is not null or salaire_max is not null or duree is not null %} is-open{% endif %}"
+                >
+                    <form method="get" action="/offres" class="filter-form">
+                        {% if query is not empty %}
+                            <input type="hidden" name="q" value="{{ query }}">
+                        {% endif %}
+
+                        <label for="localisation">Localisation</label>
+                        <input
+                            id="localisation"
+                            type="text"
+                            name="localisation"
+                            value="{{ localisation is not null ? localisation : '' }}"
+                            placeholder="Ex: Paris, Lyon, Marseille..."
+                            class="filter-input"
+                        >
+
+                        <label for="niveau">Année après le bac</label>
+                        <input
+                            id="niveau"
+                            type="text"
+                            name="niveau"
+                            value="{{ niveau is not null ? niveau : '' }}"
+                            placeholder="Ex: Bac+3, Bac +5, Master..."
+                            class="filter-input"
+                        >
+
+                        <label for="salaire_min">Salaire minimal</label>
+                        <input
+                            id="salaire_min"
+                            type="number"
+                            name="salaire_min"
+                            min="0"
+                            max="100000"
+                            step="100"
+                            value="{{ salaire_min is not null ? salaire_min : '' }}"
+                            placeholder="Ex: 20000"
+                            class="filter-input"
+                        >
+
+                        <label for="salaire_max">Salaire maximale</label>
+                        <input
+                            id="salaire_max"
+                            type="number"
+                            name="salaire_max"
+                            min="0"
+                            max="100000"
+                            step="100"
+                            value="{{ salaire_max is not null ? salaire_max : '' }}"
+                            placeholder="Ex: 40000"
+                            class="filter-input"
+                        >
+
+                        <label for="duree">Durée</label>
+                        <input
+                            id="duree"
+                            type="number"
+                            name="duree"
+                            min="0"
+                            max="12"
+                            step="1"
+                            value="{{ duree is not null ? duree : '' }}"
+                            placeholder="Ex: 3 mois, 6 mois..."
+                            class="filter-input"
+                        >
+
+                        <div class="filter-actions">
+                            <button type="submit" class="search-button">Appliquer</button>
+                            <a href="/offres{% if query is not empty %}?q={{ query|url_encode }}{% endif %}" class="search-button btn-reset">Reinitialiser</a>
+                        </div>
+                    </form>
+                </section>
 
                 {% if query is not empty %}
                     <p><strong>{{ offers|length }}</strong> resultat(s) pour "{{ query }}".</p>
                 {% endif %}
 
-                <div class="companies-results" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px;">
+                <div class="companies-results">
                     {% for offer in offers %}
                         <a
                             href="/offres?id={{ offer.id_offre }}"
-                            style="display:block; text-decoration:none; color:inherit;"
+                            class="company-link"
                             aria-label="Voir le detail de l'offre {{ offer.titre|default('sans titre') }}"
                         >
-                            <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; box-shadow:0 4px 14px rgba(0, 0, 0, 0.06); transition: transform .15s ease, box-shadow .15s ease;">
-                                <h3 style="margin:0 0 8px 0;">{{ offer.titre|default('Offre sans titre') }}</h3>
+                            <article class="company-card">
+                                <h3 class="company-card-title">{{ offer.titre|default('Offre sans titre') }}</h3>
                                 <section class="entreprise-section">
                                     <div class="star-rating">
                                         {% for i in 1..5 %}
@@ -54,10 +139,10 @@
                                     <span>({{ offer.entreprise_note|default(0) }}/5)</span>
                                     </div>
             </section>
-                                <p style="margin:0 0 10px 0; color:#4b5563;">
+                                <p class="company-card-desc">
                                     {{ offer.detail|default(offer['détail']|default('Aucune description disponible.')) }}
                                 </p>
-                                <div style="font-size: 14px; color:#374151;">
+                                <div class="company-card-footer">
                                     <span><strong>Entreprise:</strong> {{ offer.entreprise_nom|default('Non renseignee') }}</span><br>
                                     <span><strong>Lieu:</strong> {{ offer.localisation|default('Non renseigne') }}</span><br>
                                     <span><strong>Niveau:</strong> {{ offer.niveau|default('Non renseigne') }}</span>
@@ -65,9 +150,9 @@
                             </article>
                         </a>
                     {% else %}
-                        <article class="company-card" style="background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px;">
-                            <h3 style="margin:0 0 8px 0;">Aucune offre trouvee</h3>
-                            <p style="margin:0; color:#4b5563;">Essayez un autre titre ou une recherche plus courte.</p>
+                        <article class="company-card">
+                            <h3 class="company-card-title">Aucune offre trouvee</h3>
+                            <p class="company-card-empty-desc">Essayez un autre titre ou une recherche plus courte.</p>
                         </article>
                     {% endfor %}
                 </div>
@@ -75,11 +160,8 @@
         </article>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Tous droits réservés</p>
-        <a href="legale.html">Mentions légales et politique de confidentialité</a>
-    </footer>
-
+{% include 'style_base/_footer.twig' %}
+<script src="/script.js"></script>
 
 </body>
 </html>
