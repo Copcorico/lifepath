@@ -514,13 +514,15 @@ li {
 /*#region a propos*/
 .apropos-text{
     color: #f0f0f1;
+    font-size: 1.5em;
+    text-align: justify;
 }
 
 .apropos-title {
     top: 0;
     padding-top: 0;
     margin-top: 0;
-    color: #f0f0f1
+    color: #f0e278;
 }
 
 .forme-apropos {
@@ -544,6 +546,37 @@ li {
     background-color: #f0f0f1;
     border-radius: 24px;
     padding: 0.3rem 1.1rem;
+}
+
+.apropos-container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.intro-apropos{
+    width: 90%;
+    gap: 1rem;
+}
+
+.intro-apropos h1{
+    font-size: 3em;
+    color: #142b53;
+    margin-bottom: 1rem;
+}
+
+.intro-apropos p{
+    width: 90%;
+    margin: 0 auto;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.5em;
+}
+
+.apropos-title{
+    font-size: 2.5em;
 }
 
 /*#endregion*/
@@ -1598,10 +1631,6 @@ footer {
     }
 
     .offre-card { max-width: 400px; }
-    /* a propos */
-    .apropos-container {
-        width: 80%;
-    }
 
     /* page principale offre */
 
@@ -1728,5 +1757,38 @@ footer {
         display: flex;
         flex-direction: column;
         gap: 15px;
+    }
+
+    /*Page à propos*/
+
+    .apropos-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+    }
+    .intro-apropos h1 {
+        font-size: 2em;
+    }
+    .intro-apropos {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+        padding-bottom: 20px;        
+        background-image: linear-gradient(8deg, #7eb3e7, #e9eecf, #faf79d);
+    }
+    .intro-apropos p {
+        width: 80%;
+    }
+
+    .page-a-propos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2%;
+
     }
 }

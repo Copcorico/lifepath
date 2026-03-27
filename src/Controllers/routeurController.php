@@ -199,6 +199,10 @@ class routeurController extends Controller {
         echo $this->templateEngine->render('profil.twig');
     }
 
+    public function aProposPage() {
+        echo $this->templateEngine->render('a_propos.twig');
+    }
+
     public function mesEtudiantsPage() {
         $etudiants = [];
 
