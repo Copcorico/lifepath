@@ -23,11 +23,15 @@
                 {% endif %}
 
                 <div class="profil-photo-block">
-                    <img
-                        src="/images/profils/{{ app.session.get('photo', 'profile.png') }}"
-                        alt="Photo de profil"
-                        class="profil-photo"
-                    >
+                    <div class="profil-photo-wrapper">
+                        <img
+                            src="/images/profils/{{ app.session.get('photo', 'profile.png') }}"
+                            alt="Photo de profil"
+                            class="profil-photo"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="profil-photo-fallback">Image indisponible</span>
+                    </div>
 
                     <form method="POST" action="/profil/photo" enctype="multipart/form-data" class="profil-photo-form">
                         <input type="file" id="photo" name="photo" accept="image/png,image/jpeg,image/webp" hidden>
@@ -72,7 +76,7 @@
                 {% endif %}
             </div>
         {% else %}
-            <div style="margin-top: 30px; padding: 20px; text-align: center;">
+            <div class="profil-not-log-in">
                 <p>Vous n'êtes pas connecté.</p>
                 <p><a href="/connexion" style="color: #0066cc; text-decoration: underline;">Se connecter</a></p>
             </div>
