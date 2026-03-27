@@ -21,17 +21,103 @@
             </section>
 
             <section id="entreprises">
-                <form method="get" action="/offres" class="search-form" style="display:flex; gap:12px; margin: 20px 0; flex-wrap: wrap;">
+                <form method="get" action="/offres" class="search-form">
                     <input
                         type="text"
                         name="q"
                         value="{{ query|default('') }}"
                         placeholder="Ex: Développement, Marketing, Communication..."
                         aria-label="Rechercher une offre par nom"
-                        style="flex:1; min-width: 240px; padding: 10px 14px; border: 1px solid #d0d6dd; border-radius: 10px;"
+                        class="search-input"
                     >
-                    <button type="submit" style="padding: 10px 18px; border: 0; border-radius: 10px; background: #1e3a5f; color: #fff; cursor: pointer;">Rechercher</button>
+                    <button type="submit" class="search-button">Rechercher</button>
                 </form>
+                                <button
+                    type="button"
+                    class="search-button btn-filters"
+                    aria-expanded="false"
+                    aria-controls="filters-panel"
+                    onclick="(function(){const p=document.getElementById('filters-panel');const open=p.style.display==='block';p.style.display=open?'none':'block';this.setAttribute('aria-expanded', open ? 'false' : 'true');}).call(this)();"
+                >
+                    Filtres
+                    <img src="/images/logos/filter.png" alt="logo filtres">
+                </button>
+
+                <section
+                    id="filters-panel"
+                    class="filters-panel"
+                    style="display:{% if localisation is not empty or niveau is not null or salaire_min is not null or salaire_max is not null or duree is not null %}block{% else %}none{% endif %};"
+                >
+                    <form method="get" action="/offres" class="filter-form">
+                        {% if query is not empty %}
+                            <input type="hidden" name="q" value="{{ query }}">
+                        {% endif %}
+
+                        <label for="localisation">Localisation</label>
+                        <input
+                            id="localisation"
+                            type="text"
+                            name="localisation"
+                            value="{{ localisation is not null ? localisation : '' }}"
+                            placeholder="Ex: Paris, Lyon, Marseille..."
+                            class="filter-input"
+                        >
+
+                        <label for="niveau">Année après le bac</label>
+                        <input
+                            id="niveau"
+                            type="text"
+                            name="niveau"
+                            value="{{ niveau is not null ? niveau : '' }}"
+                            placeholder="Ex: Bac+3, Bac +5, Master..."
+                            class="filter-input"
+                        >
+
+                        <label for="salaire_min">Salaire minimal</label>
+                        <input
+                            id="salaire_min"
+                            type="number"
+                            name="salaire_min"
+                            min="0"
+                            max="100000"
+                            step="100"
+                            value="{{ salaire_min is not null ? salaire_min : '' }}"
+                            placeholder="Ex: 20000"
+                            class="filter-input"
+                        >
+
+                        <label for="salaire_max">Salaire maximale</label>
+                        <input
+                            id="salaire_max"
+                            type="number"
+                            name="salaire_max"
+                            min="0"
+                            max="100000"
+                            step="100"
+                            value="{{ salaire_max is not null ? salaire_max : '' }}"
+                            placeholder="Ex: 40000"
+                            class="filter-input"
+                        >
+
+                        <label for="duree">Durée</label>
+                        <input
+                            id="duree"
+                            type="number"
+                            name="duree"
+                            min="0"
+                            max="12"
+                            step="1"
+                            value="{{ duree is not null ? duree : '' }}"
+                            placeholder="Ex: 3 mois, 6 mois..."
+                            class="filter-input"
+                        >
+
+                        <div class="filter-actions">
+                            <button type="submit" class="search-button">Appliquer</button>
+                            <a href="/offres{% if query is not empty %}?q={{ query|url_encode }}{% endif %}" class="search-button btn-reset">Reinitialiser</a>
+                        </div>
+                    </form>
+                </section>
 
                 {% if query is not empty %}
                     <p><strong>{{ offers|length }}</strong> resultat(s) pour "{{ query }}".</p>
