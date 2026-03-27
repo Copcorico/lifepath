@@ -32,4 +32,46 @@ class Profil {
         $stmt->execute([$email]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function updateParticulier($idProfil, $nom, $prenom)
+    {
+        $sql = "UPDATE PARTICULIER SET nom = ?, prenom = ? WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$nom, $prenom, $idProfil]);
+    }
+
+    public function updateEntreprise($idProfil, $societe, $adresse, $description)
+    {
+        $sql = "UPDATE ENTREPRISES SET nom = ?, adresse = ?, description = ? WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$societe, $adresse, $description, $idProfil]);
+    }
+
+    public function updateEmail($idProfil, $email)
+    {
+        $sql = "UPDATE PROFIL SET adresse_mail = ? WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$email, $idProfil]);
+    }
+
+    public function getPhoto($idProfil)
+    {
+        $sql = "SELECT photo FROM PROFIL WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$idProfil]);
+
+        return $stmt->fetchColumn();
+    }
+
+    public function updatePhoto($idProfil, $filename)
+    {
+        $sql = "UPDATE PROFIL SET photo = ? WHERE id_profil = ?";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$filename, $idProfil]);
+    }
 }

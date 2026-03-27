@@ -74,6 +74,8 @@ class AuthController extends Controller
                     $entreprise = $this->entrepriseModel->getByProfilId($user["id_profil"]);
                     if($entreprise) {
                         $_SESSION["societe"] = $entreprise["nom"];
+                        $_SESSION["adresse"] = $entreprise["adresse"];
+                        $_SESSION["description"] = $entreprise["description"];
                     }
                 }
 

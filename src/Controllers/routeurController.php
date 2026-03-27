@@ -7,6 +7,7 @@ use App\Models\OfferModel;
 use App\Models\CompanyModel;
 use App\Models\Particulier;
 use App\Models\Etudiant;
+use App\Models\Profil;
 
 class routeurController extends Controller {
     
@@ -96,6 +97,20 @@ class routeurController extends Controller {
         $offerModel = new OfferModel();
         $offerId = (int) ($_GET['id'] ?? 0);
         $query = trim((string) ($_GET['q'] ?? ''));
+        $localisation = trim((string) ($_GET['localisation'] ?? ''));
+        $niveauRaw = trim((string) ($_GET['niveau'] ?? ''));
+        $salaireMinRaw = trim((string) ($_GET['salaire_min'] ?? ''));
+        $salaireMaxRaw = trim((string) ($_GET['salaire_max'] ?? ''));
+        $dureeRaw = trim((string) ($_GET['duree'] ?? ''));
+
+        $niveau = $niveauRaw === '' ? null : $niveauRaw;
+        $salaireMin = $salaireMinRaw !== '' && is_numeric($salaireMinRaw) ? (int) $salaireMinRaw : null;
+        $salaireMax = $salaireMaxRaw !== '' && is_numeric($salaireMaxRaw) ? (int) $salaireMaxRaw : null;
+        $duree = $dureeRaw !== '' && is_numeric($dureeRaw) ? (int) $dureeRaw : null;
+
+        if ($salaireMin !== null && $salaireMax !== null && $salaireMin > $salaireMax) {
+            [$salaireMin, $salaireMax] = [$salaireMax, $salaireMin];
+        }
 
         if ($offerId > 0) {
             $offer = $offerModel->getOfferWithCompanyById($offerId);
@@ -105,6 +120,11 @@ class routeurController extends Controller {
                 echo $this->templateEngine->render('offres_search.twig', [
                     'query' => $query,
                     'offers' => [],
+                    'localisation' => $localisation,
+                    'niveau' => $niveau,
+                    'salaire_min' => $salaireMin,
+                    'salaire_max' => $salaireMax,
+                    'duree' => $duree,
                 ]);
                 return;
             }
@@ -124,15 +144,33 @@ class routeurController extends Controller {
             return;
         }
 
-        if ($query === '') {
+        $hasFilters = $query !== ''
+            || $localisation !== ''
+            || $niveau !== null
+            || $salaireMin !== null
+            || $salaireMax !== null
+            || $duree !== null;
+
+        if (!$hasFilters) {
             $offers = $offerModel->getAllOffers();
         } else {
-            $offers = $offerModel->searchOffersByTitle($query);
+            $offers = $offerModel->searchOffers($query, [
+                'localisation' => $localisation,
+                'niveau' => $niveau,
+                'salaire_min' => $salaireMin,
+                'salaire_max' => $salaireMax,
+                'duree' => $duree,
+            ]);
         }
 
         echo $this->templateEngine->render('offres_search.twig', [
             'query' => $query,
             'offers' => $offers,
+            'localisation' => $localisation,
+            'niveau' => $niveau,
+            'salaire_min' => $salaireMin,
+            'salaire_max' => $salaireMax,
+            'duree' => $duree,
         ]);
     }
 
@@ -149,6 +187,15 @@ class routeurController extends Controller {
     }
 
     public function profilPage() {
+        if ($this->db && isset($_SESSION['user_id'])) {
+            $profilModel = new Profil($this->db);
+            $photo = $profilModel->getPhoto((int) $_SESSION['user_id']);
+
+            if (!empty($photo)) {
+                $_SESSION['photo'] = $photo;
+            }
+        }
+
         echo $this->templateEngine->render('profil.twig');
     }
 

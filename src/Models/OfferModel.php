@@ -8,6 +8,7 @@ use PDOException;
 class OfferModel
 {
     private PDO $pdo;
+    private ?array $offresColumns = null;
 
     public function __construct()
     {
@@ -49,16 +50,85 @@ class OfferModel
 
     public function searchOffersByTitle(string $query): array
     {
-        $stmt = $this->pdo->prepare(
-            'SELECT o.*, e.nom AS entreprise_nom, e.note AS entreprise_note
-             FROM OFFRES o
-             LEFT JOIN ENTREPRISES e ON e.id_entreprise = o.id_entreprise
-             WHERE o.titre LIKE :query
-             ORDER BY o.titre ASC'
-        );
+        return $this->searchOffers($query, []);
+    }
 
-        $stmt->execute(['query' => '%' . $query . '%']);
+    public function searchOffers(string $query = '', array $filters = []): array
+    {
+        $sql = 'SELECT o.*, e.nom AS entreprise_nom, e.note AS entreprise_note
+                FROM OFFRES o
+                LEFT JOIN ENTREPRISES e ON e.id_entreprise = o.id_entreprise
+                WHERE 1=1';
+
+        $params = [];
+
+        if ($query !== '') {
+            $sql .= ' AND o.titre LIKE :query';
+            $params['query'] = '%' . $query . '%';
+        }
+
+        if (!empty($filters['localisation'])) {
+            $sql .= ' AND o.localisation LIKE :localisation';
+            $params['localisation'] = '%' . $filters['localisation'] . '%';
+        }
+
+        if (
+            isset($filters['niveau'])
+            && $filters['niveau'] !== null
+            && $filters['niveau'] !== ''
+            && $this->hasOffresColumn('niveau')
+        ) {
+            $sql .= " AND REPLACE(LOWER(o.niveau), ' ', '') LIKE :niveau";
+            $params['niveau'] = '%' . str_replace(' ', '', strtolower((string) $filters['niveau'])) . '%';
+        }
+
+        if (
+            isset($filters['salaire_min'])
+            && $filters['salaire_min'] !== null
+            && $filters['salaire_min'] !== ''
+            && $this->hasOffresColumn('salaire')
+        ) {
+            $sql .= ' AND o.salaire >= :salaire_min';
+            $params['salaire_min'] = (int) $filters['salaire_min'];
+        }
+
+        if (
+            isset($filters['salaire_max'])
+            && $filters['salaire_max'] !== null
+            && $filters['salaire_max'] !== ''
+            && $this->hasOffresColumn('salaire')
+        ) {
+            $sql .= ' AND o.salaire <= :salaire_max';
+            $params['salaire_max'] = (int) $filters['salaire_max'];
+        }
+
+        if (
+            isset($filters['duree'])
+            && $filters['duree'] !== null
+            && $filters['duree'] !== ''
+            && $this->hasOffresColumn('date_debut')
+            && $this->hasOffresColumn('date_fin')
+        ) {
+            $sql .= ' AND TIMESTAMPDIFF(MONTH, o.date_debut, o.date_fin) >= :duree';
+            $params['duree'] = (int) $filters['duree'];
+        }
+
+        $sql .= ' ORDER BY o.titre ASC';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
         return $stmt->fetchAll();
+    }
+
+    private function hasOffresColumn(string $column): bool
+    {
+        if ($this->offresColumns === null) {
+            $stmt = $this->pdo->query('SHOW COLUMNS FROM OFFRES');
+            $rows = $stmt->fetchAll();
+            $this->offresColumns = array_column($rows, 'Field');
+        }
+
+        return in_array($column, $this->offresColumns, true);
     }
 
     public function getAllOffers(int $limit = 50): array
