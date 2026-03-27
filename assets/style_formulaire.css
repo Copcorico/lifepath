@@ -455,7 +455,7 @@ input[type="submit"]:active {
     gap: 2%;
     width: 100%;
   }
-  
+
   .deuxpardeux {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -521,7 +521,7 @@ input[type="submit"]:active {
     text-align: center;
     padding: 5%;
   }
-  
+
   /* ============================================
     INPUTS & SÉLECTEURS
     ============================================ */

@@ -34,6 +34,14 @@ class CompanyModel
         return $stmt->fetch() ?: null;
     }
 
+    public function getCompanyDescription(int $id): ?string
+    {
+        $stmt = $this->pdo->prepare('SELECT description FROM ENTREPRISES WHERE id_entreprise = :id');
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch();
+        return $result ? $result['description'] : null;
+    }
+
     public function getOffresByCompanyId(int $companyId): array
     {
         $stmt = $this->pdo->prepare('SELECT * FROM OFFRES WHERE id_entreprise = :companyId');

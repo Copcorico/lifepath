@@ -63,9 +63,10 @@
             {% elseif app.session.get('type') == 'pilote' %}
             <li class="nav-menu-item"><a href="/mes_etudiants">Mes étudiants</a></li>
             {% elseif app.session.get('type') == 'entreprise' %}
-            <li class="nav-menu-item"><a href="/offres">Gérer mes offres</a></li>
+            <li class="nav-menu-item"><a href="/gereroffres">Gérer mes offres</a></li>
             {% endif %}
         <li class="nav-menu-item"><a href="/avis">Avis</a></li>
+        <li class="nav-menu-item"><a href="/legale">Mentions légales</a></li>
         <li class="deconnexion"><a href="/deconnexion">Déconnexion</a></li>
         {% endif %}
     </ul>

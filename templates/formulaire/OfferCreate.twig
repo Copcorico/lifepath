@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Créer une offre - LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+</head>
+
+<body>
+    {# Navbar #}
+    {% include 'style_base/_navbar.twig' %}
+    {% include 'style_base/_header.twig' %}
+
+    <main class="offer-detail offer-create-bg">
+        <article class="entreprise-container">
+            <section class="offer-create-section">
+                <h1>{{ entrepriseName }} - Créer une nouvelle offre</h1>
+                <form method="POST" action="/creeroffre" class="offer-form">
+                    <div class="form-group">
+                        <label for="titre">Titre de l'offre *</label>
+                        <input type="text" id="titre" name="titre" class="form-input" placeholder="Ex: Ingénieur Logiciel" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detail">Description (max 1000 caractères) *</label>
+                        <textarea id="detail" name="detail" class="form-textarea" placeholder="Décrivez l'offre, les missions, les compétences requises..." rows="6" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="localisation">Localisation *</label>
+                            <input type="text" id="localisation" name="localisation" class="form-input" placeholder="Ex: Marseille" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="niveau">Niveau requis *</label>
+                            <select id="niveau" name="niveau" class="form-input" required>
+                                <option value="">-- Sélectionner un niveau --</option>
+                                <option value="Bac+1">Bac+1</option>
+                                <option value="Bac+2">Bac+2</option>
+                                <option value="Bac+3">Bac+3</option>
+                                <option value="Bac+4">Bac+4</option>
+                                <option value="Bac+5">Bac+5</option>
+                                <option value="Bac+6">Bac+6</option>
+                                <option value="Débutant">Débutant</option>
+                                <option value="Confirmé">Confirmé</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date_debut">Date de début (JJ/MM/AAAA) *</label>
+                            <input type="text" id="date_debut" name="date_debut" class="form-input date-input" placeholder="JJ/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date_fin">Date de fin (JJ/MM/AAAA) *</label>
+                            <input type="text" id="date_fin" name="date_fin" class="form-input date-input" placeholder="JJ/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salaire">Rémunération</label>
+                        <input type="text" id="salaire" name="salaire" class="form-input" placeholder="Ex: 1500€/mois ou À négocier">
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="/gereroffres" class="btn-form btn-cancel">Annuler</a>
+                        <button type="submit" class="btn-form btn-submit">Créer l'offre</button>
+                    </div>
+
+                    {% if errors %}
+                        <div class="form-errors">
+                            {% for error in errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if success_message %}
+                        <div class="success-message">{{ success_message }}</div>
+                    {% endif %}
+                </form>
+            </section>
+        </article>
+    </main>
+
+    {# Footer #}
+    {% include 'style_base/_footer.twig' %}
+
+    <script>
+        // Convertir les dates du format français (JJ/MM/AAAA) au format ISO (YYYY-MM-DD)
+        document.querySelector('.offer-form').addEventListener('submit', function(e) {
+            const dateDebut = document.getElementById('date_debut');
+            const dateFin = document.getElementById('date_fin');
+
+            function convertDateFrenchToISO(dateStr) {
+                if (!dateStr) return '';
+                // Format français JJ/MM/AAAA
+                const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+                const match = dateStr.match(regex);
+
+                if (match) {
+                    const jour = match[1];
+                    const mois = match[2];
+                    const annee = match[3];
+                    return `${annee}-${mois}-${jour}`;
+                }
+                return dateStr; // Retourne la valeur originale si format invalide
+            }
+
+            // Convertir et valider les dates
+            const dateDebutISO = convertDateFrenchToISO(dateDebut.value);
+            const dateFinISO = convertDateFrenchToISO(dateFin.value);
+
+            // Valider que le format est correct
+            if (dateDebut.value && !dateDebutISO.includes('-')) {
+                e.preventDefault();
+                alert('Format de date incorrect pour la date de début. Utilisez JJ/MM/AAAA');
+                return false;
+            }
+            if (dateFin.value && !dateFinISO.includes('-')) {
+                e.preventDefault();
+                alert('Format de date incorrect pour la date de fin. Utilisez JJ/MM/AAAA');
+                return false;
+            }
+
+            // Stocker les dates converties dans des champs cachés ou directement
+            dateDebut.value = dateDebutISO;
+            dateFin.value = dateFinISO;
+        });
+
+        // Ajouter du style au focus pour les champs de date
+        document.querySelectorAll('.date-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') e.preventDefault();
+            });
+
+            input.addEventListener('blur', function() {
+                // Valider le format au moment du blur
+                const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+                if (this.value && !regex.test(this.value)) {
+                    this.classList.add('date-input-error');
+                } else {
+                    this.classList.remove('date-input-error');
+                }
+            });
+        });
+    </script>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

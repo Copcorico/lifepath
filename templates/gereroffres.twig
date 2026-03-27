@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gérer mes offres - LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+</head>
+
+<body>
+    {# Navbar #}
+    {% include 'style_base/_navbar.twig' %}
+    {% include 'style_base/_header.twig' %}
+
+    <main class="offer-detail">
+        <article class="entreprise-container">
+            <section class="entreprise-section">
+                <h1>{{ entrepriseName }} - Offres de l'entreprise</h1>
+            </section>
+
+            <section class="offres-list">
+                {% if offers|length > 0 %}
+                    {% for offer in offers %}
+                        <div class="offre-card-simple">
+                            <img src="/images/entreprise/entreprise.jpg" alt="{{ offer.titre }}" class="offre-card-img-simple">
+                            <div class="offre-info-simple">
+                                <h3 class="offre-title-simple">{{ offer.titre }}</h3>
+                                <div class="offre-meta-simple">
+                                    <p><strong>Localisation:</strong> {{ offer.localisation|default('Non renseignée') }}</p>
+                                    <p><strong>Niveau:</strong> {{ offer.niveau|default('Niveau non précisé') }}</p>
+                                    <p><strong>Durée:</strong> {{ offer.duree|default('Non spécifiée') }}</p>
+                                    <p><strong>Salaire:</strong> {{ offer.salaire|default('À négocier') }}€</p>
+                                </div>
+                                <p class="offre-desc-simple">{{ offer.detail|default('Aucun détail disponible.') }}</p>
+                                <div class="offre-actions-simple">
+                                    <a href="/offres?id={{ offer.id_offre }}" class="btn-action btn-view">Voir</a>
+                                    <a href="/editoffre/{{ offer.id_offre }}" class="btn-action btn-edit">Éditer</a>
+                                    <form id="deleteForm_{{ offer.id_offre }}" method="POST" action="/deleteoffre/{{ offer.id_offre }}" style="display:inline;">
+                                        <button type="button" class="btn-action btn-delete" onclick="confirmDelete({{ offer.id_offre }})">Supprimer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="create-offer-container">
+                        <a href="/creeroffre" class="btn-action btn-create">+ Créer une offre</a>
+                    </div>
+                {% else %}
+                    <div class="offre-card-simple">
+                        <div class="offre-info-simple">
+                            <h3 class="offre-title-simple">Aucune offre publiée</h3>
+                            <p>Vous n'avez pas encore publié d'offre de stage.</p>
+                            <a href="/creeroffre" class="btn-action btn-create">+ Créer une offre</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </section>
+        </article>
+    </main>
+
+    {# Footer #}
+    {% include 'style_base/_footer.twig' %}
+
+    <script>
+        function confirmDelete(offerId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')) {
+                document.getElementById('deleteForm_' + offerId).submit();
+            }
+        }
+    </script>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

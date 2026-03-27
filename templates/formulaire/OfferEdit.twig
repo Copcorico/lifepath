@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Éditer une offre - LifePath</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/png" href="/images/logos/personnagesansfondombre.png">
+</head>
+<body>
+    {# Navbar #}
+    {% include 'style_base/_navbar.twig' %}
+    {% include 'style_base/_header.twig' %}
+    <main class="offer-detail offer-create-bg">
+        <article class="entreprise-container">
+            <section class="offer-create-section">
+                <h1>{{ entrepriseName }} - Éditer l'offre</h1>
+                <form method="POST" action="/editoffre/{{ offer.id_offre }}" class="offer-form">
+                    <div class="form-group">
+                        <label for="titre">Titre de l'offre *</label>
+                        <input type="text" id="titre" name="titre" class="form-input" placeholder="Ex: Ingénieur Logiciel" value="{{ offer.titre }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail">Description (max 1000 caractères) *</label>
+                        <textarea id="detail" name="detail" class="form-textarea" placeholder="Décrivez l'offre, les missions, les compétences requises..." rows="6" required>{{ offer.detail }}</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="localisation">Localisation *</label>
+                            <input type="text" id="localisation" name="localisation" class="form-input" placeholder="Ex: Marseille" value="{{ offer.localisation }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="niveau">Niveau requis *</label>
+                            <select id="niveau" name="niveau" class="form-input" required>
+                                <option value="">-- Sélectionner un niveau --</option>
+                                <option value="Bac+1" {% if offer.niveau == 'Bac+1' %}selected{% endif %}>Bac+1</option>
+                                <option value="Bac+2" {% if offer.niveau == 'Bac+2' %}selected{% endif %}>Bac+2</option>
+                                <option value="Bac+3" {% if offer.niveau == 'Bac+3' %}selected{% endif %}>Bac+3</option>
+                                <option value="Bac+4" {% if offer.niveau == 'Bac+4' %}selected{% endif %}>Bac+4</option>
+                                <option value="Bac+5" {% if offer.niveau == 'Bac+5' %}selected{% endif %}>Bac+5</option>
+                                <option value="Bac+6" {% if offer.niveau == 'Bac+6' %}selected{% endif %}>Bac+6</option>
+                                <option value="Débutant" {% if offer.niveau == 'Débutant' %}selected{% endif %}>Débutant</option>
+                                <option value="Confirmé" {% if offer.niveau == 'Confirmé' %}selected{% endif %}>Confirmé</option>
+                                <option value="Expert" {% if offer.niveau == 'Expert' %}selected{% endif %}>Expert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date_debut">Date de début (JJ/MM/AAAA) *</label>
+                            <input type="text" id="date_debut" name="date_debut" class="form-input date-input" placeholder="JJ/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" value="{% if offer.date_debut %}{{ offer.date_debut|date('d/m/Y') }}{% endif %}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_fin">Date de fin (JJ/MM/AAAA) *</label>
+                            <input type="text" id="date_fin" name="date_fin" class="form-input date-input" placeholder="JJ/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" value="{% if offer.date_fin %}{{ offer.date_fin|date('d/m/Y') }}{% endif %}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="salaire">Rémunération</label>
+                        <input type="text" id="salaire" name="salaire" class="form-input" placeholder="Ex: 1500€/mois ou À négocier" value="{{ offer.salaire }}">
+                    </div>
+                    <div class="form-actions">
+                        <a href="/gereroffres" class="btn-form btn-cancel">Annuler</a>
+                        <button type="submit" class="btn-form btn-submit">Enregistrer les modifications</button>
+                    </div>
+                    {% if errors %}
+                        <div class="form-errors">
+                            {% for error in errors %}
+                                <div class="error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if success_message %}
+                        <div class="success-message">{{ success_message }}</div>
+                    {% endif %}
+                </form>
+            </section>
+        </article>
+    </main>
+    {# Footer #}
+    {% include 'style_base/_footer.twig' %}
+    <script>
+        document.querySelector('.offer-form').addEventListener('submit', function(e) {
+            const dateDebut = document.getElementById('date_debut');
+            const dateFin = document.getElementById('date_fin');
+            function convertDateFrenchToISO(dateStr) {
+                if (!dateStr) return '';
+                const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+                const match = dateStr.match(regex);
+                if (match) {
+                    const jour = match[1];
+                    const mois = match[2];
+                    const annee = match[3];
+                    return `${annee}-${mois}-${jour}`;
+                }
+                return dateStr;
+            }
+            const dateDebutISO = convertDateFrenchToISO(dateDebut.value);
+            const dateFinISO = convertDateFrenchToISO(dateFin.value);
+            if (dateDebut.value && !dateDebutISO.includes('-')) {
+                e.preventDefault();
+                alert('Format de date incorrect pour la date de début. Utilisez JJ/MM/AAAA');
+                return false;
+            }
+            if (dateFin.value && !dateFinISO.includes('-')) {
+                e.preventDefault();
+                alert('Format de date incorrect pour la date de fin. Utilisez JJ/MM/AAAA');
+                return false;
+            }
+            dateDebut.value = dateDebutISO;
+            dateFin.value = dateFinISO;
+        });
+        document.querySelectorAll('.date-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') e.preventDefault();
+            });
+            input.addEventListener('blur', function() {
+                const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+                if (this.value && !regex.test(this.value)) {
+                    this.classList.add('date-input-error');
+                } else {
+                    this.classList.remove('date-input-error');
+                }
+            });
+        });
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>

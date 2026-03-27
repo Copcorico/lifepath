@@ -11,23 +11,8 @@ use App\Models\Profil;
 use App\Helpers\DateHelper;
 use App\Helpers\RatingHelper;
 
-/*
-    routeurController est responsable de la gestion des différentes pages du site, 
-    telles que l'accueil, l'inscription, la connexion, les entreprises, les offres, 
-    le profil utilisateur, etc. 
-    Il utilise Twig pour rendre les vues et interagit avec les modèles 
-    pour récupérer les données nécessaires à l'affichage.
-    Les méthodes principales incluent :
-    - welcomePage() : Affiche la page d'accueil avec les offres, entreprises et profils récents.
-    - inscriptionPage() : Affiche la page d'inscription et gère le formulaire d'inscription.
-    - connexionPage() : Affiche la page de connexion et gère le formulaire de connexion.
-    - deconnexion() : Gère la déconnexion de l'utilisateur en détruisant la
-    
-    session et redirigeant vers la page d'accueil.
-
-*/
 class routeurController extends Controller {
-    
+
     private $db;
 
     public function __construct($templateEngine = null, $db = null) {
@@ -40,7 +25,6 @@ class routeurController extends Controller {
             $this->templateEngine = $templateEngine;
         }
 
-        // Ajouter le filtre personnalisé pour les étoiles
         $this->templateEngine->addFilter(new \Twig\TwigFilter('stars', function($rating) {
             return RatingHelper::convertRatingToStars($rating);
         }));
@@ -82,20 +66,18 @@ class routeurController extends Controller {
     }
 
     public function inscriptionPage() {
-        // Gérer le POST du formulaire d'inscription
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->db) {
             $authController = new AuthController($this->templateEngine, $this->db);
             $authController->inscription();
             return;
         }
         
-        // Charger les pilots si on a une connexion BDD
         $pilots = [];
         if ($this->db) {
             $pilotModel = new PilotModel($this->db);
             $pilots = $pilotModel->getPilots();
         }
-        
+
         echo $this->templateEngine->render('Connexion/inscription.twig', [
             'errors' => [],
             'success_message' => null,
@@ -106,7 +88,6 @@ class routeurController extends Controller {
     }
 
     public function connexionPage() {
-        // Gérer le POST du formulaire de connexion
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && $this->db) {
             $authController = new AuthController($this->templateEngine, $this->db);
             $authController->connexion();
@@ -161,22 +142,27 @@ class routeurController extends Controller {
                 return;
             }
 
-            // Formater les dates et calculer la durée
             $offer['date_debut_formatted'] = DateHelper::formatDateFR($offer['date_debut'] ?? '');
             $offer['date_fin_formatted'] = DateHelper::formatDateFR($offer['date_fin'] ?? '');
             $offer['duree'] = DateHelper::calculateDuration($offer['date_debut'] ?? '', $offer['date_fin'] ?? '');
 
             $relatedOffers = [];
+            $entreprise = [];
             if (!empty($offer['id_entreprise'])) {
+                $companyModel = new CompanyModel();
                 $relatedOffers = array_values(array_filter(
                     $offerModel->getOffersByCompanyId((int) $offer['id_entreprise']),
                     static fn(array $item): bool => (int) ($item['id_offre'] ?? 0) !== $offerId
                 ));
+                $entreprise = [
+                    'description' => $companyModel->getCompanyDescription((int) $offer['id_entreprise'])
+                ];
             }
 
             echo $this->templateEngine->render('offres.twig', [
                 'offer' => $offer,
                 'relatedOffers' => $relatedOffers,
+                'entreprise' => $entreprise,
             ]);
             return;
         }
@@ -198,6 +184,10 @@ class routeurController extends Controller {
                 'salaire_max' => $salaireMax,
                 'duree' => $duree,
             ]);
+        }
+
+        foreach ($offers as &$offer) {
+            $offer['duree'] = DateHelper::calculateDuration($offer['date_debut'] ?? '', $offer['date_fin'] ?? '');
         }
 
         echo $this->templateEngine->render('offres_search.twig', [
@@ -276,13 +266,85 @@ class routeurController extends Controller {
         ]);
     }
 
+    public function gererOffresPage(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION['user_id']) || ($_SESSION['type'] ?? '') !== 'entreprise') {
+            header('Location: /connexion');
+            exit();
+        }
+
+        $entrepriseId = (int) ($_SESSION['entreprise_id'] ?? 0);
+        $offers = [];
+
+        if ($entrepriseId > 0) {
+            $offerModel = new OfferModel();
+            $offers = $offerModel->getOffersByCompanyId($entrepriseId);
+
+            foreach ($offers as &$offer) {
+                $offer['duree'] = DateHelper::calculateDuration($offer['date_debut'] ?? '', $offer['date_fin'] ?? '');
+            }
+        }
+
+        echo $this->templateEngine->render('gereroffres.twig', [
+            'offers' => $offers,
+            'entrepriseName' => $_SESSION['societe'] ?? '',
+        ]);
+    }
+
+    public function creerOffrePage(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+
+        if (!isset($_SESSION['user_id']) || ($_SESSION['type'] ?? '') !== 'entreprise') {
+            header('Location: /connexion');
+            exit();
+        }
+
+        echo $this->templateEngine->render('formulaire/OfferCreate.twig', [
+            'entrepriseName' => $_SESSION['societe'] ?? '',
+        ]);
+    }
+
+    public function editOffrePage(int $offerId): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION['user_id']) || ($_SESSION['type'] ?? '') !== 'entreprise') {
+            header('Location: /connexion');
+            exit();
+        }
+
+        $offerModel = new OfferModel();
+        $offer = $offerModel->getOfferById($offerId);
+
+        if (!$offer) {
+            header('Location: /gereroffres');
+            exit();
+        }
+
+        if ((int) $offer['id_entreprise'] !== (int) ($_SESSION['entreprise_id'] ?? 0)) {
+            header('Location: /gereroffres');
+            exit();
+        }
+
+        echo $this->templateEngine->render('formulaire/OfferEdit.twig', [
+            'offer' => $offer,
+            'entrepriseName' => $_SESSION['societe'] ?? '',
+        ]);
+    }
+
     public function deconnexion() {
         session_destroy();
         header('Location: /');
         exit();
     }
-
-    
-
 }
-

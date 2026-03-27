@@ -85,7 +85,7 @@
                             class="filter-input"
                         >
 
-                        <label for="salaire_max">Salaire maximale</label>
+                        <label for="salaire_max">Salaire maximal</label>
                         <input
                             id="salaire_max"
                             type="number"
@@ -145,7 +145,8 @@
                                 <div class="company-card-footer">
                                     <span><strong>Entreprise:</strong> {{ offer.entreprise_nom|default('Non renseignee') }}</span><br>
                                     <span><strong>Lieu:</strong> {{ offer.localisation|default('Non renseigne') }}</span><br>
-                                    <span><strong>Niveau:</strong> {{ offer.niveau|default('Non renseigne') }}</span>
+                                    <span><strong>Niveau:</strong> {{ offer.niveau|default('Non renseigne') }}</span><br>
+                                    <span><strong>Durée:</strong> {{ offer.duree|default('Non renseignée') }}</span>
                                 </div>
                             </article>
                         </a>

@@ -76,6 +76,7 @@ class AuthController extends Controller
                         $_SESSION["societe"] = $entreprise["nom"];
                         $_SESSION["adresse"] = $entreprise["adresse"];
                         $_SESSION["description"] = $entreprise["description"];
+                        $_SESSION["entreprise_id"] = $entreprise["id_entreprise"];
                     }
                 }
 
@@ -144,7 +145,7 @@ class AuthController extends Controller
             {
                 try {
                     $profil_id = $this->profilModel->create("", $email, $password, $statut);
-                    
+
                     $particulier_id = $this->particulierModel->create($profil_id, $nom, $prenom);
 
                     if($statut == "pilote")

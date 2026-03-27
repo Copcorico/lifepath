@@ -79,6 +79,42 @@ if ($path === '/connexion' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     exit;
 }
 
+// Traiter /creeroffre
+if ($path === '/creeroffre' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $routeurController = new \App\Controllers\routeurController($twig, $db);
+    $routeurController->creerOffrePage();
+    exit;
+}
+
+if ($path === '/creeroffre' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $offerController = new \App\Controllers\OfferController($twig, $db);
+    $offerController->createOfferFromForm();
+    exit;
+}
+
+// Traiter /editoffre/{id}
+if (preg_match('#^/editoffre/(\d+)$#', $path, $matches)) {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $offerId = (int) $matches[1];
+        $routeurController = new \App\Controllers\routeurController($twig, $db);
+        $routeurController->editOffrePage($offerId);
+        exit;
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $offerId = (int) $matches[1];
+        $offerController = new \App\Controllers\OfferController($twig, $db);
+        $offerController->editOfferFromForm($offerId);
+        exit;
+    }
+}
+
+// Traiter /deleteoffre/{id}
+if (preg_match('#^/deleteoffre/(\d+)$#', $path, $matches) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $offerId = (int) $matches[1];
+    $offerController = new \App\Controllers\OfferController($twig, $db);
+    $offerController->deleteOfferFromForm($offerId);
+    exit;
+}
+
 // Traiter /déconnexion
 if ($path === '/deconnexion') {
     session_destroy();
@@ -101,8 +137,10 @@ $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage'
 $routeur->register('/profil/update', ['App\Controllers\ProfilController', 'updateProfil']);
 $routeur->register('/profil/photo', ['App\Controllers\ProfilController', 'uploadPhoto']);
 $routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);
-
+$routeur->register('/mes-etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);
 $routeur->register('/a_propos', ['App\Controllers\routeurController', 'aProposPage']);
+$routeur->register('/gereroffres', ['App\Controllers\routeurController', 'gererOffresPage']);
+$routeur->register('/creeroffre', ['App\Controllers\routeurController', 'creerOffrePage']);
 
 // Keep legacy links functional while templates are progressively migrated.
 $legacyRoutes = [

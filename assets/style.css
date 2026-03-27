@@ -1797,8 +1797,9 @@ footer {
         display: inline-block;
         font-weight: bold;
         margin-right: 2%;
-        padding: 1% 2%;
+        padding: 8px 12px;
         transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 1rem;
     }
 
     .deconnexion a {
@@ -1989,5 +1990,421 @@ footer {
         width: 50px;
         height: auto;
         border-radius: 100%;
+    }
+}
+
+/* ===== MODIFICATIONS LOCALES - SYSTÈME DE GESTION DES OFFRES ===== */
+
+/* Liste des offres avec gestion */
+.offres-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.offre-card-simple {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: #94d4eb;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+}
+
+.offre-card-img-simple {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.offre-info-simple {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.offre-title-simple {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #142b53;
+}
+
+.offre-meta-simple {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.offre-meta-simple p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.offre-desc-simple {
+    margin: 8px 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.offre-actions-simple {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+/* Boutons d'action pour les offres - Version Mobile */
+.btn-action {
+    background-color: #142b53;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px 5px 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Dela gothic one', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-action:hover {
+    background-color: #0d1829;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(20, 43, 83, 0.3);
+}
+
+.btn-action:active {
+    transform: translateY(0);
+}
+
+.btn-view {
+    background-color: #142b53;
+}
+
+.btn-view:hover {
+    background-color: #0d1829;
+}
+
+.btn-edit {
+    background-color: #4a90e2;
+}
+
+.btn-edit:hover {
+    background-color: #2e5c8a;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-create {
+    background-color: #27ae60;
+}
+
+.btn-create:hover {
+    background-color: #1e8449;
+}
+
+/* Conteneur pour bouton créer offre */
+.create-offer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.create-offer-container .btn-create {
+    font-size: 1.1em;
+    padding: 12px 30px;
+}
+
+/* Formulaire de création/édition d'offre */
+main.offer-detail.offer-create-bg {
+    background: #94d4eb url('/images/backgrounds/wmremove-transformed.png');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    min-height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.offer-create-section {
+    padding: 20px;
+    background-color: transparent;
+    min-height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+.offer-create-section h1 {
+    color: #f0f0f1;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    display: block;
+    background-color: #142b53;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 0 20px 0;
+}
+
+.offer-create-section .subtitle {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.offer-form {
+    background: none;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #142b53;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.form-input,
+.form-textarea {
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #142b53;
+    box-shadow: 0 0 0 3px rgba(20, 43, 83, 0.1);
+}
+
+.date-input-error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.btn-form {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #1e8449;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.btn-cancel {
+    background-color: #bdc3c7;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #95a5a6;
+    transform: translateY(-2px);
+}
+
+.form-errors {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: #721c24;
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.success-message {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    padding: 15px;
+    color: #155724;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .offre-card-simple {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .offre-card-img-simple {
+        width: 100%;
+        height: 200px;
+    }
+
+    .offre-meta-simple {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .offre-actions-simple {
+        flex-direction: column;
+    }
+
+    .offre-actions-simple .btn-action {
+        width: 100%;
+        text-align: center;
+    }
+
+    .offer-create-section h1 {
+        font-size: 1.8em;
+    }
+}
+
+/* Responsive - Desktop */
+@media (min-width: 1024px) {
+    /* Boutons d'action - Version PC */
+    .btn-action {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+
+    .btn-action:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(20, 43, 83, 0.4);
+    }
+
+    .offre-card-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .offer-form {
+        padding: 30px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .form-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .btn-form {
+        padding: 12px 30px;
+        width: auto;
+    }
+
+    main.offer-detail.offer-create-bg {
+        background-image: none;
+        background-color: #f0f0f1;
+        min-height: 100vh;
+    }
+
+    .offer-create-section {
+        padding: 30px;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .offer-create-section h1 {
+        display: block;
+        font-size: 2.5em;
+        color: #142b53;
+        text-align: left;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        margin: 0 0 5px 0;
+    }
+
+    .offer-create-section .subtitle {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .offer-form {
+        background: #94d4eb url('/images/backgrounds/wmremove-transformed.png');
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        padding: 30px;
     }
 }
