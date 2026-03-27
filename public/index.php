@@ -2,6 +2,7 @@
 
 use Routeur\Routeur;
 use exceptions\RouteurNotFoundException;
+use App\Controllers\routeurController;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -111,6 +112,17 @@ $legacyRoutes = [
     '/avis.html' => ['App\Controllers\routeurController', 'avisPage'],
     '/legale.html' => ['App\Controllers\routeurController', 'legalePage'],
     '/contact.html' => ['App\Controllers\routeurController', 'contactPage'],
+    '/src/Controllers/InscriptionController.php' => ['App\Controllers\routeurController', 'inscriptionPage'],
+    '/src/Controllers/ConnexionController.php' => ['App\Controllers\routeurController', 'connexionPage'],
+    '/templates/Connexion/connexion.twig' => ['App\Controllers\routeurController', 'connexionPage'],
+    '/templates/Offres/offres.twig' => ['App\Controllers\routeurController', 'offresPage'],
+    '/templates/Entreprises/entreprise.twig' => ['App\Controllers\routeurController', 'entreprisePage'],
+    '/templates/Avis/avis.twig' => ['App\Controllers\routeurController', 'avisPage'],
+    '/templates/Legale/legale.twig' => ['App\Controllers\routeurController', 'legalePage'],
+    '/templates/Contact/contact.twig' => ['App\Controllers\routeurController', 'contactPage'],
+    '/templates/Profil/profil.twig' => ['App\Controllers\routeurController', 'profilPage'],
+    '/templates/MesEtudiants/mes_etudiants.twig' => ['App\Controllers\routeurController', 'mesEtudiantsPage'],
+    '/src/Controllers/routeurController.php' => ['App\Controllers\routeurController', 'welcomePage'],
 ];
 
 foreach ($legacyRoutes as $legacyPath => $action) {
