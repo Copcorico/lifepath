@@ -2,6 +2,7 @@
 
 use Routeur\Routeur;
 use exceptions\RouteurNotFoundException;
+use App\Controllers\routeurController;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -19,16 +20,17 @@ $dotenv->load();
 $dsn = $_ENV['DB_DSN'] ?? "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4";
 $db = new \PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
 
-// Créer le moteur Twig avec accès à la session
+// Créer le moteur Twig
 $loader = new \Twig\Loader\FilesystemLoader($projectRoot . '/templates');
 $twig = new \Twig\Environment($loader);
 
+// Initialiser Twig
 // Ajouter les variables globales Twig
 $twig->addGlobal('app', [
     'session' => new \App\Twig\SessionBag()
 ]);
 
-// Gérer POST /inscription avant le routeur
+// Parser l'URI et extraire le chemin de route (une seule fois)
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
 
@@ -87,30 +89,18 @@ if ($path === '/deconnexion') {
 $routeur = new Routeur($db, $twig);
 
 $routeur->register('/', ['App\Controllers\routeurController', 'welcomePage']);
-
 $routeur->register('/connexion', ['App\Controllers\routeurController', 'connexionPage']);
-
 $routeur->register('/inscription', ['App\Controllers\routeurController', 'inscriptionPage']);
-
+$routeur->register('/deconnexion', ['App\Controllers\routeurController', 'deconnexion']);
 $routeur->register('/entreprise', ['App\Controllers\routeurController', 'entreprisePage']);
-
 $routeur->register('/contact', ['App\Controllers\routeurController', 'contactPage']);
-
 $routeur->register('/offres', ['App\Controllers\routeurController', 'offresPage']);
-
 $routeur->register('/avis', ['App\Controllers\routeurController', 'avisPage']);
-
 $routeur->register('/legale', ['App\Controllers\routeurController', 'legalePage']);
-
 $routeur->register('/profil', ['App\Controllers\routeurController', 'profilPage']);
-
 $routeur->register('/profil/update', ['App\Controllers\ProfilController', 'updateProfil']);
-
 $routeur->register('/profil/photo', ['App\Controllers\ProfilController', 'uploadPhoto']);
-
-$routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);    
-
-$routeur->register('/mes-etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);
+$routeur->register('/mes_etudiants', ['App\Controllers\routeurController', 'mesEtudiantsPage']);
 
 $routeur->register('/a_propos', ['App\Controllers\routeurController', 'aProposPage']);
 
@@ -131,38 +121,23 @@ $legacyRoutes = [
     '/templates/Entreprises/entreprise.twig' => ['App\Controllers\routeurController', 'entreprisePage'],
     '/templates/Avis/avis.twig' => ['App\Controllers\routeurController', 'avisPage'],
     '/templates/Legale/legale.twig' => ['App\Controllers\routeurController', 'legalePage'],
+    '/templates/Contact/contact.twig' => ['App\Controllers\routeurController', 'contactPage'],
+    '/templates/Profil/profil.twig' => ['App\Controllers\routeurController', 'profilPage'],
     '/templates/MesEtudiants/mes_etudiants.twig' => ['App\Controllers\routeurController', 'mesEtudiantsPage'],
-    '/templates/ÀPropos/a_propos.twig' => ['App\Controllers\routeurController', 'aProposPage'],
+    '/templates/APropos/a_propos.twig' => ['App\Controllers\routeurController', 'aProposPage'],
 
 ];
 
-foreach ($legacyRoutes as $path => $action) {
-    $routeur->register($path, $action);
+foreach ($legacyRoutes as $legacyPath => $action) {
+    $routeur->register($legacyPath, $action);
 }
-
-$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-$basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
-
-if ($basePath !== '' && $basePath !== '.' && str_starts_with($uri, $basePath)) {
-    $uri = substr($uri, strlen($basePath));
-}
-
-if ($uri === '/index.php') {
-    $uri = '/';
-} elseif (str_starts_with($uri, '/index.php/')) {
-    $uri = substr($uri, strlen('/index.php'));
-}
-
-$uri = '/' . ltrim((string) $uri, '/');
 
 try {
     echo $routeur->run($uri);
 } catch (RouteurNotFoundException $e) {
+    http_response_code(404);
     echo $e->getMessage();
 }
-
-
-
 
 /*
 use App\Controllers\routeurController;
